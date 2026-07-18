@@ -3,6 +3,185 @@
   "fetched_period": "2026-07",
   "employers": [
     {
+      "slug": "aerospace-corp",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 3,
+          "value_text": "Aerospace matches 100% of employee pre-tax/Roth deferrals up to a maximum of 3% of match-eligible compensation (non-AERP1 participants).",
+          "unit": "pct",
+          "plan_year": 2019,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://retirees.aerospace.org/files/2019/04/Aerospace-401k-SPD-4-30-19.pdf",
+          "source_snippet": "For eligible Participants, Aerospace will match of 100% your Deferral Contributions up to a maximum of 3% of your match-eligible Compensation.",
+          "notes": "Dollar-for-dollar to 3%. AERP1 defined-benefit participants were not eligible for the 401(k) match/nonelective while accruing pension; eligible beginning Oct 1, 2023.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 5,
+          "value_text": "Fixed nonelective (non-matching) employer contribution based on years of service: 5% (<5 yrs), 7% (5-24 yrs), 9% (25+ yrs). Combined with the 3% match this yields the total company-paid benefit of 8% / 10% / 12% cited in the total-rewards guide.",
+          "unit": "pct",
+          "plan_year": 2019,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://retirees.aerospace.org/files/2019/04/Aerospace-401k-SPD-4-30-19.pdf",
+          "source_snippet": "Years of Service ... Nonelective Contribution: Less than 5 years 5%; 5-24 years 7%; 25+ years 9%",
+          "notes": "Total company-paid benefit = 8%/10%/12% of eligible comp (match + nonelective) per official Benefits Highlights. Non-AERP1 participants only.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 0,
+          "value_text": "Immediate — participants are always 100% vested in all contributions.",
+          "unit": "years",
+          "plan_year": 2019,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://retirees.aerospace.org/files/2019/04/Aerospace-401k-SPD-4-30-19.pdf",
+          "source_snippet": "You are always 100% vested in your Plan account.",
+          "notes": "Benefits Highlights: 'immediately eligible and vested in the plan upon hire.'",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 0,
+          "value_text": "Immediate eligibility upon hire for all contribution types. Automatic enrollment at 3% pre-tax begins 35 days after hire date.",
+          "unit": "days",
+          "plan_year": 2019,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://retirees.aerospace.org/files/2019/04/Aerospace-401k-SPD-4-30-19.pdf",
+          "source_snippet": "You will become eligible to participate in the Plan for all contribution types immediately upon satisfying the above eligibility requirements.",
+          "notes": "Auto-enroll default deferral 3% of eligible compensation beginning 35 days after hire.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_last_day_rule",
+          "value_num": 0,
+          "value_text": "No last-day-of-year employment requirement for regular employees to receive match/nonelective. (A last-day + 1,000-hour rule applies only to temporary/casual employees.)",
+          "unit": "bool",
+          "plan_year": 2019,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://retirees.aerospace.org/files/2019/04/Aerospace-401k-SPD-4-30-19.pdf",
+          "source_snippet": "Temporary and casual employees will be eligible for matching contributions if they have earned at least 1,000 Hours of Service in the Plan year and are employed on the last day of the Plan year.",
+          "notes": "Regular employees have no last-day rule; requirement is limited to temporary/casual staff.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "Frozen / closed to new hires. The Aerospace Employees' Retirement Plan (AERP) is a defined-benefit pension. Benefit accruals were frozen effective October 1, 2018 (no new Variable Units accrue); AERP1 participants — generally those hired before Jan 1, 1993 and continuously employed who did not elect the Combined Retirement Program — continued accruing through Sept 30, 2023. Employees hired after April 1, 2005 were not covered by the DB plan; those hired 1993–2005 could elect in. New hires today receive retirement benefits through the 401(k) plan (match + nonelective), not the DB pension.",
+          "unit": null,
+          "plan_year": 2018,
+          "confidence": "reported",
+          "link_plan_type": "db_pension",
+          "source_url": "https://retirees.aerospace.org/files/2022/06/204h-Notice-AERP-2_FINALDRAFTAug8_2018final.pdf",
+          "source_snippet": "Effective October 1, 2018, your benefit accruals under the Plan will be frozen. This means that you will no longer be eligible to accrue a benefit under the Plan...",
+          "notes": "Aerospace pays full cost of the AERP benefit for covered participants. Plan is PBGC-insured DB pension (AERP1 and AERP2 documents). Closed to new participants; frozen for most since 2018 and for AERP1 since Sept 30, 2023.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": 1500,
+          "value_text": "Company HSA contribution for Anthem Premium CDHP enrollees only: $750 individual coverage / $1,500 family (employee plus at least one dependent). Prorated by hire/enrollment date. Anthem Basic CDHP is NOT eligible for company contributions.",
+          "unit": "usd_per_year",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "source_url": "https://employees.aerospace.org/files/2024/10/Aerospace_2025_ActiveGuide_20241023vFrev.pdf",
+          "source_snippet": "Aerospace will contribute to your HSA when you enroll in the Anthem Premium CDHP... $750 for Individual ... $1,500 for Family (employee plus at least one dependent)",
+          "notes": "2025 IRS HSA maximums referenced: $4,300 individual / $8,550 family. Employer seed deposited at beginning of year, prorated for mid-year hires (e.g., $375 for 6 months of individual coverage).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 15,
+          "value_text": "Vacation: 15 paid days per year; 20 days per year after five years of service. (Separate sick time: exempt employees unlimited; nonexempt accrue 80 hours/year.)",
+          "unit": "days",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "source_url": "https://aerospace.org/sites/default/files/2024-06/Benefits%20Highlights%2006%202024.pdf",
+          "source_snippet": "Vacation – 15 paid days per year; 20 days per year after five years of service",
+          "notes": "Vacation only; sick leave is separate and not counted here.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 9,
+          "value_text": "Nine paid holidays.",
+          "unit": "days",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "source_url": "https://aerospace.org/sites/default/files/2024-06/Benefits%20Highlights%2006%202024.pdf",
+          "source_snippet": "Holidays – Nine paid holidays",
+          "notes": "",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 4,
+          "value_text": "Four weeks (160 hours) of company-paid parental leave, taken within the first 12 months of birth, adoption, or foster placement of a child.",
+          "unit": "weeks",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "source_url": "https://aerospace.org/sites/default/files/2024-06/Benefits%20Highlights%2006%202024.pdf",
+          "source_snippet": "Parental Leave – Four weeks of company-paid leave when taken within the first 12 months of the birth, adoption, or foster placement of a child",
+          "notes": "Employees portal states maximum 160 hours of paid parental leave within 12 months.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 15000,
+          "value_text": "Educational Assistance includes tuition reimbursement, a fellowship program, educational assignment, and eligibility for Public Service Loan Forgiveness (PSLF). Annual cap reported by third-party aggregator at approximately $15,000; not confirmed on an employer-published source.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://aerospace.org/sites/default/files/2024-06/Benefits%20Highlights%2006%202024.pdf",
+          "source_snippet": "Educational Assistance – Tuition reimbursement, fellowship program, educational assignment, and eligibility for Public Service Loan Forgiveness (PSLF)",
+          "notes": "Program confirmed on employer total-rewards PDF; the ~$15,000/yr cap figure comes from third-party search results and is not verified against an employer/plan document.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "Full-time employees may work either a standard eight-hour day or a 9/80 compressed schedule with alternate Fridays off.",
+          "unit": "bool",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "source_url": "https://aerospace.org/sites/default/files/2024-06/Benefits%20Highlights%2006%202024.pdf",
+          "source_snippet": "Work Hours – Full-time employees can work either a standard eight-hour day or a 9/80 schedule with alternate Fridays off",
+          "notes": "Telework flexibility also offered based on role and business needs.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "std_max",
+          "value_num": 52,
+          "value_text": "Short-term disability income replacement for up to 52 weeks (California SDI: 60% of weekly salary up to $1,620/week for up to 52 weeks; non-California STD via third-party insurer, up to 52 weeks). Long-term disability begins after 180 days.",
+          "unit": "weeks",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "source_url": "https://employees.aerospace.org/files/2024/10/Aerospace_2025_ActiveGuide_20241023vFrev.pdf",
+          "source_snippet": "California State Disability Insurance (SDI): The weekly benefit is 60 percent of weekly salary up to a maximum of $1,620 per week for up to 52 weeks.",
+          "notes": "STD supplemented by company sick leave. Group LTD provides monthly income after 180 days of total disability.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": 1,
+          "value_text": "Company-paid basic employee life insurance of one times annual salary, maximum $200,000. Optional supplemental employee-paid life and accident coverage available.",
+          "unit": "x_salary",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "source_url": "https://employees.aerospace.org/files/2024/10/Aerospace_2025_ActiveGuide_20241023vFrev.pdf",
+          "source_snippet": "Basic employee life insurance coverage of one times annual salary, maximum $200,000",
+          "notes": "Company-paid basic plus occupational accident coverage per Benefits Highlights.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
       "slug": "amentum",
       "terms": [
         {
@@ -151,6 +330,72 @@
       ]
     },
     {
+      "slug": "anduril",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 0,
+          "value_text": "Anduril offers a 401(k) plan but does not provide an employer matching contribution. The company frames equity (RSUs/options) and ESPP access as its ownership-based alternative to a guaranteed match.",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://freyrgroup.com/a-straightforward-look-at-andurils-benefits-package/",
+          "source_snippet": "No 401(k) match ... Anduril compensates through equity, with RSUs, options for more tenured employees, and ESPP access.",
+          "notes": "Third-party only (private company; no SEC filing). Multiple sources (Glassdoor reviews, freyrgroup, Built In FAQ) consistently state no employer 401(k) match. Marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": null,
+          "value_text": "Flexible / uncapped paid time off for salaried employees (no fixed day allotment); advance notice to manager required. A bonus is reportedly paid when taking a vacation longer than one week.",
+          "unit": "days",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "source_url": "https://www.scribd.com/document/891245425/US-Anduril-Benefits-2025",
+          "source_snippet": "Anduril follows a flexible time off policy for salaried employees, meaning there is no cap on the number of days you can take off, but you must provide your manager with advance notice.",
+          "notes": "Flexible/unlimited PTO, so no numeric minimum. Third-party summary of the 2025 benefits overview; marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 16,
+          "value_text": "16 weeks of 100% paid parental leave for all eligible employees. Additional new-parent resources: doula support, SNOO bassinet rentals, and lactation specialists.",
+          "unit": "weeks",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "source_url": "https://www.levels.fyi/companies/anduril-industries/benefits",
+          "source_snippet": "Maternity: 16 weeks; Paternity: 16 weeks. All employees are eligible for 16 weeks of 100% paid parental leave.",
+          "notes": "Consistent across Levels.fyi and the 2025 benefits overview summary. Third-party only; marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": null,
+          "value_text": "HSA available when enrolled in the High Deductible Health Plan (HDHP). Anduril covers 100% of the employee premium on the HDHP (and Kaiser HMO), removing the coverage cost, but no specific employer HSA seed/contribution dollar amount was found in public sources.",
+          "unit": "usd_per_year",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "source_url": "https://freyrgroup.com/a-straightforward-look-at-andurils-benefits-package/",
+          "source_snippet": "Anduril covers 100% of the premiums on its High-Deductible Health Plan, which means employees can enroll in an HSA without paying anything for the underlying coverage.",
+          "notes": "No employer HSA contribution/seed dollar figure disclosed publicly. Only the 100% HDHP premium coverage is documented. value_num left null.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "espp_discount",
+          "value_num": null,
+          "value_text": "Anduril offers company equity (RSUs, and options for more tenured employees) plus an Employee Stock Purchase Plan (ESPP). No published ESPP discount percentage found. As a private/pre-IPO company, ESPP-purchased and vested shares are not yet liquid; offers commonly use a 4-year equity vesting schedule.",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "source_url": "https://freyrgroup.com/a-straightforward-look-at-andurils-benefits-package/",
+          "source_snippet": "Employees have access to an Employee Stock Purchase Plan ... RSUs and options ... four-year vesting common in offers ... shares are not yet liquid.",
+          "notes": "Equity captured per task instruction. No ESPP discount % disclosed; value_num null. Private company, shares illiquid pre-IPO. Third-party only; marked inferred.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
       "slug": "bae-systems",
       "terms": [
         {
@@ -294,6 +539,115 @@
           "source_url": "https://www.levels.fyi/companies/bae-systems/benefits",
           "source_snippet": "Life Insurance: Equaling $50,000 or two times the annual base salary, whichever is greater (up to a maximum of $500,000)",
           "notes": "Third-party figure. LTD separately reported at 60% of salary up to a monthly maximum.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "battelle",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 6,
+          "value_text": "Employer matches 50% of employee contributions up to 6% of pay (i.e. 3% max match) via the Battelle Employees' Savings Plan, administered by Vanguard. Before-tax, after-tax and Roth contributions allowed.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://www.glassdoor.com/Benefits/Battelle-401K-Plan-US-BNFT13_E2729_N1.htm",
+          "source_snippet": "The 401k is 50% match to 6% plus a corporate 5% contribution.",
+          "notes": "Third-party (Glassdoor) lead; not confirmed against an employer PDF/SPD. Plan formally = Battelle Employees' Savings Plan (Vanguard, plan #3859).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 5,
+          "value_text": "Additional non-elective 'corporate' employer contribution of 5% into the Battelle Employees' Savings Plan, on top of the 50%-up-to-6% match.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://www.glassdoor.com/Benefits/Battelle-401K-Plan-US-BNFT13_E2729_N1.htm",
+          "source_snippet": "The 401k is 50% match to 6% plus a corporate 5% contribution.",
+          "notes": "Third-party (Glassdoor) lead; the 5% corporate/non-elective contribution appears to be the primary retirement vehicle after the DB pension was closed to new hires.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "Closed to new hires and frozen. Only employees hired prior to July 1, 2015 have a defined-benefit pension benefit. Multiple Battelle DB plans confirmed: The 2017 Employees' Pension Plan of Battelle Memorial Institute (frozen - no new benefit accruals), the Employees Pension Plan of Battelle Memorial Institute (DB), and the Pension Plan of the Pacific Northwest Laboratories Battelle Memorial Institute (PNNL, DB).",
+          "unit": null,
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://simpleqdro.com/retirement-plans/THE-2017-EMPLOYEES-PENSION-PLAN-OF-BATTELLE-MEMORIAL-INSTITUTE/",
+          "source_snippet": "This is a 'frozen' plan, meaning that as of the last day of the plan year, the plan provides that no participant will get any new benefit accrual",
+          "notes": "CONFIRMS Form 5500 lead: multiple Battelle DB pensions exist. 'Prior to July 1, 2015' eligibility cutoff is from Battelle's own Benefit Options at Termination Guide (employer PDF, retrieved via search summary; direct fetch blocked with HTTP 403). Frozen status verified via Form 5500/QDRO record for the 2017 plan. Pension Service Center: myplansconnect.com/battelle.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": 500,
+          "value_text": "Battelle makes a one-time employer contribution of $500 to the employee HSA (HealthEquity administered). Not an annual recurring seed per third-party reports.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.glassdoor.com/Benefits/Battelle-US-Benefits-EI_IE2729.0,8_IL.9,11_IN1.htm",
+          "source_snippet": "Battelle makes a one-time contribution of $500 to employees' HSA accounts.",
+          "notes": "Third-party lead; HSA administered by HealthEquity per Battelle termination guide. Amount/tier not confirmed against employer SPD.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 20,
+          "value_text": "PTO/vacation reported at roughly 20-30 days per year depending on tenure; using entry/minimum ~20 days.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.comparably.com/companies/battelle-memorial-institute/perks-and-benefits",
+          "source_snippet": "Battelle Memorial Institute's PTO and Vacation policy typically gives 20-30 days off a year.",
+          "notes": "Third-party (Comparably) range; entry-level likely toward the low end.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 4,
+          "value_text": "Paid parental leave of about 1 month for both mothers and fathers; additional time available via PTO, Short-Term Disability, and FMLA.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.glassdoor.com/Benefits/Battelle-Maternity-and-Paternity-Leave-US-BNFT23_E2729_N1.htm",
+          "source_snippet": "Parental leave of 1 month is offered for mom and dad. Additional time is available through a combination of PTO, Short-Term Disability and FMLA.",
+          "notes": "Third-party lead; ~1 month approximated as 4 weeks.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "9/80 compressed schedule offered: employees work 80 hours over 9 days with every other Friday off.",
+          "unit": "bool",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://4dayweek.io/company/battelle",
+          "source_snippet": "Many employees work a 9/80 schedule with every other Friday off. Employees work 80 hours in nine days instead of 10.",
+          "notes": "Third-party lead corroborated across multiple sources.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": null,
+          "value_text": "Tuition/education assistance program offered, but the annual dollar cap is not publicly disclosed in employer or third-party sources reviewed.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.battelle.org/employee-benefits",
+          "source_snippet": "Battelle ... provides 'generous PTO', includes 'tuition assistance', and maintains health insurance with HSA eligibility.",
+          "notes": "Program existence confirmed; no citable dollar cap found. Direct employer page fetch returned HTTP 403; text obtained via WebFetch summary.",
           "fetched_period": "2026-07"
         }
       ]
@@ -673,6 +1027,523 @@
           "source_url": "https://careers.caci.com/global/en/time-off",
           "source_snippet": "Flexible Time Off (FTO)... allows people to take a break... in accordance with business need and with prior approval from their manager.",
           "notes": "No fixed entry-day minimum for salaried employees due to FTO model; third-party aggregators estimate ~20 days. value_num left null because no guaranteed banked amount.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "cubic",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 4,
+          "value_text": "Safe harbor matching contribution of 100% of the first 4% of salary deferrals (dollar-for-dollar to 4%).",
+          "unit": "pct",
+          "plan_year": 2020,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/26076/000110465921037113/tm219861d1_11k.htm",
+          "source_snippet": "The Plan also provides a safe harbor matching contribution of 100% of the first 4% of salary deferrals as described by Section 401(K)(12) of the Internal Revenue Code.",
+          "notes": "From the FY2020 Form 11-K (Cubic Corporation 401(k) Retirement Plan), the most recent SEC filing before Cubic was taken private by Veritas Capital (May 2021); no newer filings exist. NOTE: the Company temporarily froze matching contributions effective Apr 1, 2020 due to COVID-19 and reinstated them effective Oct 1, 2020. Earlier FY2019 11-K described a dollar-for-dollar match on the first 3% (4% for Cubic Worldwide Technical Services employees); the plan was subsequently converted to the 4% safe harbor design reported here.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": null,
+          "value_text": "Discretionary (profit-sharing) Company contribution at the option of the Board of Directors, allocated by ratio of participant compensation to total eligible compensation. Not a fixed percentage; none was made for FY2020.",
+          "unit": "pct",
+          "plan_year": 2020,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/26076/000110465921037113/tm219861d1_11k.htm",
+          "source_snippet": "The Plan provides for a Company discretionary contribution, at the option of its Board of Directors... Also, no discretionary contribution was made to the Plan for the Plan year ended September 30, 2020.",
+          "notes": "This is a discretionary employer contribution, separate from the 4% safe harbor match. Amount varies year to year and can be zero.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 5,
+          "value_text": "Employer matching (safe harbor) and rollover contributions are immediately 100% vested. Employer discretionary contributions vest 20% after 1 year of service, increasing 20% per year to full vesting after 5 years of service.",
+          "unit": "years",
+          "plan_year": 2020,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/26076/000110465921037113/tm219861d1_11k.htm",
+          "source_snippet": "Employee, Company matching, Sub Plan discretionary and rollover contributions... have full and immediate vesting. Employer discretionary contributions... vest after one year of service at 20% and increase in 20% increments until fully vested after five years of service.",
+          "notes": "value_num=5 reflects the graded vesting for discretionary employer contributions; the safe harbor match is immediately (0-year) vested. Accounts also become fully vested upon death, disability, normal retirement age, layoff, or plan termination.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_last_day_rule",
+          "value_num": 1,
+          "value_text": "Last-day rule applies to the discretionary employer contribution only: participants must be employed as of the Plan's year end to be eligible. The safe harbor match has no last-day requirement.",
+          "unit": "bool",
+          "plan_year": 2020,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/26076/000110465921037113/tm219861d1_11k.htm",
+          "source_snippet": "Eligible Plan participants must be employed by the Company as of the Plan's year end to be eligible for a discretionary contribution.",
+          "notes": "Applies only to the discretionary/profit-sharing contribution, not to the 4% safe harbor match (safe harbor matches cannot carry a last-day rule).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "Frozen and closed to new hires. The U.S. noncontributory defined benefit pension plan was frozen (curtailed) as of December 31, 2006; no new benefits accrue and employees hired after that date are not eligible. (A separate European plan was frozen Sep 30, 2010.)",
+          "unit": null,
+          "plan_year": 2020,
+          "confidence": "reported",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/26076/000155837020013974/cub-20200930x10k.htm",
+          "source_snippet": "Certain employees in the U.S. are covered by a noncontributory defined benefit pension plan for which benefits were frozen as of December 31, 2006 (curtailment)... U.S. and European employees hired subsequent to the dates of the curtailment of the respective plans are not eligible for participation in the defined benefit plans.",
+          "notes": "From FY2020 Form 10-K. U.S. DB pension is a legacy frozen plan; effectively new/current employees rely on the 401(k). No indication of reopening after the 2021 take-private.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": null,
+          "value_text": "Health Savings Account (HSA) offered alongside a high-deductible plan option; FSA also offered. Employer HSA contribution amount not disclosed in public sources.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://builtin.com/company/cubic-corporation/benefits",
+          "source_snippet": "Offers Health Savings Account (HSA). Offers Flexible Spending Account (FSA).",
+          "notes": "Third-party (Built In) confirms HSA is offered; no employer seed/contribution figure published. Marked inferred (third-party only).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 15,
+          "value_text": "Paid time off / vacation reported at roughly 15-20 days per year by aggregators (Indeed respondents cite 10-20 days), increasing with tenure. Entry level not precisely published.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.comparably.com/companies/cubic/paid-time-off",
+          "source_snippet": "Cubic's PTO and Vacation policy typically gives 15-20 days a year; Indeed respondents said 10-20 days.",
+          "notes": "Third-party estimate only; no employer-published day count. value_num=15 is a mid/entry estimate. Marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 6,
+          "value_text": "Approximately 6 weeks paid maternity leave per employee reports; policy covers birth, adoption, surrogacy and foster care. Payment level (full vs partial) reported inconsistently.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.glassdoor.com/Benefits/Cubic-Maternity-and-Paternity-Leave-US-BNFT23_E829_N1.htm",
+          "source_snippet": "6 weeks maternity leave offered (some reviews note 6 weeks half paid).",
+          "notes": "Glassdoor employee reports only; no employer-published parental leave duration. Marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": null,
+          "value_text": "Tuition reimbursement / education assistance program offered; annual cap not publicly disclosed.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.cubic.com/careers/benefits-cubic",
+          "source_snippet": "Cubic supports furthering your education with a tuition reimbursement program (per aggregator listings).",
+          "notes": "Existence of the program is corroborated by multiple aggregators, but no dollar cap is published; some sources conflict on whether it is offered. Marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "9/80 compressed schedule offered at many sites: nine-hour days with every other Friday off.",
+          "unit": "bool",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.indeed.com/cmp/Cubic-Corporation/faq/benefits",
+          "source_snippet": "The 9/80 schedule (nine-hour days with every other Friday off) creates predictable time off.",
+          "notes": "Employee reviews (Indeed) reference a 9/80 schedule; not confirmed by an employer-published document. Marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "espp_discount",
+          "value_num": 5,
+          "value_text": "Employee Stock Purchase Plan offered a 5% discount off market price on the last trading day of the offering period; annual contributions capped at $25,000.",
+          "unit": "pct",
+          "plan_year": 2020,
+          "confidence": "reported",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/26076/000155837020013974/cub-20200930x10k.htm",
+          "source_snippet": "of 5% of the market price per share on the last trading day of the offering period. Annual employee contributions are limited to $25,000, are voluntary, and made through a bi-weekly payroll deduction.",
+          "notes": "HISTORICAL / NO LONGER AVAILABLE: this ESPP required publicly traded Cubic stock. Cubic was taken private by Veritas Capital in May 2021 and delisted, so the ESPP is defunct. Included for completeness from the last (FY2020) 10-K.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "draper",
+      "terms": [
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 10,
+          "value_text": "Draper contributes an amount equal to 10% of base salary to the retirement plan, provided the employee contributes a minimum of 5% on a tax-deferred basis. Effectively a $2-for-$1 arrangement on the first 5% of salary. Plan is a 403(b) (nonprofit), administered by TIAA; ROTH and pre-tax options offered.",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.draper.com/careers#benefits",
+          "source_snippet": "Employees contribute a minimum of 5% of their base salary on a tax-deferred basis, and Draper contributes an amount equal to 10%",
+          "notes": "Nonprofit uses a 403(b), not a 401(k). Employer 10% is contingent on the mandatory 5% employee deferral, so it functions as both a match and a non-elective contribution. Glassdoor corroborates '$2 for $1 on the first 5%'.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 5,
+          "value_text": "New participants begin at 50% vested in employer contributions and earn an additional 10% per year, reaching 100% vesting after 5 years of participation.",
+          "unit": "years",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.draper.com/careers#benefits",
+          "source_snippet": "New participants begin with 50% vesting in employer contributions, earning an additional 10% annually.",
+          "notes": "Graded vesting: 50% at entry, +10%/yr to 100% at 5 years.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "FROZEN. Draper maintains a defined-benefit pension (Retirement Plan for Employees of The Charles Stark Draper Laboratory, Inc.), structured as a cash balance plan. The plan is frozen: 'as of the last day of the plan year, the plan provides that no participant will get any new benefit accrual.' The subsidy and the minimum pension benefit were frozen as of December 31, 2008, so base salary and years of service after that date are disregarded. Plan still exists and files Form 5500, but no new accruals occur.",
+          "unit": null,
+          "plan_year": null,
+          "confidence": "reported",
+          "link_plan_type": "db_pension",
+          "source_url": "https://simpleqdro.com/retirement-plans/RETIREMENT-PLAN-FOR-DRAPER-EMPLOYEES/",
+          "source_snippet": "This is a 'frozen' plan, meaning that as of the last day of the plan year, the plan provides that no participant will get any new benefit accrual",
+          "notes": "Confirms Form 5500 lead: the DB pension still exists (hence Form 5500 filings) but is FROZEN. Freeze effective Dec 31, 2008 per QDRO plan-summary sources; cash balance formula. Current active-employee retirement benefit is the 403(b) 10% contribution described above. Freeze date is from a third-party QDRO summary of the SPD (SPD PDF itself timed out on fetch); status 'frozen' is well corroborated.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 20000,
+          "value_text": "Tuition assistance for employees working 20+ hours/week: up to $5,250/year for undergraduate programs, up to $20,000/year for graduate programs, and up to $3,000/year for job-related certificates.",
+          "unit": "usd_per_year",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "source_url": "https://www.draper.com/careers#benefits",
+          "source_snippet": "up to $5,250 annually for undergraduate programs and up to $20,000 annually for graduate programs ... up to $3,000 per year for job-related certificates",
+          "notes": "value_num uses the graduate cap ($20,000, the headline max). Undergrad cap $5,250, certificates $3,000.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 8,
+          "value_text": "Paid parental leave following birth or adoption. Employer careers page confirms paid parental leave is offered but does not state weeks. Third-party sources report ~8 weeks paid maternity (recent) with an older source citing 12 weeks; paternity paid for a few days.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://fairygodboss.com/parental-leave/charles-stark-draper-laboratory",
+          "source_snippet": "Maternity is paid for 8 weeks, even when not eligible for government leaves.",
+          "notes": "Existence of paid parental leave is reported by employer; duration (8 wks) is third-party/inferred and conflicts with an older 12-week figure.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 11,
+          "value_text": "Approximately 11 paid holidays per year.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.glassdoor.com/Benefits/Draper-US-Benefits-EI_IE6285.0,6_IL.7,9_IN1.htm",
+          "source_snippet": "26 days off in addition to 11 paid holidays",
+          "notes": "Employer careers page confirms 'paid holidays' but no count; 11 is from Glassdoor employee reports (inferred).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 20,
+          "value_text": "Paid vacation plus generous sick leave. Employer page lists 'paid vacation time' and 'generous sick leave' without a day count. Employee reports are mixed: some cite a ~20-day vacation norm (with pushback above 20), others describe effectively unlimited vacation/sick time.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.glassdoor.com/Benefits/Draper-US-Benefits-EI_IE6285.0,6_IL.7,9_IN1.htm",
+          "source_snippet": "incredible vacation days ... can be pretty stingy about PTO if you exceed 20 days",
+          "notes": "Conflicting employee reports (roughly 20 days vs. 'unlimited'); employer does not publish a number. value_num=20 as the commonly cited norm; inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "Compressed 9/80 schedule offered: work 80 hours over 9 days and take every other Friday off (~26 extra days off per year). Employer describes flexible/hybrid/remote work options.",
+          "unit": "bool",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.glassdoor.com/Benefits/Draper-US-Benefits-EI_IE6285.0,6_IL.7,9_IN1.htm",
+          "source_snippet": "9/80 work schedule where employees get every other Friday off, providing an additional 26 days off",
+          "notes": "Built In confirms 'flexible work schedule'; the specific 9/80 / every-other-Friday-off detail is from Glassdoor employee reports (inferred).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": null,
+          "value_text": "Draper offers a Health Savings Account (HSA) with an employer contribution. Built In confirms 'Offers Health Savings Account (HSA)' and employees describe 'very high HSA contributions,' but no exact employer dollar amount is published.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.builtinboston.com/company/draper/benefits",
+          "source_snippet": "Offers Health Savings Account (HSA)",
+          "notes": "HSA with employer funding confirmed to exist; exact contribution amount and coverage-tier matrix not disclosed in public sources. value_num left null.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "elbit-america",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": null,
+          "value_text": "Employer matching contribution offered under the Elbit Systems of America Consolidated 401(k) Savings Plan; match begins at enrollment. Employer contributions are discretionary. No exact match percentage disclosed in any public source.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://qdro.com/retirement-qdro/ELBIT-SYSTEMS-OF-AMERICA-CONSOLIDATED-401K-SAVINGS-PLAN/",
+          "source_snippet": "Elbit Systems of America offers a matching contribution to the 401k, with the match starting at enrollment.",
+          "notes": "Third-party (Glassdoor/QDRO/aggregator) only; no employer total-rewards PDF or SEC 11-K available (ESA is a private U.S. subsidiary of Elbit Systems Ltd.). Exact match formula not publicly disclosed.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": null,
+          "value_text": "Non-elective (profit-sharing) employer contribution offered in addition to the match. Reportedly begins after the first year of service and increases at 5 years of service. Employer contributions are variable/discretionary based on company profits.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://qdro.com/retirement-qdro/ELBIT-SYSTEMS-OF-AMERICA-CONSOLIDATED-401K-SAVINGS-PLAN/",
+          "source_snippet": "non-matching contribution starting after the first year of service and increasing at 5 years of service; a 'Profit-Sharing Plan', where employer contributions are variable",
+          "notes": "Third-party only; exact percentage not disclosed.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 5,
+          "value_text": "Approximately 5-year graded ('linear') vesting of employer contributions per third-party reports.",
+          "unit": "years",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://qdro.com/retirement-qdro/ELBIT-SYSTEMS-OF-AMERICA-CONSOLIDATED-401K-SAVINGS-PLAN/",
+          "source_snippet": "The 401k has a 5 year linear vesting period.",
+          "notes": "Third-party/aggregator only; not confirmed against a plan SPD or Form 5500.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "No defined-benefit pension identified. Retirement benefit is a defined-contribution 401(k)/profit-sharing plan (Elbit Systems of America Consolidated 401(k) Savings Plan).",
+          "unit": null,
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://qdro.com/retirement-qdro/ELBIT-SYSTEMS-OF-AMERICA-CONSOLIDATED-401K-SAVINGS-PLAN/",
+          "source_snippet": "a cash or deferred arrangement described in Code section 401(k) that is part of a qualified defined contribution plan",
+          "notes": "No DB pension mentioned in any employer or third-party source; inferred as none/not offered.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": null,
+          "value_text": "Health Savings Account (HSA) offered alongside medical/dental/vision and FSA. No employer HSA seed/contribution amount disclosed publicly.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.indeed.com/cmp/Elbit-Systems-of-America/reviews?ftopic=paybenefits",
+          "source_snippet": "health insurance, dental insurance, vision insurance, disability insurance, health savings accounts (HSA), and flexible spending accounts (FSA)",
+          "notes": "HSA availability noted by third-party; employer contribution dollar amount not found.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 10,
+          "value_text": "Flexible Vacation & PTO. Employee-reported vacation of roughly 10-20 days; 10 used as minimum/entry figure.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.glassdoor.com/Benefits/Elbit-Systems-of-America-US-Benefits-EI_IE326374.0,24_IL.25,27_IN1.htm",
+          "source_snippet": "respondents said they received 10-20 days of vacation",
+          "notes": "Employee-survey estimate; no employer-published PTO accrual schedule found.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": null,
+          "value_text": "Paid Parental Leave offered (maternity & paternity). Number of weeks not disclosed publicly.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.elbitamerica.com/careers-culture",
+          "source_snippet": "Competitive compensation & 401k program... Paid Parental Leave, and Generous Employee Referral Program",
+          "notes": "Careers page confirms availability; duration not stated.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": null,
+          "value_text": "Tuition assistance / reimbursement offered; employees report using it toward degrees including an MBA. Annual cap not disclosed publicly.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.elbitamerica.com/careers-culture",
+          "source_snippet": "employees develop professionally through tuition assistance and flexible work schedules",
+          "notes": "Dollar cap not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "9/80 compressed schedule offered at most locations, giving every other Friday off.",
+          "unit": "bool",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.elbitamerica.com/careers-culture",
+          "source_snippet": "Most locations offer a 9/80 schedule providing every other Friday off.",
+          "notes": "Reported via careers page / employee reviews; location-dependent.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": null,
+          "value_text": "Company-paid Basic Life Insurance provided, plus voluntary Additional Life & AD&D. Salary multiple not disclosed.",
+          "unit": "x_salary",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.elbitamerica.com/careers-culture",
+          "source_snippet": "Basic Life Insurance and Additional Life & AD&D Insurances are available.",
+          "notes": "Basic life coverage multiple not published.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "gdit",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 4.5,
+          "value_text": "100% of the first 3% of eligible compensation plus 50% of the next 3% = 4.5% of pay at a 6% employee deferral. Paid on a bi-weekly basis. GDIT confirms a match when employees contribute 1%-6% of eligible compensation.",
+          "unit": "pct",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/40533/000004053325000027/gd202411-kqacaplan.htm",
+          "source_snippet": "matching contribution of 100% of the first 3% of eligible compensation contributed to the Plan, and 50% of the next 3% of eligible compensation contributed to the Plan. The Plan is intended to be a safe-harbor plan",
+          "notes": "This is the parent General Dynamics Corporation 401(k) QACA (safe-harbor) Plan formula, not a GDIT-only document, but it matches the GDIT-reported match range (employees contribute 1%-6%) in the 2023 GDIT New Hire Benefits PDF and Glassdoor's GDIT 4.5% figure. GD auto-escalation formula for auto-enrolled participants becomes 100% of first 4% + 50% of next 2% = 5%.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 10,
+          "value_text": "Auto-enrolled at 6% of eligible compensation after 10 days of employment; can change election at any time. Eligible to participate upon hire.",
+          "unit": "days",
+          "plan_year": 2023,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://assets.ctfassets.net/szx3os6exj55/4ik3KTw3Wab3nzAueHTJcJ/47fee41e260fb3e119e0f4f80e7b0471/HRMISC202A_2023.pdf",
+          "source_snippet": "Employees are auto-enrolled with a contribution of 6% of their eligible compensation after 10 days of employment and can change the election at any time",
+          "notes": "GDIT-specific (2023 GDIT New Hire Benefits at a Glance). SEC 11-K states employees are eligible upon hire; auto-enrollment default deferral rate is 6%.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 2,
+          "value_text": "Employees hired on or after Jan 1, 2020 are 100% vested in safe-harbor employer matching contributions after two years of continuous service. Employees hired before Jan 1, 2020 are immediately 100% vested in safe-harbor match. Non-safe-harbor matching and any employer discretionary contributions follow a three-year cliff.",
+          "unit": "years",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/40533/000004053325000027/gd202411-kqacaplan.htm",
+          "source_snippet": "Participants hired on or after January 1, 2020, are 100% vested in safe harbor employer matching contributions and earnings thereon after two years of continuous service. Non-safe harbor matching contributions and employer discretionary contributions ... three-year cliff",
+          "notes": "Parent GD QACA Plan (safe-harbor) terms. Glassdoor lists GDIT match as immediately vested; per spec the SEC filing is trusted over the aggregator, so 2 years for post-2020 hires. Vesting overall does not exceed three years across GD business units.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_last_day_rule",
+          "value_num": 0,
+          "value_text": "No last-day-of-plan-year employment requirement for the match; the employer match is funded on a bi-weekly (per-paycheck) basis.",
+          "unit": "bool",
+          "plan_year": 2023,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://assets.ctfassets.net/szx3os6exj55/4ik3KTw3Wab3nzAueHTJcJ/47fee41e260fb3e119e0f4f80e7b0471/HRMISC202A_2023.pdf",
+          "source_snippet": "GDIT offers a competitive match on a bi-weekly basis when employees contribute 1%-6% of their eligible compensation",
+          "notes": "Inferred: a per-paycheck safe-harbor match implies no last-day-of-year rule, but the plan document was not read verbatim on this point.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "No defined-benefit pension for GDIT new hires; retirement is provided through the safe-harbor 401(k) plan. General Dynamics froze/closed its salaried DB pension plans to new participants years ago.",
+          "unit": null,
+          "plan_year": 2024,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/40533/000004053325000027/gd202411-kqacaplan.htm",
+          "source_snippet": "The Plan is intended to be a safe-harbor plan as defined in the IRC.",
+          "notes": "Inferred from the fact that GD offers a safe-harbor 401(k) as the retirement vehicle and no DB pension is referenced in GDIT benefits materials; GD salaried defined-benefit pensions were frozen to new hires. Parent-GD context, not a GDIT-specific pension statement.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 10,
+          "value_text": "Employees regularly scheduled to work 40 hours per week receive 10 paid (80 hours) holidays per calendar year; 30-39 hour employees receive pro-rated holiday pay.",
+          "unit": "days",
+          "plan_year": 2023,
+          "confidence": "reported",
+          "source_url": "https://assets.ctfassets.net/szx3os6exj55/4ik3KTw3Wab3nzAueHTJcJ/47fee41e260fb3e119e0f4f80e7b0471/HRMISC202A_2023.pdf",
+          "source_snippet": "Employees regularly scheduled to work 40 hours per week receive 10 paid (80 hours) holidays per calendar year",
+          "notes": "GDIT-specific (2023 GDIT New Hire Benefits at a Glance).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 4,
+          "value_text": "Paid family leave of 4 weeks / 160 hours in a rolling 12-month period (pro-rated for those working less than 40 hours/week) for care of a spouse, child or parent with a serious health condition, or the birth, adoption or foster placement of a child.",
+          "unit": "weeks",
+          "plan_year": 2023,
+          "confidence": "reported",
+          "source_url": "https://assets.ctfassets.net/szx3os6exj55/4ik3KTw3Wab3nzAueHTJcJ/47fee41e260fb3e119e0f4f80e7b0471/HRMISC202A_2023.pdf",
+          "source_snippet": "Paid family leave of 4 weeks/160 hours in a rolling 12-month period ... for the care of a spouse, child or parent with a serious health condition or the birth, adoption or foster placement of a child",
+          "notes": "GDIT-specific. This is a combined paid family leave (bonding + family care), not a separate larger parental-only benefit.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "std_max",
+          "value_num": 25,
+          "value_text": "Company-provided short-term disability begins after a 7 calendar-day elimination period and continues up to 25 consecutive weeks following an accident or illness. LTD then begins after 26 consecutive weeks (50% or 60% of pay options, employee-paid).",
+          "unit": "weeks",
+          "plan_year": 2023,
+          "confidence": "reported",
+          "source_url": "https://assets.ctfassets.net/szx3os6exj55/4ik3KTw3Wab3nzAueHTJcJ/47fee41e260fb3e119e0f4f80e7b0471/HRMISC202A_2023.pdf",
+          "source_snippet": "Benefits for this company-provided coverage will begin after a seven calendar-day elimination period and continue up to 25 consecutive weeks following an accident or illness",
+          "notes": "GDIT-specific.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": 1,
+          "value_text": "Company-paid basic life and AD&D insurance equal to annual base pay (rounded up to the next higher $1,000). Voluntary supplemental life/AD&D and company-provided Business Travel Accident insurance also available.",
+          "unit": "x_salary",
+          "plan_year": 2023,
+          "confidence": "reported",
+          "source_url": "https://assets.ctfassets.net/szx3os6exj55/4ik3KTw3Wab3nzAueHTJcJ/47fee41e260fb3e119e0f4f80e7b0471/HRMISC202A_2023.pdf",
+          "source_snippet": "Eligible employees receive company-paid life and accidental death and dismemberment (AD&D) insurance equal to their annual base pay (rounded to the next higher $1,000)",
+          "notes": "GDIT-specific. Basic company-paid coverage = 1x annual base pay.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "Full flex workweeks allow employees to flex their time on a weekly or bi-weekly basis with management approval.",
+          "unit": "bool",
+          "plan_year": 2023,
+          "confidence": "inferred",
+          "source_url": "https://assets.ctfassets.net/szx3os6exj55/4ik3KTw3Wab3nzAueHTJcJ/47fee41e260fb3e119e0f4f80e7b0471/HRMISC202A_2023.pdf",
+          "source_snippet": "Full flex workweeks allow employees to flex their time on a weekly or bi-weekly basis with management approval",
+          "notes": "Inferred: GDIT offers 'full flex workweeks' (weekly/bi-weekly flexing) with manager approval rather than an explicitly named 9/80 schedule; availability is contract/program dependent.",
           "fetched_period": "2026-07"
         }
       ]
@@ -1197,6 +2068,98 @@
       ]
     },
     {
+      "slug": "icf",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 4,
+          "value_text": "100% match on the first 3% of compensation, plus 50% match on the next 2% (max employer match of 4% at a 5% employee deferral).",
+          "unit": "pct",
+          "plan_year": 2021,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1362004/000156459022006889/icfi-10k_20211231.htm",
+          "source_snippet": "entitled to receive 100% employer matching contributions for the first 3% and 50% for the next 2% of their compensation",
+          "notes": "From ICF International Retirement Savings Plan disclosure in the FY2021 Form 10-K. Participants may defer up to 70% of compensation subject to statutory limits.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 0,
+          "value_text": "Employer matching contributions reported as immediately (100%) vested.",
+          "unit": "years",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://builtin.com/company/icf/faq/compensation-benefits",
+          "source_snippet": "The 401(k) offers immediate vesting with a company match up to 4% when contributing 5%.",
+          "notes": "Immediate vesting per third-party aggregator (Built In) summary; not independently confirmed against an ICF/SEC plan document.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "espp_discount",
+          "value_num": 5,
+          "value_text": "Discount not to exceed 5% of the market value on the purchase date; six-month offering periods; up to $25,000 per calendar year via payroll deduction.",
+          "unit": "pct",
+          "plan_year": 2020,
+          "confidence": "reported",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1362004/000156459021009169/icfi-10k_20201231.htm",
+          "source_snippet": "purchase shares ... over six-month offering periods at a discount not to exceed 5% of the market value on the date of each purchase period",
+          "notes": "ESPP terms are consistent across ICF International 10-K filings (FY2017, FY2019, FY2020). Company does not recognize compensation expense on the ESPP due to the small (<=5%) discount.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "None. ICF International sponsors a 401(k) Retirement Savings Plan only; no defined-benefit pension is offered to U.S. employees.",
+          "unit": null,
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1362004/000156459022006889/icfi-10k_20211231.htm",
+          "source_snippet": "ICF International Retirement Savings Plan ... 100% employer matching contributions for the first 3% and 50% for the next 2%",
+          "notes": "Only a defined-contribution 401(k) plan is referenced in ICF filings/benefits materials; no defined-benefit pension found for current employees.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 4,
+          "value_text": "Paid paternity/parental bonding leave reported at 4 weeks; paid maternity leave reported at 5 weeks at 100% pay (via short-term disability), with additional weeks at 60% pay. Adoption assistance also offered.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://fairygodboss.com/parental-leave/icf-international",
+          "source_snippet": "5 weeks at 100% pay through short-term disability, with additional weeks available at 60% of pay ... offers 4 weeks of paid paternity leave",
+          "notes": "Third-party/employee-reported figures; exact current ICF policy not confirmed from an employer-published document.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 10,
+          "value_text": "PTO accrues weekly and increases with tenure; entry-level accrual reported around 0-10 days per year. Up to 2 weeks carry over annually.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://builtin.com/company/icf/benefits",
+          "source_snippet": "ICF's PTO and Vacation policy typically gives 0-10 days a year.",
+          "notes": "Third-party/employee-reported; PTO is tenure-based and accrues each pay period. Entry figure is approximate.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 10,
+          "value_text": "Approximately 10 paid company holidays per year.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.glassdoor.com/Benefits/ICF-Paid-Holidays-US-BNFT30_E18654_N1.htm",
+          "source_snippet": "ICF offers 10 holidays compared to the federal holiday schedule with 11.",
+          "notes": "Third-party/employee-reported (Glassdoor); not confirmed from an employer-published document.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
       "slug": "jacobs",
       "terms": [
         {
@@ -1297,6 +2260,128 @@
           "source_url": "https://builtin.com/company/jacobs/benefits",
           "source_snippet": "Offers Health Savings Account (HSA)",
           "notes": "HSA existence confirmed by aggregator; employer seed/match amount not disclosed in public sources reviewed.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "jhu-apl",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 8,
+          "value_text": "$2 for every $1 of staff member contributions, up to a maximum APL contribution of 8 percent of pay (so a ~4% employee deferral captures the full 8% match).",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.jhuapl.edu/sites/default/files/2025-07/benefitsGlance-25.pdf",
+          "source_snippet": "plus matching contributions of $2 for every $1 of staff member contributions, up to a maximum APL contribution of 8 percent of pay.",
+          "notes": "Plan is a 403(b) defined-contribution plan (recorded under 401k vocabulary). Total employer contribution up to 10.5% of pay = 2.5% foundational + up to 8% match. 2-for-1 match rate is unusually generous.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 2.5,
+          "value_text": "APL foundational (non-elective) contribution equal to 2.5 percent of pay, independent of staff contributions.",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.jhuapl.edu/sites/default/files/2025-07/benefitsGlance-25.pdf",
+          "source_snippet": "This includes an APL contribution equal to 2.5 percent of pay, plus matching contributions of $2 for every $1 of staff member contributions",
+          "notes": "Part of the up-to-10.5% total employer retirement contribution.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 0,
+          "value_text": "Immediately 100 percent vested in all Laboratory contributions.",
+          "unit": "years",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.jhuapl.edu/sites/default/files/2025-07/benefitsGlance-25.pdf",
+          "source_snippet": "Staff members ... are immediately 100 percent vested in all Laboratory contributions.",
+          "notes": "No vesting schedule; full and immediate vesting of employer money.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 365,
+          "value_text": "Staff members become eligible for APL's contributions after one year of employment (careers page: contributions commence after 12 months of service).",
+          "unit": "days",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.jhuapl.edu/sites/default/files/2025-07/benefitsGlance-25.pdf",
+          "source_snippet": "Staff members become eligible for APL's contributions after one year of employment",
+          "notes": "Careers page corroborates: 'APL's contributions commence after 12 months of service.' Employee can defer earlier; employer money starts at 1 year.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "No traditional defined-benefit pension identified. APL's retirement benefit is a 403(b) defined-contribution plan (recordkept at Vanguard; branded 'Pension Plan B'). Employer funds up to 10.5% of pay.",
+          "unit": null,
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://ownyourfuture.vanguard.com/home/funds-chart/jhu-apl/4350",
+          "source_snippet": "jhu applied physics laboratory - pension plan b - Vanguard",
+          "notes": "The 'Pension Plan B' naming refers to a defined-contribution (403(b)) account at Vanguard, not an open DB pension. No employer-published evidence of an accruing defined-benefit pension for new hires.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 15,
+          "value_text": "Entry vacation = 15 days/year. Matrix (Full Time): Supporting & Associate staff: 1-10 yrs = 15, 11-19 yrs = 20, 20+ yrs = 25. Senior staff: 1-5 yrs = 15, 6-15 yrs = 20, 16+ yrs = 25. Plus up to 7 sick days and 1 personal day per year.",
+          "unit": "days",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.jhuapl.edu/sites/default/files/2025-07/benefitsGlance-25.pdf",
+          "source_snippet": "Paid vacation is based on years of employment and staff level. ... Supporting and Associate 1-10=15, 11-19=20, 20+=25; Senior 1-5=15, 6-15=20, 16+=25",
+          "notes": "value_num uses entry-level vacation (15). Sick (up to 7) and personal (1) are separate from vacation.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": null,
+          "value_text": "APL pays tuition for up to 24 credit hours per academic year for a relevant degree or part-time coursework. Part-time doctoral students in dissertation phase get 200 hours of paid leave/year for up to 3 years.",
+          "unit": "credit_hours",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.jhuapl.edu/sites/default/files/2025-07/benefitsGlance-25.pdf",
+          "source_snippet": "The Lab will pay tuition for up to 24 credit hours per academic year for a relevant degree or part-time coursework.",
+          "notes": "Cap is expressed as credit hours, not a dollar amount; no published USD cap. Dependent college scholarships (50% of tuition/fees) available after 5 years of employment, awarded competitively.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "APL offers '80-Hour Flex Scheduling' (80 hours per two-week pay period) and some teams support compressed workweeks; some positions allow schedule adjustment and remote work.",
+          "unit": "bool",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://builtin.com/company/johns-hopkins-applied-physics-laboratory-apl/faq/work-life-balance-wellbeing",
+          "source_snippet": "80-Hour Flex Scheduling - 80 hours per two-week pay period ... some teams support compressed weeks",
+          "notes": "Employer PDF states 'Some positions offer the flexibility of adjusting your work schedule.' A formal named '9/80' program is not explicitly published; captured as flexible/compressed scheduling.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 2,
+          "value_text": "Reported as up to 80 hours (approx. 2 weeks) of paid parental leave for birth/adoption per third-party aggregators; not detailed on the employer benefits PDF.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.glassdoor.com/Benefits/Johns-Hopkins-University-Applied-Physics-Laboratory-US-Benefits-EI_IE194262.0,51_IL.52,54.htm",
+          "source_snippet": "up to 80 hours of paid parental leave for births and adoptions",
+          "notes": "Third-party lead only; APL's published benefits materials do not state a specific paid-parental-leave duration. Additional unpaid FMLA leave available.",
           "fetched_period": "2026-07"
         }
       ]
@@ -1406,6 +2491,128 @@
           "source_url": "https://www.glassdoor.com/Benefits/KBR-US-Benefits-EI_IE18604.0,3_IL.4,6_IN1.htm",
           "source_snippet": "offers fully paid life insurance policies... The policy pays around two years worth of salary to employees' beneficiaries.",
           "notes": "Third-party/aggregator description; not confirmed against an employer benefits PDF.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "kratos",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": null,
+          "value_text": "Company matches a portion of employee 401(k) contributions; exact match formula not publicly disclosed. Aggregate employer matching contributions to the defined-contribution plans totaled $11.8M (2024), $10.7M (2023), $8.1M (2022).",
+          "unit": "pct",
+          "plan_year": 2024,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1069258/000106925825000008/ktos-20241229.htm",
+          "source_snippet": "In certain plans, the Company matches a portion of the employees' contributions. The Company's matching contributions to these defined-contribution savings plans totaled $11.8 million in 2024",
+          "notes": "Match existence confirmed by employer careers page and SEC 10-K (FY2024, Note 11 Retirement Plans). No per-salary match percentage/formula published; value_num left null to avoid fabrication.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 30,
+          "value_text": "Eligible to participate in the 401(k) with company matching after completing one month of employment (~30 days).",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.kratosdefense.com/careers",
+          "source_snippet": "Kratos employees become eligible to participate in the 401K retirement savings plan with company matching contributions after completing one month of employment.",
+          "notes": "Employer careers page. One month approximated as 30 days.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "None. Kratos sponsors only defined-contribution 401(k) savings plans; no defined-benefit pension is described in SEC filings (Note 11, Retirement Plans).",
+          "unit": null,
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1069258/000106925825000008/ktos-20241229.htm",
+          "source_snippet": "The Company provides eligible employees the opportunity to participate in defined-contribution savings plans (commonly known as 401(k) plans), which permit contributions on a before-tax basis.",
+          "notes": "FY2024 10-K Retirement Plans note describes defined-contribution plans only; no defined-benefit/pension plan mentioned.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "espp_discount",
+          "value_num": 15,
+          "value_text": "ESPP allows employees to purchase Kratos common stock at a 15% discount.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.kratosdefense.com/careers",
+          "source_snippet": "Our Employee Stock Purchasing Program (ESPP) allows employees to purchase Kratos common stock at a 15 percent discount.",
+          "notes": "Employer careers page. Underlying plans (1999 Purchase Plan, 2023 Purchase Plan) referenced in FY2024 10-K.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": 1.5,
+          "value_text": "Company-paid basic Life Insurance and AD&D coverage equal to 1.5x annual salary at no cost to the employee.",
+          "unit": "x_salary",
+          "plan_year": null,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.kratosdefense.com/careers",
+          "source_snippet": "Kratos provides Life Insurance and Accidental Death and Dismemberment (AD&D) coverage equal to one and a half times annual salary at no cost to the employee.",
+          "notes": "Employer careers page.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 10000,
+          "value_text": "Tuition reimbursement offered; courses/certifications must apply to the employee's Kratos role and require prior approval. Annual cap reported at ~$10,000 by third-party/employee sources.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.indeed.com/cmp/Kratos-Defense/reviews?ftopic=paybenefits",
+          "source_snippet": "Tuition reimbursement has a $10,000 maximum per year",
+          "notes": "Program existence confirmed on employer careers page; $10,000 cap sourced from third-party/employee reviews (not employer-published), hence inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 14,
+          "value_text": "PTO accrues based on length of service and level of position (manager approval to use). First-year employees reported to accrue roughly 14 days.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.kratosdefense.com/careers",
+          "source_snippet": "Length of service and level of position determine the rate of PTO accrual.",
+          "notes": "Accrual structure from employer careers page; entry ~14 days/year figure from third-party employee reviews, hence inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": null,
+          "value_text": "Paid parental/paternity leave offered; number of weeks not publicly disclosed.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.glassdoor.com/Benefits/Kratos-Defense-and-Security-Solutions-US-Benefits-EI_IE9734.0,37_IL.38,40_IN1.htm",
+          "source_snippet": "Kratos also offers paid paternity leave.",
+          "notes": "Existence noted via Glassdoor benefits aggregator; duration in weeks not found. value_num left null.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "9/80 compressed work schedule offered at many sites; employees report every other Friday off under an 80-hour flex schedule.",
+          "unit": "bool",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.indeed.com/cmp/Kratos-Defense/reviews?ftopic=paybenefits",
+          "source_snippet": "Flex hours across 80 ... off every other Friday",
+          "notes": "Sourced from employee reviews; may vary by site/program. Not employer-published, hence inferred.",
           "fetched_period": "2026-07"
         }
       ]
@@ -1717,6 +2924,440 @@
       ]
     },
     {
+      "slug": "mantech",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 3,
+          "value_text": "50% of employee contributions up to 6% of base compensation (max ~3% of pay). Formula varies by subsidiary: some match up to 75% of first $4,000, others 5% of eligible comp or 100% of contributions (whichever is less); 8% cap for collective-bargaining participants.",
+          "unit": "pct",
+          "plan_year": 2007,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/892537/000119312508132851/d11k.htm",
+          "source_snippet": "Generally the Company matches a Plan-defined percentage of 50% of employee contributions up to 6% of the participant's base compensation.",
+          "notes": "From the most recent ManTech 11-K (plan year 2007); ManTech went private via Carlyle acquisition in 2022, so no newer SEC filing exists. Current third-party reviews (Glassdoor/employee reports 2024-2025) also cite a ~3% match, corroborating the magnitude, though the exact current formula is unconfirmed and may have changed post-acquisition.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 2,
+          "value_text": "Company matching contributions vest on a 2-year cliff (0% before 2 years, 100% at 2 years) per current third-party reports. Employee elective contributions are immediately 100% vested.",
+          "unit": "years",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://www.myplaniq.com/invest/plancontribution-match/mantech-international-401k-plan/",
+          "source_snippet": "Company matching contributions vest over 2 years (0-2 years: 0%, 2 years: 100%).",
+          "notes": "Third-party (MyPlanIQ / employee reviews). NOTE: the 2007 SEC 11-K stated 100% vesting after 3 years of continuous service; current sources indicate a 2-year schedule, suggesting the plan changed over time. Immediate vesting on own contributions is standard.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 180,
+          "value_text": "Roughly a six-month wait before company matching contributions begin, per current employee reports (matching groups 1, 2, 4 eligible after six months; group 3 not eligible for match).",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://builtin.com/company/mantech/faq/compensation-benefits",
+          "source_snippet": "there is a six-month wait for company 401(k) contributions",
+          "notes": "Third-party/employee reports. The 2007 SEC 11-K described immediate eligibility to contribute (first pay period after hire) with matching beginning after 3 months of employment (13 months at certain subsidiaries); current sources indicate ~6 months, so eligibility rules appear to have changed.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "None. Retirement is provided through a 401(k) defined-contribution plan only; no defined-benefit pension found in any employer or SEC source.",
+          "unit": null,
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/892537/000119312508132851/d11k.htm",
+          "source_snippet": "The Plan is a defined contribution plan covering substantially all employees of ManTech International Corporation.",
+          "notes": "No DB pension is mentioned on ManTech benefits pages or in SEC filings; the retirement vehicle is a 401(k) defined-contribution plan. Marked inferred as this is based on absence of any DB reference plus the DC-plan description.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 3,
+          "value_text": "Approximately 3 weeks of paid parental leave, per employee feedback. ManTech marketing describes it as 'generous parental leave' without a stated duration.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.glassdoor.com/Benefits/MANTECH-US-Benefits-EI_IE13880.0,7_IL.8,10_IN1.htm",
+          "source_snippet": "Parental leave is only 3 weeks, according to employee feedback.",
+          "notes": "Third-party/employee report only; no employer-published figure confirms the weeks.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 5250,
+          "value_text": "Up to $5,250 per calendar year for tuition, books and classroom fees for full-time employees (the standard IRS tax-free education-assistance cap). Reimbursement based on grade received; coursework outside the workday.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.columbiasouthern.edu/tuition-financing/partnerships/learning-partner-directory/mantech/",
+          "source_snippet": "ManTech International will cover up to $5,250 per calendar year to pay for tuition, books and other classroom fees.",
+          "notes": "From ManTech education-partner materials; matches the standard $5,250 IRS Section 127 cap. Employer benefits page lists 'tuition assistance' without a figure.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 10,
+          "value_text": "Roughly 10-15 PTO days per year for typical roles, varying by tenure and department (some roles reported 20-30). ManTech uses a combined Personal Time Off (PTO) bank and allows 'banking' holiday hours.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.comparably.com/companies/mantech/paid-time-off",
+          "source_snippet": "ManTech's PTO and Vacation policy typically gives 10-15 days a year, though this can vary by tenure and department.",
+          "notes": "Third-party aggregate of employee reports; entry/minimum used for value_num. No employer-published accrual schedule found.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "maximus",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 4,
+          "value_text": "Maximus matches 100% on the first 3% of eligible compensation and 50% on the next 2%, for a total maximum match of 4%.",
+          "unit": "pct",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "Maximus will match 100% up to the first 3% of your eligible compensation and 50% for the next 2%. The total maximum match is 4% of your eligible compensation.",
+          "notes": "Employee may contribute 1%-75% of salary (subject to IRS limits). From official 2026 Non-SCA Benefits Guide.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 0,
+          "value_text": "Employer matching funds vest immediately (fully vested).",
+          "unit": "years",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "The total maximum match is 4% of your eligible compensation. Matching funds will vest immediately.",
+          "notes": "Immediate vesting per 2026 Non-SCA Benefits Guide. (Some 11-K/plan documents note vesting can vary by eligible group/service, but current employer guide states immediate.)",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 0,
+          "value_text": "Employees can enroll and change contributions at any time; no waiting period cited. Part-time employees (<30 hrs) are also eligible for the 401(k).",
+          "unit": "days",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "You can enroll in a 401(k) and modify your deductions at any time throughout the year.",
+          "notes": "No explicit waiting period stated; enrollment available at any time via Fidelity.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "No traditional U.S. defined-benefit pension plan; the 401(k) plan is the primary retirement vehicle.",
+          "unit": null,
+          "plan_year": 2026,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.theretirementgroup.com/featured-article/5448079/retirement-plans-for-maximus-employees",
+          "source_snippet": "Maximus does not maintain a traditional defined benefit pension plan, making your 401(k) plan and personal savings the primary vehicles for retirement income.",
+          "notes": "Consistent with Maximus FY2020 Form 10-K, which describes only 401(k) plans for U.S. employees (no DB pension).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": 500,
+          "value_text": "Anthem HSA plan annual company HSA contribution: $250 individual coverage, $500 family coverage (pro-rated based on benefit start date).",
+          "unit": "usd_per_year",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "Annual company contribution* Individual $250 Family $500 ... *Pro-rated based on benefit start date.",
+          "notes": "Applies to the Anthem HSA (HDHP) plan. 2026 IRS HSA limits: $4,400 individual / $8,750 family, +$1,000 catch-up age 55+.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 9,
+          "value_text": "Nine paid company holidays per year (project-site schedules may vary).",
+          "unit": "days",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "each year employees receive the nine paid company holidays listed in the Employee Handbook.",
+          "notes": "Holiday schedule may vary slightly for project-site employees.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 5250,
+          "value_text": "Annual tuition reimbursement of up to $5,250 for degree programs and certifications.",
+          "unit": "usd_per_year",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "our Tuition Reimbursement program which offers an annual reimbursement of up to $5,250.",
+          "notes": "Eligibility: full-time regular employees with a minimum of one year of service; grade of C or better required for college courses.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "std_max",
+          "value_num": 12,
+          "value_text": "Short-term disability pays 60% of pre-disability weekly earnings (max $2,000/week), 14-day elimination period, maximum duration 12 weeks. Premium paid by Maximus.",
+          "unit": "weeks",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "The plan pays 60% of your pre-disability weekly earnings (subject to the plan's maximum weekly benefit of $2,000). ... Maximum duration of 12 weeks.",
+          "notes": "Company-paid STD for full-time employees scheduled 30+ hours/week. LTD then pays 60% (max $10,000/month).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": 1,
+          "value_text": "Company-paid basic term life and basic term AD&D each equal to 1x annual salary (up to a maximum of $350,000), at no cost to the employee.",
+          "unit": "x_salary",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "source_url": "https://maximus.com/content/dam/maximus-com/benefits-pdfs/2026-non-sca-benefit-guide.pdf",
+          "source_snippet": "Maximus provides all eligible employees with basic term life and basic term AD&D coverage at no cost to you in the amount of 1x your annual salary (up to a maximum of $350,000).",
+          "notes": "Voluntary life available up to 8x salary (max $1,000,000).",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "mitre",
+      "terms": [
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 7.5,
+          "value_text": "MITRE Basic Contribution (Part B1): 7.5% of base salary up to the Social Security Wage Base, and 10.5% of base salary over the SSWB. Non-elective employer contribution into the 401(a)-qualified retirement program.",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.planhighlights.com/faq/EKu5~ZG4~84Fh9~kr5iNdSU+vuIUC3uzVQc+R~dKH3Y=",
+          "source_snippet": "7.5% of your base salary up to the Social Security Wage Base, and 10.5% of your base salary over the Social Security Wage Base",
+          "notes": "This is a non-elective 'MITRE Basic Contribution' (Part B1) in the MITRE 401(a) Qualified Retirement Program, separate from the matching contribution. Begins after 12 months of credited service. Headline value_num uses the base-pay tier (7.5%); 10.5% applies to pay above the SSWB.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_match",
+          "value_num": 2.5,
+          "value_text": "403(b) Part A3 matching contribution: MITRE matches one-fourth (25%) of the employee's voluntary Part A2 contributions (voluntary contributions run 1%-10% of base pay up to SSWB), i.e. up to about 2.5% of salary.",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.tiaa.org/public/tcm/mitre/retirement-benefits/plan-102336",
+          "source_snippet": "Part A3 (MITRE's Matching Contributions): MITRE matches one-fourth of your Part A2 contributions",
+          "notes": "Match = 25% of voluntary employee contributions (Part A2, up to 10% of base pay), so max employer match is roughly 2.5% of salary. Matching begins after 12 months of credited service. This is in addition to the 7.5%/10.5% non-elective Basic Contribution. Third-party summaries (Built In) describe the combined package as 'up to a 10% company match'.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 0,
+          "value_text": "Immediately 100% vested in own contributions on day one, and immediately 100% vested in MITRE's Part B1 Basic Contributions and Part A3 Matching Contributions.",
+          "unit": "years",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.planhighlights.com/faq/EKu5~ZG4~84Fh9~kr5iNdSU+vuIUC3uzVQc+R~dKH3Y=",
+          "source_snippet": "immediately 100% vested in Part B1 contributions and any earnings on them",
+          "notes": "Employer contributions (both non-elective Basic and matching) are immediately 100% vested. Employer PDF: 'You are 100% vested in your own contributions on day one.'",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 365,
+          "value_text": "Auto-enrolled into the program (own contributions) on date of hire for employees working 20+ hours/week; employer contributions (Basic + Match) begin after 12 months of credited service.",
+          "unit": "days",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.tiaa.org/public/tcm/mitre/retirement-benefits/plan-102336",
+          "source_snippet": "matching contributions from MITRE on their voluntary contributions after 12 months of credited service",
+          "notes": "value_num = ~365 days waiting period for EMPLOYER contributions. Employee own-contribution auto-enrollment is immediate (day of hire). Employer PDF: 'MITRE also provides a matching contribution beginning after one year.'",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "None. MITRE's retirement program is fully defined-contribution, made up of two plans: the MITRE 401(a) Qualified Retirement Program and the MITRE 403(b) Tax-Sheltered Annuity Plan. No traditional defined-benefit or cash-balance pension.",
+          "unit": null,
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.tiaa.org/public/tcm/mitre/retirement-benefits/plan-102336",
+          "source_snippet": "The Program is made up of two defined contribution plans: The MITRE 401(a) and the MITRE 403(b).",
+          "notes": "The generous 7.5%/10.5% non-elective employer contribution functions as a pension-like benefit but is legally a defined-contribution 401(a) program, not a DB pension.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": 1300,
+          "value_text": "MITRE makes an annual employer HSA contribution for employees enrolled in the HD Care PPO (High Deductible Health Plan); third-party/careers summaries state up to $1,300 per year.",
+          "unit": "usd_per_year",
+          "plan_year": 2024,
+          "confidence": "inferred",
+          "source_url": "https://careers.mitre.org/us/en/benefits",
+          "source_snippet": "Health Savings Account (HSA) option with company contribution of up to $1,300 a year.",
+          "notes": "The 2024 employer Benefits Overview PDF confirms 'MITRE makes an annual contribution to this account' but does not state the dollar amount or tier breakdown; the $1,300 figure comes from careers-page/third-party summaries, hence inferred. Tier (employee vs family) split not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 8,
+          "value_text": "Seven annual holidays plus one flex holiday to use for any day of significance (8 total).",
+          "unit": "days",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "source_url": "https://delivr-file-storage.s3.amazonaws.com/MITRE_2024%20Candidate_New%20Hire%20Benefit%20Resource_V%2000_03-8.5x11-402405295693.pdf",
+          "source_snippet": "Seven annual holidays and one flex holiday to use for any day of significance.",
+          "notes": "From the employer 2024 Benefits Overview PDF.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 12,
+          "value_text": "Paid parental (and caregiver) leave of up to 12 weeks.",
+          "unit": "weeks",
+          "plan_year": 2026,
+          "confidence": "inferred",
+          "source_url": "https://careers.mitre.org/us/en/benefits",
+          "source_snippet": "Paid parental and caregiver leave of up to 12 weeks.",
+          "notes": "Careers-page figure bundles paid parental and caregiver leave together as 'up to 12 weeks'; standalone parental-leave duration not separately itemized, hence inferred. Employer PDF lists 'Paid Parental Leave' and 'Paid Caregiver Leave' as distinct programs without weeks.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 28000,
+          "value_text": "Tuition assistance up to $1,400 per credit, up to $28,000 per year toward additional or advanced degrees (Basic Educational Assistance Program).",
+          "unit": "usd_per_year",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "source_url": "https://careers.mitre.org/us/en/benefits",
+          "source_snippet": "Tuition assistance of up to $1,400 per credit, up to $28,000 per year towards additional or advanced degrees.",
+          "notes": "From MITRE careers/benefits page. Also offers Accelerated Graduate Degree Program and up to $5,400 lifetime College Loan Repayment Assistance.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "nightwing",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": null,
+          "value_text": "401(k) plan with company match offered; specific match formula and vesting schedule not disclosed in any public source.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://nightwing.com/careers/",
+          "source_snippet": "A 401(k) plan with company match to help you plan for your future.",
+          "notes": "Existence of a company match is confirmed by Nightwing's own careers page and its ClearanceJobs profile, but no match percentage or vesting terms are published. Nightwing is privately held (formed 2024 from Raytheon/RTX CIS business, acquired by Arlington Capital); no SEC 11-K/DEF 14A filings exist to source an exact formula.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": null,
+          "value_text": "Employer match vesting schedule not disclosed publicly.",
+          "unit": "years",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://nightwing.com/careers/",
+          "source_snippet": "A 401(k) plan with company match to help you plan for your future.",
+          "notes": "No vesting detail found in employer or third-party sources. Included to note the gap; not a confirmed value.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": null,
+          "value_text": "Generous personal time off (PTO) policy offered; number of days not disclosed publicly.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://nightwing.com/careers/",
+          "source_snippet": "Generous personal time off (PTO) policy and paid holidays to recharge and focus on what matters most.",
+          "notes": "Existence confirmed by employer careers page and ClearanceJobs profile; no day count published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": null,
+          "value_text": "Paid holidays offered; count not disclosed publicly.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://nightwing.com/careers/",
+          "source_snippet": "Generous personal time off (PTO) policy and paid holidays to recharge and focus on what matters most.",
+          "notes": "Existence confirmed by employer sources; no number published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": null,
+          "value_text": "Paid parental leave (including paternal) offered; number of weeks not disclosed publicly.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://nightwing.com/careers/",
+          "source_snippet": "Paid parental leave to support you during one of life's most important moments.",
+          "notes": "Existence confirmed by employer careers page and ClearanceJobs profile; duration not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": null,
+          "value_text": "Tuition assistance program supporting advanced degrees and certifications; annual cap not disclosed publicly.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://nightwing.com/careers/",
+          "source_snippet": "Opportunities to upskill and pursue advanced degrees through our tuition assistance program.",
+          "notes": "Existence confirmed by employer sources; dollar cap not published. Third-party (Glassdoor/Indeed) also reference 'educational assistance' with no figure.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": null,
+          "value_text": "Company life insurance offered as part of financial-security benefits; salary multiple not disclosed.",
+          "unit": "x_salary",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.clearancejobs.com/profiles/1844100/nightwing-jobs",
+          "source_snippet": "Financial security with life, disability, and accident insurance options.",
+          "notes": "Existence of life insurance confirmed by employer-sourced ClearanceJobs profile; basic vs. voluntary split and any salary multiple not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "std_max",
+          "value_num": null,
+          "value_text": "Disability insurance offered; short-term disability max weeks / benefit level not disclosed.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.clearancejobs.com/profiles/1844100/nightwing-jobs",
+          "source_snippet": "Financial security with life, disability, and accident insurance options.",
+          "notes": "Existence of disability coverage confirmed by employer-sourced ClearanceJobs profile; no duration or replacement-rate figures published.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
       "slug": "northrop-grumman",
       "terms": [
         {
@@ -1804,6 +3445,110 @@
           "confidence": "reported",
           "source_url": "https://totalrewards.northropgrumman.com/download/file_library/449/NG_NonUnion_2026_AE_Benefits_Guide_FINAL.pdf",
           "source_snippet": "STD benefits ... provide you with income for up to 26 weeks"
+        }
+      ]
+    },
+    {
+      "slug": "palantir",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 0,
+          "value_text": "No employer 401(k) matching contributions. Palantir sponsors a 401(k) tax-deferred savings plan; participants may contribute pretax and post-tax, but the company did not make matching contributions for the years ended December 31, 2023, 2022, and 2021.",
+          "unit": "pct",
+          "plan_year": 2023,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165524000022/pltr-20231231.htm",
+          "source_snippet": "The Company did not make matching contributions for the years ended December 31, 2023, 2022, and 2021.",
+          "notes": "Confirmed across multiple 10-K filings (FY2020-2023 show no match). RSUs are provided in lieu of a 401(k) match per third-party summaries. Roth 401(k) and mega backdoor Roth are supported.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 0,
+          "value_text": "No automatic/non-elective employer contribution. Per SEC 10-K, the company made no matching or other employer contributions to the 401(k) plan.",
+          "unit": "pct",
+          "plan_year": 2023,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165524000022/pltr-20231231.htm",
+          "source_snippet": "The Company did not make matching contributions for the years ended December 31, 2023, 2022, and 2021.",
+          "notes": "Employees may contribute on a pretax and post-tax basis, but the employer provides no automatic contribution.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "None. No defined-benefit pension. Palantir offers only a 401(k) defined-contribution savings plan; no DB pension is mentioned in SEC filings or benefits summaries.",
+          "unit": null,
+          "plan_year": 2023,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165524000022/pltr-20231231.htm",
+          "source_snippet": "Palantir Technologies sponsors a 401(k) tax-deferred savings plan for all employees who meet certain eligibility requirements.",
+          "notes": "Typical tech-company structure; only a 401(k) DC plan is referenced, no defined-benefit pension.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": 1200,
+          "value_text": "Employer contributes $100 per month to the HSA ($1,200 annually).",
+          "unit": "usd_per_year",
+          "plan_year": 2026,
+          "confidence": "inferred",
+          "source_url": "https://www.levels.fyi/companies/palantir/benefits",
+          "source_snippet": "HSA: $100 per month contributed by employer ($1,200 annually)",
+          "notes": "Third-party aggregator (Levels.fyi); no tier/coverage breakdown published. Health insurance premiums reported as $0 premium for employee and dependents.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": null,
+          "value_text": "Unlimited/flexible PTO. Sick time also reported as unlimited. Some sources note ~2 weeks of paid time is built in per year.",
+          "unit": "days",
+          "plan_year": 2026,
+          "confidence": "inferred",
+          "source_url": "https://www.levels.fyi/companies/palantir/benefits",
+          "source_snippet": "PTO: Unlimited; Sick Time: Unlimited",
+          "notes": "No fixed accrual; flexible/unlimited policy, so value_num is not applicable.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 20,
+          "value_text": "Up to 20 weeks of gender-neutral paid parental leave for all employees, regardless of gender or role (offered since 2014).",
+          "unit": "weeks",
+          "plan_year": 2026,
+          "confidence": "reported",
+          "source_url": "https://x.com/PalantirTech/status/1453846133772627970",
+          "source_snippet": "Since 2014, Palantir has offered gender-neutral parental leave. We currently provide up to 20 weeks for all employees, regardless of gender or role.",
+          "notes": "Employer-published statement (official Palantir account).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "espp_discount",
+          "value_num": null,
+          "value_text": "Equity compensation is delivered primarily via RSUs; no publicly documented ESPP discount percentage found. Roth 401(k) and mega backdoor Roth are supported for after-tax contributions.",
+          "unit": "pct",
+          "plan_year": 2026,
+          "confidence": "inferred",
+          "source_url": "https://www.levels.fyi/companies/palantir/benefits",
+          "source_snippet": "Mega Backdoor Roth: Offered by employer; Roth 401(k): Offered by employer",
+          "notes": "RSUs noted as provided in lieu of a 401(k) match. No specific ESPP discount rate located in employer or SEC sources; included for context only.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": null,
+          "value_text": "Company offers basic life insurance, AD&D, and disability insurance; specific salary-multiple not published.",
+          "unit": "x_salary",
+          "plan_year": 2026,
+          "confidence": "inferred",
+          "source_url": "https://www.levels.fyi/companies/palantir/benefits",
+          "source_snippet": "Life Insurance: Offered by employer; Disability Insurance: Offered by employer; AD&D Insurance: Offered by employer",
+          "notes": "Third-party aggregator; no coverage multiple stated.",
+          "fetched_period": "2026-07"
         }
       ]
     },
@@ -2289,6 +4034,167 @@
       ]
     },
     {
+      "slug": "sierra-nevada",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 6,
+          "value_text": "150% match on up to 6% of eligible compensation (i.e. $1.50 per $1 deferred), for a 9% total employer match. Begins after one year of employment.",
+          "unit": "pct",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "SNC matches your contributions 150% ($1.50 company match for each $1 you defer - up to 6% ) of your total eligible compensation on a per pay period basis after one year of employment.",
+          "notes": "Employer-published Benefits at a Glance PDF. Match is 150% up to 6% of pay = effective 9% employer contribution. Match eligibility begins after 1 year of employment (deferrals themselves allowed from date of hire).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 4,
+          "value_text": "25% annually; fully vested after 4 years of service.",
+          "unit": "years",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "Vesting schedule is 25% annually, which means you are fully vested at the completion of 4 years of service.",
+          "notes": "Graded vesting of employer match, 25% per year over 4 years.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_eligibility",
+          "value_num": 0,
+          "value_text": "Eligible to participate (make deferrals) following date of hire, provided age 21. Employer match begins after one year of employment.",
+          "unit": "days",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "You are eligible to participate in the 401(k)-plan following your date of hire provided you are age 21 and have met any other eligibility requirements with SNC.",
+          "notes": "Deferrals immediate at date of hire (age 21). Match funding does not start until one year of employment.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "No defined-benefit pension; retirement is provided through the 401(k) plan only.",
+          "unit": null,
+          "plan_year": 2024,
+          "confidence": "inferred",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "401(k) Retirement Savings Plan ... Leading 401(k) match in the A&D industry (150% up to 6%, that is 9%)",
+          "notes": "Inferred: employer Benefits at a Glance and retirement pages describe only a 401(k) plan; no DB pension is mentioned. SNC is privately held (no SEC filings to confirm).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": 1000,
+          "value_text": "$500/year individual coverage; $1,000/year family coverage. Contributed per pay period, pro-rated for new hires. Available with the high-deductible HSA-eligible medical plan.",
+          "unit": "usd_per_year",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "SNC contributes to your HSA on a per pay period basis, equating to $500 annually for individual and $1,000 family, pro-rated for new hires.",
+          "notes": "Headline value_num uses family tier ($1,000). Individual tier is $500.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 15,
+          "value_text": "3 weeks (0-4 years of service), 4 weeks (5-9 years), 5 weeks (10+ years). Accrued; carries into new calendar year up to an accrual cap equal to annual allowance.",
+          "unit": "days",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "0-4 Years 3 weeks; 5-9 Years 4 weeks; 10+ Years 5 weeks",
+          "notes": "Entry-level minimum is 3 weeks = 15 days (value_num). Tiered by years of service. Corroborated by sncorp time-off page ('3 weeks of paid time off to start').",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 12,
+          "value_text": "Up to 12 paid holidays per year, including a week-long Winter Break shutdown between Christmas and New Year's Day.",
+          "unit": "days",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.sncorp.com/careers/time-off-flexibility-family/",
+          "source_snippet": "3 weeks of paid time off to start, up to 12 holidays off per year, including a one-week break between Christmas and New Year's Day.",
+          "notes": "2024 PDF holiday schedule lists New Year's, Memorial Day, Independence Day, Labor Day, Thanksgiving (2 days), and Winter Break (Dec 23-27).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 4,
+          "value_text": "Four weeks of paid parental leave for bonding/caring for a new child; in addition to any short-term disability. Eligible first of the month following date of hire.",
+          "unit": "weeks",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "SNC provides eligible employees with four weeks of paid parental leave, for bonding and caring for their new child(ren).",
+          "notes": "Applies to maternity and paternity; separate from short-term disability.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 5000,
+          "value_text": "$5,000/year toward Associate's/Bachelor's degrees or college classes; $7,500/year toward Graduate-level degrees. Degree completion bonuses also offered.",
+          "unit": "usd_per_year",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "Tuition Reimbursement $5,000 per year toward Associates/Bachelor's degrees or college classes $7,500 per year toward Graduate level degrees.",
+          "notes": "value_num uses the undergraduate cap ($5,000). Graduate cap is $7,500.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "9/80 compressed work schedule offered (varies by role); SNC also offers remote/hybrid options and flexible schedules.",
+          "unit": "bool",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://www.glassdoor.com/Reviews/Employee-Review-Sierra-Nevada-Corporation-E18700-RVW10415844.htm",
+          "source_snippet": "9/80 schedule mentioned as part of the company's work schedule/benefits in employee reviews.",
+          "notes": "Inferred: 9/80 confirmed only via Glassdoor employee reviews. Employer time-off page states 'flexible schedules' and 'options and programs vary by role' but does not name 9/80 explicitly.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "std_max",
+          "value_num": 12,
+          "value_text": "Short-term disability: 60% of earnings to a $5,000/week maximum for 12 weeks; benefit begins after 7 days of disability. Employer-paid (complimentary).",
+          "unit": "weeks",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "Short-Term Disability Coverage 60% of your earnings to a $5,000 maximum per week for 12 weeks Benefit begins after 7 days of disability",
+          "notes": "Long-term disability follows: 60% to $20,000/month after 60 days.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": 2,
+          "value_text": "Employer-paid basic life insurance and AD&D at 2x annual salary (up to $750k). Reduces to 65% at age 65 and 50% at age 70.",
+          "unit": "x_salary",
+          "plan_year": 2024,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://www.sncorp.com/media/dfldteji/2024-benefits-at-a-glance_final_1162024.pdf",
+          "source_snippet": "Employer Paid Basic Life Insurance and AD&D 2X Your salary (up to $750k) Employer Paid",
+          "notes": "Supplemental voluntary life/AD&D also available for employee, spouse, dependents.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
       "slug": "textron",
       "terms": [
         {
@@ -2415,6 +4321,398 @@
           "source_url": "https://txtav.com/~/media/textron-aviation/files/careers/EXTERNAL-HR-Total-Rewards-ToolKit.pdf",
           "source_snippet": "will provide STD that covers up to 50% of their regular base salary, up to $450 a week, for up to 12 weeks.",
           "notes": "Textron Aviation. Life insurance: company-paid basic life + AD&D is provided free but coverage multiple varies by employee type (not disclosed). No ESPP found (Textron does not offer an employee stock purchase plan).",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "torch-technologies",
+      "terms": [
+        {
+          "term_key": "esop",
+          "value_num": 100,
+          "value_text": "100% employee-owned via an Employee Stock Ownership Plan (ESOP) established in 2004; company became 100% employee-owned in 2011. Benefit is described on the employer benefits page as 'Employee Stock Ownership Plan (ESOP) with Stock Appreciation Rights.' Employer-funded (no employee purchase required); shares accrue and vest over a service-based vesting timeline. Ranked #72 on NCEO's 2025 Employee Ownership Top 100 list.",
+          "unit": "pct_employee_owned",
+          "plan_year": null,
+          "confidence": "reported",
+          "source_url": "https://www.torchtechnologies.com/careers/benefits/",
+          "source_snippet": "Employee Stock Ownership Plan (ESOP) with Stock Appreciation Rights",
+          "notes": "Flagship benefit. 100%-employee-owned status confirmed by employer news pages and NCEO EO Top 100 listing. Exact annual ESOP share/percentage allocation and ESOP vesting schedule not publicly disclosed.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_match",
+          "value_num": 3,
+          "value_text": "Dollar-for-dollar (1-to-1) match on employee 401(k)/Roth(k) contributions up to 3% of salary, in addition to the 3% safe-harbor contribution (total employer 401(k) contribution up to 6%). Administered through Fidelity.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://www.glassdoor.com/Benefits/Torch-Technologies-401K-Plan-BNFT13_E883566_N1.htm",
+          "source_snippet": "Additional 1-to-1 Match up to 3%, for a total of 6% 401(k) contribution without considering the ESOP.",
+          "notes": "Employer benefits page confirms 'Traditional and Roth 401(k) with company match' qualitatively; exact 3% match figure is from third-party (Glassdoor employee reports), hence inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 3,
+          "value_text": "3% safe-harbor (non-elective) employer contribution made regardless of whether the employee contributes; vests immediately.",
+          "unit": "pct",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://www.glassdoor.com/Benefits/Torch-Technologies-401K-Plan-BNFT13_E883566_N1.htm",
+          "source_snippet": "3% Safe Harbor contribution by Torch no matter what, which vests immediately.",
+          "notes": "Third-party (Glassdoor employee reports); not stated numerically on employer page, hence inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 0,
+          "value_text": "401(k) safe-harbor and matching employer contributions vest immediately (0 years). Note: the separate ESOP shares follow their own service-based vesting timeline (not the 401(k) schedule).",
+          "unit": "years",
+          "plan_year": null,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://www.glassdoor.com/Benefits/Torch-Technologies-401K-Plan-BNFT13_E883566_N1.htm",
+          "source_snippet": "3% Safe Harbor contribution by Torch no matter what, which vests immediately.",
+          "notes": "Immediate vesting is consistent with safe-harbor 401(k) rules. ESOP vesting schedule is separate and not publicly disclosed.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": null,
+          "value_text": "HDHP paired with an HSA, plus an HRA option, offered alongside a wellness program with cash rewards. Employer HSA contribution amount not publicly disclosed.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.torchtechnologies.com/careers/benefits/",
+          "source_snippet": "Medical PPO Plan, HDHPP with HSA and HRA options ... Wellness Program with cash rewards",
+          "notes": "HSA/HRA offering confirmed on employer benefits page; specific employer contribution dollar amount not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": null,
+          "value_text": "Accrued Paid Time Off (PTO); employees may borrow up to 40 hours of PTO (more with manager approval) and participate in a PTO Donation Program. Entry/minimum annual PTO days not publicly disclosed.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.torchtechnologies.com/careers/benefits/",
+          "source_snippet": "Accrued Paid Time-off (PTO) ... PTO Donation Program",
+          "notes": "PTO existence and features confirmed on employer benefits page; specific accrual day counts not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": null,
+          "value_text": "Paid holidays offered; specific number of holidays not publicly disclosed.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.torchtechnologies.com/careers/benefits/",
+          "source_snippet": "Paid Holidays",
+          "notes": "Confirmed on employer benefits page; count not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": null,
+          "value_text": "Paid parental leave offered (described by third parties as 'generous'); family medical leave also provided. Number of paid weeks not publicly disclosed.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://builtin.com/company/torch-technologies-inc/benefits",
+          "source_snippet": "Offers generous parental leave ... Provides family medical leave",
+          "notes": "Third-party (Built In) and reviews confirm parental leave exists; duration in weeks not published.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": 5250,
+          "value_text": "Educational Assistance covering tuition, fees and textbooks; also professional certification assistance and continuing education. Annual reimbursement reported by employees as capped at $5,250/year (aligns with the IRS Section 127 tax-free maximum).",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.torchtechnologies.com/careers/benefits/",
+          "source_snippet": "Educational Assistance for tuition, fees & textbooks",
+          "notes": "Benefit existence confirmed on employer page; the $5,250 annual cap is from third-party (Glassdoor employee reports), hence inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "Flexible scheduling with 9-hour days available (employees report choosing hours within a 6:30 a.m.-6:00 p.m. window) plus compensated overtime; consistent with a compressed/9-hour work schedule.",
+          "unit": "bool",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.torchtechnologies.com/careers/benefits/",
+          "source_snippet": "Flexible Scheduling and Compensated Overtime",
+          "notes": "Employer page confirms flexible scheduling; a formal '9/80' (every-other-Friday-off) arrangement is not explicitly named, so marked inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": null,
+          "value_text": "Company-provided basic Life and AD&D insurance (supplemental life also available). Company-paid coverage multiple of salary not publicly disclosed.",
+          "unit": "x_salary",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.torchtechnologies.com/careers/benefits/",
+          "source_snippet": "Company-provided Life and AD&D Insurance",
+          "notes": "Company-paid basic life confirmed on employer benefits page; salary-multiple amount not published.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "two-six",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 4,
+          "value_text": "Dollar for Dollar up to 4% Match (funded each payroll)",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "401K Retirement and Profit Sharing - Vested Immediately - Dollar for Dollar up to 4% Match (funded each payroll)",
+          "notes": "Employer-published 2025 Benefits & Perks Overview (gold source).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_auto_contribution",
+          "value_num": 1,
+          "value_text": "1% Profit Sharing Contribution (funded each payroll); plus Up to 3% Discretionary Contribution",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "1% Profit Sharing Contribution (funded each payroll) - Up to 3% Discretionary Contribution",
+          "notes": "1% non-elective profit-sharing funded each payroll, plus a year-end discretionary contribution of up to 3% (total non-elective could reach 4%).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 0,
+          "value_text": "Vested Immediately",
+          "unit": "years",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "401K Retirement and Profit Sharing - Vested Immediately",
+          "notes": "Immediate vesting of employer contributions; corroborated by careers page 'you vest immediately'.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_last_day_rule",
+          "value_num": 0,
+          "value_text": "Match and profit sharing funded each payroll, implying no last-day-of-year employment requirement.",
+          "unit": "bool",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "link_plan_type": "401k",
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "Dollar for Dollar up to 4% Match (funded each payroll) ... 1% Profit Sharing Contribution (funded each payroll)",
+          "notes": "Inferred from 'funded each payroll' language; the up-to-3% discretionary contribution may carry different timing.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 20,
+          "value_text": "4 weeks of Paid Time Off: 20 days/yr (0-2 yrs), 22 days/yr (2-5 yrs), 25 days/yr (5+ yrs)",
+          "unit": "days",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "4 weeks of Paid Time Off - 20 days/year: 0-2 years of service - 22 days/year: 2-5 years - 25 days/year: 5+ years",
+          "notes": "Entry accrual is 20 days; tiered up to 25 days. PTO carryover and payout offered.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "paid_holidays",
+          "value_num": 11,
+          "value_text": "11 Company Paid Federal Holidays",
+          "unit": "days",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "11 Company Paid Federal Holidays",
+          "notes": "",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": 6,
+          "value_text": "6 Weeks Paid Parental Leave; birthing parent eligible for an additional 5-7 weeks under short-term disability",
+          "unit": "weeks",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "6 Weeks Paid Parental Leave ... Birthing parent is eligible for an additional 5-7 weeks of paid leave under short-term disability",
+          "notes": "6 weeks applies to all parents (birth, adoption, placement) within 12 months; birthing parent total ~11-13 weeks with STD.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "life_insurance",
+          "value_num": 1,
+          "value_text": "Basic Life/AD&D Insurance 1x salary, up to $500K; 100% paid by the Company",
+          "unit": "x_salary",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": null,
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "Basic Life/AD&D Insurance 1x, up to 500K ... 100% paid by the Company",
+          "notes": "Company-paid basic life/AD&D capped at $500K.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": null,
+          "value_text": "Employer contributes to employee HSA (paired with CareFirst BlueChoice Advantage HSA plans); dollar amount not published.",
+          "unit": "usd_per_year",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://twosixtech.com/careers/",
+          "source_snippet": "We offer the opportunity to open a health savings account and we contribute to your account.",
+          "notes": "Employer contribution confirmed (careers page + PDF list HSA), but specific dollar amount/tier matrix not disclosed in public sources.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": null,
+          "value_text": "Tuition Assistance Program offered; annual dollar cap not published.",
+          "unit": "usd_per_year",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "Tuition Assistance Program",
+          "notes": "Program exists (also 'helping cover the costs' on careers page); no cap figure found in public sources.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": null,
+          "value_text": "Flexible Work Schedules & Hybrid Work Environment offered; 9/80 not explicitly named.",
+          "unit": "bool",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "link_plan_type": null,
+          "source_url": "https://twosixtech.com/wp-content/uploads/TST-2025-Benefits-Slick.pdf",
+          "source_snippet": "Flexible Work Schedules & Hybrid Work Environment",
+          "notes": "Flexible/compressed scheduling implied but 9/80 not specifically confirmed.",
+          "fetched_period": "2026-07"
+        }
+      ]
+    },
+    {
+      "slug": "v2x",
+      "terms": [
+        {
+          "term_key": "k401_match",
+          "value_num": 4,
+          "value_text": "Dollar-for-dollar (100%) match up to 4% of employee-elected deferrals in the V2X 401(k) Plan.",
+          "unit": "pct",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1601548/000110465926031740/tmb-20260507xdef14a.htm",
+          "source_snippet": "In 2025, V2X made dollar for dollar matching contributions up to 4% of employee-elected deferrals pursuant to the 401(k) plan.",
+          "notes": "From V2X, Inc. 2026 DEF 14A (proxy), Post-Employment Compensation. In 2023 the match had been 50% up to 8% of deferrals; 4% dollar-for-dollar is current. Union employees under a CBA may have different match/contribution terms.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "k401_vesting",
+          "value_num": 3,
+          "value_text": "Employer contributions vest over 3 years on a graded schedule: 25% after year 1, 50% after year 2, 100% after year 3. Employee contributions are always 100% vested.",
+          "unit": "years",
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "401k",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1601548/000110465926031740/tmb-20260507xdef14a.htm",
+          "source_snippet": "All contributions are 100% vested after 3 years (25% after year 1, 50% after year 2 and 100% after year 3).",
+          "notes": "From V2X 2026 DEF 14A. Prior Vertex/Vectrus service counts toward the vesting schedule per the 2022 merger FAQ.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pension_db_status",
+          "value_num": null,
+          "value_text": "none - V2X does not provide a traditional defined benefit pension plan.",
+          "unit": null,
+          "plan_year": 2025,
+          "confidence": "reported",
+          "link_plan_type": "db_pension",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1601548/000110465926031740/tmb-20260507xdef14a.htm",
+          "source_snippet": "V2X has not adopted a traditional defined benefit pension plan and does not provide traditional defined benefit pension benefits to the NEOs.",
+          "notes": "Confirmed in the Pension Benefits section of the 2026 DEF 14A. V2X does maintain a non-qualified, unfunded Excess Savings Plan for key employees (not a DB pension).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "schedule_9_80",
+          "value_num": 1,
+          "value_text": "Alternate/compressed work schedules such as 4/10 and 9/80 are offered at locations that require them to meet customer requirements, subject to FLSA and state/local labor law.",
+          "unit": "bool",
+          "plan_year": 2022,
+          "confidence": "inferred",
+          "source_url": "https://vtxco.com/wp-content/uploads/2022/07/V2X-FAQS.pdf",
+          "source_snippet": "We offer alternate work schedules in locations that require it to meet customer requirements... such as the Fair Labor Standards Act (FLSA).",
+          "notes": "Employer-published V2X FAQ (July 2022). 9/80 availability is location/contract dependent, not company-wide, hence inferred.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "tuition_reimbursement",
+          "value_num": null,
+          "value_text": "V2X offers a Tuition Reimbursement / Tuition Assistance program (tuition and/or certification reimbursement); no public annual dollar cap found.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://vtxco.com/wp-content/uploads/2022/07/V2X-FAQS.pdf",
+          "source_snippet": "There are no changes to the Tuition Reimbursement Program in 2022.",
+          "notes": "Program existence confirmed by employer FAQ and careers page (gov2x.com / Built In 'Provides tuition assistance'). Specific annual cap not publicly disclosed; not confirmed to be the IRS $5,250 threshold.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "parental_leave",
+          "value_num": null,
+          "value_text": "V2X offers paid parental leave ('generous parental leave' per careers/Built In); number of weeks not publicly disclosed.",
+          "unit": "weeks",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://builtin.com/company/v2x/benefits",
+          "source_snippet": "Offers generous parental leave",
+          "notes": "Existence confirmed by employer careers page and Built In; leave plan referenced in 2022 merger FAQ. Duration in weeks not found in any public source.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "hsa_employer",
+          "value_num": null,
+          "value_text": "V2X offers a Health Savings Account (HSA) with an HDHP; employer HSA contribution amount not publicly disclosed.",
+          "unit": "usd_per_year",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://builtin.com/company/v2x/benefits",
+          "source_snippet": "Offers Health Savings Account (HSA)",
+          "notes": "HSA availability confirmed via Built In and careers page. No public benefits-guide PDF found stating the employer seed/match dollar amount or tier/salary matrix.",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "pto",
+          "value_num": 17,
+          "value_text": "PTO accrued biweekly (employee-reported ~6.67 hours per 2-week period, roughly 17-18 days/year for entry-level exempt staff); varies by tenure, location and CBA.",
+          "unit": "days",
+          "plan_year": null,
+          "confidence": "inferred",
+          "source_url": "https://www.glassdoor.com/Benefits/V2X-US-Benefits-EI_IE8253248.0,3_IL.4,6_IN1.htm",
+          "source_snippet": "Employees receive approximately 6.67 hours of PTO every 2 weeks (~17-18 days per year).",
+          "notes": "Third-party (Glassdoor/Indeed) employee reports; no verbatim employer figure. Estimate only; actual PTO varies by legacy plan (Vertex/Vectrus/TTS), service length, and collective bargaining agreements.",
           "fetched_period": "2026-07"
         }
       ]
