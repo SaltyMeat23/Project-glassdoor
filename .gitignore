@@ -28,3 +28,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# web-extraction scratch (canonical artifact is data/employer_web.seed.json)
+/platform/data/web_raw/
