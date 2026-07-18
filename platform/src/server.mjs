@@ -59,6 +59,6 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(PORT, '127.0.0.1', () => {
-  console.log(`Intake server: http://127.0.0.1:${PORT}`);
+  console.log(`ContractIQ intake server: http://127.0.0.1:${PORT}`);
   console.log('SECURITY: submissions carry no user_id, no IP, coarse (YYYY-MM) period only.');
 });

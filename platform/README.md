@@ -1,6 +1,6 @@
-# Cleared Benefits Platform — data foundation
+# ContractIQ Platform — data foundation
 
-The fresh data layer for the **Cleared Benefits Benchmark** (see
+The data layer for **ContractIQ** (see
 [`../docs/STRATEGY.md`](../docs/STRATEGY.md) and
 [`../docs/SECURITY.md`](../docs/SECURITY.md)). This is Phase 0–1: the real data
 model plus a **Form 5500** ingest that seeds the top ~40 cleared-defense

@@ -1,4 +1,4 @@
--- Cleared Benefits Benchmark — data model
+-- ContractIQ — data model
 -- Implements docs/STRATEGY.md §5 and upholds docs/SECURITY.md as hard constraints.
 --
 -- Written in portable SQL (SQLite dialect now; migrates to Postgres later).

@@ -1,9 +1,9 @@
-# Cleared Benefits Benchmark — Strategy & Architecture
+# ContractIQ — Strategy & Architecture
 
-> A total-rewards comparison platform for the U.S. cleared defense workforce.
-> Where Glassdoor *lists* benefits, this platform *values* them — converting each
-> benefit line into an annual dollar figure so a candidate can compare two offers
-> apples-to-apples, and an employer can benchmark its package against competitors.
+> A total-compensation intelligence platform for the U.S. cleared defense workforce
+> (contractiq.io). Where Glassdoor *lists* benefits and job boards *hide* pay, ContractIQ
+> *values the whole package* — pay percentiles plus each benefit as an annual dollar figure —
+> so a candidate can tell, **before signing**, whether an offer is true to the market.
 
 **Status:** Planning document. No product code depends on this yet.
 **Owner:** repo maintainer.

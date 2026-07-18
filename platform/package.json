@@ -1,9 +1,9 @@
 {
-  "name": "cleared-benefits-platform",
+  "name": "contractiq-platform",
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "description": "Data foundation for the Cleared Benefits Benchmark (see ../docs/STRATEGY.md).",
+  "description": "Data foundation for ContractIQ — cleared-defense total-compensation intelligence (see ../docs/STRATEGY.md).",
   "engines": {
     "node": ">=22.5.0"
   },
