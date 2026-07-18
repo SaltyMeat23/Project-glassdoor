@@ -16,6 +16,7 @@
     "terms": "node src/terms-report.mjs",
     "value": "node src/value.mjs",
     "compare": "node src/compare.mjs",
+    "serve": "node src/server.mjs",
     "seed": "node src/download.mjs && node src/ingest.mjs && node src/report.mjs"
   },
   "dependencies": {
