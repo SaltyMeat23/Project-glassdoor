@@ -152,3 +152,45 @@ CREATE TABLE IF NOT EXISTS ingest_run (
   started_at    TEXT,
   finished_at   TEXT
 );
+
+-- ---------------------------------------------------------------------------
+-- CompDatapoint — crowdsourced PAY datapoints for the "Am I underpaid?" benchmark
+-- (docs/BUSINESS.md, the ContractIQ hero). Role×geo×experience shaped, so it is a
+-- separate single-purpose table (NOT hung off submission/plan_terms, which are
+-- employer×term_key shaped for the benefits engine).
+--
+-- Mirrors every SECURITY invariant of `submission` (docs/SECURITY.md):
+--   * NO user_id / account back-reference (§5.1).
+--   * COARSE period only (§5.3); never raw years, exact site, or a precise timestamp.
+--   * clearance TIER only, never poly-scope / badge / clearance number (§2).
+--   * metro bucket only, never site/base (§7.2).
+--   * NO contract/program name (§2 — no classified identifiers). GovCon "which
+--     contract" is captured only via the privacy-safe proxies prime_sub +
+--     customer_sector + lcat, and only ever shown at k-anonymized granularity (§7).
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS comp_datapoint (
+  id                INTEGER PRIMARY KEY,
+  role_family       TEXT NOT NULL,            -- normalized bucket, e.g. 'software_engineer'
+  role_raw          TEXT,                     -- free-text title as entered (company-level, not PII)
+  clearance_tier    TEXT NOT NULL,            -- none | secret | ts | ts_sci | ts_sci_poly
+  metro             TEXT NOT NULL,            -- metro bucket, e.g. 'dc_metro' (never site/base)
+  yoe_band          TEXT NOT NULL,            -- 0-2 | 3-5 | 6-9 | 10-14 | 15+
+  employer_id       INTEGER REFERENCES employer(id) ON DELETE SET NULL, -- optional (enables benefits add-on)
+
+  -- optional GovCon refinement dims (used only to narrow a k-cleared sub-cell)
+  prime_sub         TEXT,                     -- prime | sub
+  customer_sector   TEXT,                     -- dod | ic | civilian | other (coarse; never a program)
+  lcat              TEXT,                     -- normalized labor-category family
+
+  base              REAL,                     -- annual base salary
+  bonus             REAL,                     -- annual cash bonus / target
+  total_cash        REAL,                     -- denormalized base + bonus (for fast percentile scans)
+
+  source            TEXT NOT NULL DEFAULT 'crowdsourced', -- crowdsourced | inferred | import
+  confidence        TEXT NOT NULL DEFAULT 'reported',     -- verified | reported | inferred
+  submitted_period  TEXT                      -- COARSE only, e.g. '2026-07'
+  -- INTENTIONALLY ABSENT: user_id, account_id, email, ip, precise timestamp,
+  -- raw years, exact site, contract/program name.
+);
+CREATE INDEX IF NOT EXISTS idx_comp_cell ON comp_datapoint(role_family, clearance_tier, metro, yoe_band);
+CREATE INDEX IF NOT EXISTS idx_comp_employer ON comp_datapoint(employer_id);
