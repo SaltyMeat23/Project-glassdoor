@@ -12,7 +12,10 @@
     "ingest": "node src/ingest.mjs",
     "report": "node src/report.mjs",
     "load-web": "node src/load-web-terms.mjs",
+    "merge-web": "node src/merge-web.mjs",
     "terms": "node src/terms-report.mjs",
+    "value": "node src/value.mjs",
+    "compare": "node src/compare.mjs",
     "seed": "node src/download.mjs && node src/ingest.mjs && node src/report.mjs"
   },
   "dependencies": {

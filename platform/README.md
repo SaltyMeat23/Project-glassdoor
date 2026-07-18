@@ -47,6 +47,25 @@ npm run report
 Requires Node ≥ 22.5 (uses built-in `node:sqlite`). No native builds. Output DB
 is `platform/benefits.db` (git-ignored, regenerable).
 
+### Valuation engine
+
+Convert an employer's `plan_terms` + a user profile into dollar-valued total
+rewards (STRATEGY §3). Focuses on the big decision drivers: pay, 401(k), PTO,
+and medical/dental/vision. Every line exposes its basis + confidence; benefits
+we lack employer-specific data for are shown as a **labeled benchmark**, never
+hidden.
+
+```sh
+# value one employer
+npm run value -- lockheed-martin --salary 130000 --family --contrib 10
+# compare two (the core consumer surface)
+npm run compare -- rtx booz-allen-hamilton --salary 130000 --family
+# profiles: --profile baseline-single|baseline-family ; --single/--family ; --contrib <pct>
+```
+
+Medical premium *employer share* is the current data gap — valued via a KFF
+benchmark and flagged as the top scrape/crowdsource target.
+
 ## Layout
 
 ```
