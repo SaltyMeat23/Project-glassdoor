@@ -2,8 +2,15 @@
 
 # dependencies
 /node_modules
+/platform/node_modules
 /.pnp
 .pnp.js
+
+# platform data pipeline: cached downloads + local sqlite db (regenerable)
+/platform/cache/
+/platform/*.db
+/platform/*.db-wal
+/platform/*.db-shm
 
 # testing
 /coverage

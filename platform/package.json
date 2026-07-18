@@ -1,0 +1,20 @@
+{
+  "name": "cleared-benefits-platform",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Data foundation for the Cleared Benefits Benchmark (see ../docs/STRATEGY.md).",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "download": "node src/download.mjs",
+    "ingest": "node src/ingest.mjs",
+    "report": "node src/report.mjs",
+    "seed": "node src/download.mjs && node src/ingest.mjs && node src/report.mjs"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "csv-parse": "^5.6.0"
+  }
+}
