@@ -171,10 +171,48 @@ to hit comp-liquidity and pool density fast, rather than spreading thin.
 | Candidate **trust / control** | ❌ exposed | ✅ consent-gated |
 | Comp / total-rewards **intelligence** | ❌ none candidate-facing | ✅ cleared total-comp percentiles |
 | Brand / employer relationships | ✅ 20+ yrs | ❌ to earn |
-| ATS integrations | ✅ (e.g. Agile) | ❌ parity to build |
+| ATS + compliance stack | ✅ **owns AgileATS** (OFCCP/EEO/AAP) | ➖ integrate, don't replicate |
 
 We don't beat incumbency frontally; we win a **wedge** — cleared candidates who
 care about comp truth and privacy — then expand.
+
+### 10.1 Competitive intelligence (live walkthrough, 2026-07)
+
+Observed directly on clearancejobs.com:
+
+- **CJ is a vertically integrated GovCon hiring stack, not just a job board.**
+  Sibling brands share a top nav: **ClearanceJobs** (marketplace) · **AgileATS**
+  (their own applicant tracking system, agile-ats.com) · **PSG**. AgileATS does
+  AI candidate ranking, resume parsing, Boolean search, a **prime↔subcontractor
+  hiring portal**, and — critically — **OFCCP / EEO-1 / EEO-2 / AAP compliance**
+  (legally mandatory for federal contractors; NIST 800-171 + SOC 2). Candidates
+  flow from CJ into the employer's AgileATS pipeline.
+  - *Implication:* the moat is **workflow + compliance lock-in**, not just pool
+    size. → **We integrate, we don't replicate.** Be a sourcing + intelligence
+    layer that feeds *into* whatever ATS an employer runs (incl. AgileATS).
+    Building our own ATS + OFCCP/EEO/AAP compliance suite early is a huge,
+    regulated distraction. Stay top-of-funnel; win on pool liveness + comp data.
+
+- **"ClearanceJobs Premium" — a paid *candidate* tier — is now live.** Pitch:
+  "You've got the clearance, now get the visibility." Benefits: show up to more
+  recruiters, **salary insights ("get the scoop on salaries")**, see who viewed
+  your profile, **"stay hidden when you need to,"** boost recruiter trust, retain
+  access to closed jobs. 7-day free trial.
+  - *Implication (double-edged):* validates that candidates will pay — **and**
+    CJ is already bolting on our exact differentiators (salary insight, control)
+    as a **paywalled upsell**. Our durable edge must be that comp intelligence is
+    the **free core hook** and control is **structural**, not a premium toggle.
+
+- **The staleness thesis is visible in the product.** A real dormant candidate
+  dashboard showed **0 profile views**, old connections with **0 recent
+  activity**, and weeks-old "top matching jobs" — with basic engagement feedback
+  (who viewed you) **blurred behind Premium**. CJ has no mechanism that keeps a
+  candidate active; that gap is our wedge (§2–§5).
+
+- **Framing:** CJ leads with **job volume + employer pre-screening** ("69,675
+  jobs from 1,781 pre-screened companies"), and the recruiter/pricing product is
+  gated (sales-contact, not public list price — consistent with the ~$12k/seat
+  figure coming from direct experience, not a public page).
 
 ## 11. Risks & honest tensions
 
