@@ -7,8 +7,9 @@ export const ASSUMPTIONS = {
 
   // Benchmarks used ONLY as a clearly-labeled fallback when we lack employer-
   // specific data. Source: KFF Employer Health Benefits Survey 2024, average
-  // ANNUAL employer premium contribution (rounded). NOT employer-specific.
-  benchmark_employer_health_premium: { single: 7000, family: 17500 },
+  // ANNUAL premium (rounded). NOT employer-specific.
+  benchmark_employer_health_premium: { single: 7000, family: 17500 }, // employer share
+  benchmark_total_premium: { single: 9000, family: 25500 },           // total premium (for % coverage)
   benchmark_employer_dental_vision: { single: 400, family: 900 },
 };
 

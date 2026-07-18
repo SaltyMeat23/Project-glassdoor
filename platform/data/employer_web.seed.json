@@ -779,6 +779,30 @@
           "source_snippet": "up to $15,000 per year for bachelor degrees ... up to $25,000 per year for graduate degrees",
           "notes": "Headline value_num uses graduate cap; bachelor cap is $15,000/year. Employer careers page.",
           "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "medical_employee_premium_single",
+          "value_num": 558.36,
+          "value_text": "$46.53/month employee-only (Traditional Medical Plan / TMP)",
+          "unit": "usd_per_year",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "source_url": "https://www.iam751.org/Virtual%20Board/2025/2025_Open_Enrollment.pdf",
+          "source_snippet": "2025 monthly premium contributions for TMP: Employee $46.53; Employee + spouse $93.06; Employee + Children $93.06; Family $139.59.",
+          "notes": "Employee-only cost annualized (46.53 x 12). From IAM751 union open-enrollment summary (surfaced via search; PDF not directly parsed). EMPLOYER share / total premium not published in any public source found, so employer contribution keys are omitted per spec (do not guess employer share).",
+          "fetched_period": "2026-07"
+        },
+        {
+          "term_key": "medical_employee_premium_family",
+          "value_num": 1675.08,
+          "value_text": "$139.59/month family tier (Traditional Medical Plan / TMP)",
+          "unit": "usd_per_year",
+          "plan_year": 2025,
+          "confidence": "inferred",
+          "source_url": "https://www.iam751.org/Virtual%20Board/2025/2025_Open_Enrollment.pdf",
+          "source_snippet": "2025 monthly premium contributions for TMP: Employee $46.53; Employee + spouse $93.06; Employee + Children $93.06; Family $139.59.",
+          "notes": "Family tier (the richest tier) annualized (139.59 x 12). Employee+spouse and Employee+children tiers were $93.06/mo each. Employer share / total premium not published, so employer contribution keys omitted per spec.",
+          "fetched_period": "2026-07"
         }
       ]
     },

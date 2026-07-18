@@ -101,12 +101,24 @@ function valueHealth(profile, terms) {
     }));
   }
 
-  // Employer medical premium share — the DATA GAP. Use a labeled benchmark.
-  const empPrem = terms.get('medical_employer_premium');
-  if (empPrem && empPrem.value_num != null) {
-    out.push(line('medical_employer_premium', 'Employer medical premium share', empPrem.value_num, {
-      confidence: empPrem.confidence, source_url: empPrem.source_url, plan_year: empPrem.plan_year,
-      basis: empPrem.value_text || `$${empPrem.value_num}/yr`,
+  // Employer medical premium share. Prefer an employer-specific dollar figure;
+  // else an employer-specific % of premium applied to a benchmark total; else a
+  // labeled benchmark employer share.
+  const premUsd = terms.get(`medical_employer_premium_${fam}`);
+  const premPct = terms.get(`medical_premium_employer_pct_${fam}`);
+  if (premUsd && premUsd.value_num != null) {
+    out.push(line('medical_employer_premium', 'Employer medical premium share', premUsd.value_num, {
+      confidence: premUsd.confidence, source_url: premUsd.source_url, plan_year: premUsd.plan_year,
+      basis: premUsd.value_text || `$${premUsd.value_num}/yr (${fam})`,
+    }));
+  } else if (premPct && premPct.value_num != null) {
+    const total = ASSUMPTIONS.benchmark_total_premium[fam];
+    out.push(line('medical_employer_premium', 'Employer medical premium share', (premPct.value_num / 100) * total, {
+      confidence: premPct.confidence, source_url: premPct.source_url, plan_year: premPct.plan_year,
+      basis: `${premPct.value_num}% of ${fam} premium × benchmark total $${total.toLocaleString()}`,
+      note: premPct.value_num >= 100
+        ? 'Employer pays 100% of the premium (reported); total premium amount is a benchmark.'
+        : 'Employer % is reported; total premium amount is a benchmark.',
     }));
   } else {
     out.push(line('medical_employer_premium', 'Employer medical premium share', ASSUMPTIONS.benchmark_employer_health_premium[fam], {
