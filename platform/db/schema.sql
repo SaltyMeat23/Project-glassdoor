@@ -86,15 +86,22 @@ CREATE INDEX IF NOT EXISTS idx_plan_year ON benefit_plan(plan_year);
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS plan_terms (
   id               INTEGER PRIMARY KEY,
-  benefit_plan_id  INTEGER NOT NULL REFERENCES benefit_plan(id) ON DELETE CASCADE,
-  term_key         TEXT NOT NULL,              -- e.g. 'match_formula' | 'hsa_employer' | 'pto_accrual'
-  value_num        REAL,                       -- numeric value when applicable
-  value_text       TEXT,                       -- structured text (e.g. formula spec)
-  unit             TEXT,                       -- 'pct' | 'usd_per_year' | 'days' | ...
+  employer_id      INTEGER NOT NULL REFERENCES employer(id) ON DELETE CASCADE,
+  benefit_plan_id  INTEGER REFERENCES benefit_plan(id) ON DELETE SET NULL, -- optional link to a specific 5500 plan
+  term_key         TEXT NOT NULL,              -- e.g. 'k401_match' | 'hsa_employer' | 'pto' | 'schedule_9_80'
+  value_num        REAL,                       -- headline numeric value when applicable
+  value_text       TEXT,                       -- structured text (e.g. "100% of first 6%")
+  unit             TEXT,                       -- 'pct' | 'usd_per_year' | 'days' | 'weeks' | 'bool' | ...
   plan_year        INTEGER,
-  source           TEXT NOT NULL,              -- where this specific term came from
-  confidence       TEXT NOT NULL DEFAULT 'reported'
+  source           TEXT NOT NULL,              -- form5500 | sec | union | crowdsourced | employer | employer_web
+  confidence       TEXT NOT NULL DEFAULT 'reported', -- verified | reported | inferred
+  -- provenance (critical for web-extracted / documented terms; see STRATEGY §3)
+  source_url       TEXT,                       -- where the value was read
+  source_snippet   TEXT,                       -- verbatim supporting text
+  fetched_period   TEXT,                       -- coarse fetch date, e.g. '2026-07'
+  notes            TEXT
 );
+CREATE INDEX IF NOT EXISTS idx_terms_employer ON plan_terms(employer_id);
 CREATE INDEX IF NOT EXISTS idx_terms_plan ON plan_terms(benefit_plan_id);
 CREATE INDEX IF NOT EXISTS idx_terms_key ON plan_terms(term_key);
 

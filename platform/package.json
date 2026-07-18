@@ -11,6 +11,8 @@
     "download": "node src/download.mjs",
     "ingest": "node src/ingest.mjs",
     "report": "node src/report.mjs",
+    "load-web": "node src/load-web-terms.mjs",
+    "terms": "node src/terms-report.mjs",
     "seed": "node src/download.mjs && node src/ingest.mjs && node src/report.mjs"
   },
   "dependencies": {
