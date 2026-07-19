@@ -12,9 +12,9 @@ import { dirname, resolve } from 'node:path';
 import { openDb } from './lib/db.mjs';
 import { resolveEmployer } from './valuation/cli-util.mjs';
 import { prefill, submit } from './intake/service.mjs';
-import { benchmark } from './comp/benchmark.mjs';
+import { benchmark, benefitsAddOn } from './comp/benchmark.mjs';
 import { submitComp } from './comp/intake-comp.mjs';
-import { COMP_META, primeSub, customerSector, lcatLevel } from './comp/normalize-comp.mjs';
+import { COMP_META, primeSub, customerSector, lcatLevel, roleFamily, clearanceTier, metroBucket, yoeBand } from './comp/normalize-comp.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHECK_HTML = resolve(__dirname, '..', 'public-intake', 'check.html');
@@ -68,6 +68,34 @@ const server = createServer(async (req, res) => {
         family_status: b.family_status,
       });
       return json(res, 200, { ok: true, employer: emp?.display_name ?? null, ...result });
+    }
+    // side-by-side: value two offers (same profile) apples-to-apples
+    if (req.method === 'POST' && url.pathname === '/api/comp/compare') {
+      const b = await readBody(req);
+      const cell = {
+        role_family: roleFamily(b.role), clearance_tier: clearanceTier(b.clearance),
+        metro: metroBucket(b.metro), yoe_band: yoeBand(b.yoe),
+        prime_sub: b.prime_sub ? primeSub(b.prime_sub) : null,
+        customer_sector: b.customer ? customerSector(b.customer) : null,
+        lcat: b.lcat ? lcatLevel(b.lcat) : null,
+        family_status: b.family_status,
+      };
+      let market = null;
+      const offers = (b.offers || []).slice(0, 2).map((o) => {
+        const emp = o.employer ? resolveEmployer(db, o.employer) : null;
+        const base = numOrNull(o.base), bonus = numOrNull(o.bonus) || 0;
+        const r = benchmark(db, { ...cell, base, bonus, employer_id: emp?.id ?? null });
+        if (r.status === 'ok' && !market) market = { n: r.n, distribution: r.distribution, level: r.level, coarsened: r.coarsened };
+        const ben = benefitsAddOn(db, { base, family_status: b.family_status, employer_id: emp?.id ?? null });
+        const benefits_total = ben?.benefits_total ?? 0;
+        return {
+          label: o.label ?? null, employer_name: emp?.display_name ?? null,
+          base, bonus, benefits_total, benefits_lines: ben?.lines ?? [],
+          total_comp: (base || 0) + bonus + benefits_total,
+          base_percentile: r.status === 'ok' ? r.base_percentile : null,
+        };
+      });
+      return json(res, 200, { ok: true, cell: [cell.role_family, cell.clearance_tier, cell.metro, cell.yoe_band].join(' · '), market, offers });
     }
     if (req.method === 'GET' && url.pathname === '/api/employers') {
       const rows = db.prepare('SELECT slug, display_name FROM employer ORDER BY display_name').all();

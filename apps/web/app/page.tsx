@@ -42,7 +42,7 @@ export default function Page() {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 pb-24">
-      <header className="pt-12 pb-8">
+      <header className="pt-8 pb-8">
         <h1 className="font-display font-extrabold tracking-tight text-4xl sm:text-[44px] leading-[1.03]">How do I compare?</h1>
         <p className="mt-3 max-w-xl text-muted text-[15px]">
           Cleared pay is hard to see until you&apos;re already on contract. Enter your profile to see where your

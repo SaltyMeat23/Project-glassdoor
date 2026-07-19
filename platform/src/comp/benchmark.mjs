@@ -86,7 +86,7 @@ function verdict(basePct) {
 }
 
 // ---- benefits add-on (reuse the valuation engine, zero engine changes) -----
-function benefitsAddOn(db, query) {
+export function benefitsAddOn(db, query) {
   if (!query.base) return null;
   const profile = { salary: query.base, family_status: query.family_status || 'single', contribution_rate: 0.10, health_usage_tier: 'medium' };
   let employer = null;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Tabs } from "@/components/Tabs";
 import "./globals.css";
 
 // Self-hosted at build time (next/font) — no runtime third-party request,
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <span className="text-[12px] text-muted">Private &amp; anonymous — no account, no name.</span>
           </div>
         </header>
+        <Tabs />
         {children}
       </body>
     </html>
