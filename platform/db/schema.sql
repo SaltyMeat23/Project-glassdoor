@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS ingest_run (
 );
 
 -- ---------------------------------------------------------------------------
--- CompDatapoint — crowdsourced PAY datapoints for the "Am I underpaid?" benchmark
+-- CompDatapoint — crowdsourced PAY datapoints for the "How do I compare?" benchmark
 -- (docs/BUSINESS.md, the ContractIQ hero). Role×geo×experience shaped, so it is a
 -- separate single-purpose table (NOT hung off submission/plan_terms, which are
 -- employer×term_key shaped for the benefits engine).

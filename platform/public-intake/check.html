@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ContractIQ — How do I compare?</title>
+<style>
+  :root { --bg:#0f1216; --card:#171c22; --card2:#12181f; --line:#2a323c; --fg:#e6edf3; --mut:#8b98a5; --accent:#4c8dff;
+          --below:#ff6b6b; --at:#7ab7ff; --above:#4ade80; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 26px 18px 90px; }
+  .brand { font-weight:800; letter-spacing:-0.02em; font-size:19px; }
+  .brand span { color:var(--accent); }
+  h1 { font-size:26px; letter-spacing:-0.02em; margin:14px 0 4px; }
+  p.sub { color:var(--mut); margin:0 0 18px; }
+  .note { font-size:12px; color:var(--mut); background:var(--card2); border:1px solid var(--line); border-radius:8px; padding:9px 11px; margin-bottom:18px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  label.f { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--mut); }
+  input, select { background:#0d1014; color:var(--fg); border:1px solid var(--line); border-radius:8px; padding:9px 10px; font:inherit; width:100%; }
+  input:focus, select:focus { outline:1px solid var(--accent); }
+  .full { grid-column:1 / -1; }
+  details summary { cursor:pointer; color:var(--mut); font-size:13px; margin:2px 0 10px; }
+  button.go { width:100%; background:var(--accent); color:#04101f; font-weight:800; border:0; border-radius:10px; padding:13px; font:inherit; font-size:16px; cursor:pointer; margin-top:4px; }
+  .tabnum { font-variant-numeric: tabular-nums; }
+  /* result */
+  .verdict { font-size:19px; font-weight:700; margin:2px 0 14px; }
+  .v-below { color:var(--below); } .v-at { color:var(--at); } .v-above { color:var(--above); }
+  .barwrap { margin:18px 0 8px; }
+  .barlabel { display:flex; justify-content:space-between; font-size:12px; color:var(--mut); margin-bottom:6px; }
+  .bar { position:relative; height:44px; background:linear-gradient(90deg,#243044,#2f3e57); border:1px solid var(--line); border-radius:8px; }
+  .tick { position:absolute; top:0; bottom:0; width:1px; background:#4a5a72; }
+  .tick b { position:absolute; top:-17px; left:50%; transform:translateX(-50%); font-size:10px; color:var(--mut); white-space:nowrap; }
+  .you { position:absolute; top:-6px; bottom:-6px; width:3px; background:#fff; border-radius:2px; box-shadow:0 0 0 2px var(--bg); }
+  .you b { position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:#fff; white-space:nowrap; }
+  .meta { font-size:12px; color:var(--mut); margin-top:26px; }
+  .addon { border-top:1px solid var(--line); margin-top:16px; padding-top:12px; }
+  .addon .row { display:flex; justify-content:space-between; font-size:13px; padding:2px 0; }
+  .badge { font-size:10px; padding:0 6px; border-radius:999px; border:1px solid var(--line); color:var(--mut); margin-left:6px; }
+  .b-reported{color:#7ab7ff;} .b-verified{color:#4ade80;} .b-inferred{color:#f0c674;} .b-benchmark{color:#9aa4af;}
+  .thin { text-align:center; padding:20px; color:var(--mut); }
+  .thin .big { font-size:34px; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Contract<span>IQ</span></div>
+  <h1>How do I compare?</h1>
+  <p class="sub">See how your cleared pay and benefits stack up against the market — <em>before</em> you sign.</p>
+
+  <div class="note">
+    <strong>Anonymous &amp; give-to-get.</strong> Your entry is stored with no account, no name, no email, and only a coarse
+    month — it joins the anonymous pool that powers everyone's benchmark. We never show a figure until enough people
+    (k≥5) are in a cell. <a href="/intake">Benefits intake →</a>
+  </div>
+
+  <div class="card">
+    <div class="grid">
+      <label class="f full">Role / title
+        <input id="role" list="roles" placeholder="e.g. SIGINT Analyst, Software Engineer" />
+        <datalist id="roles"></datalist>
+      </label>
+      <label class="f">Clearance <select id="clearance"></select></label>
+      <label class="f">Metro / location <select id="metro"></select></label>
+      <label class="f">Years of experience <input id="yoe" type="number" min="0" max="45" placeholder="7" /></label>
+      <label class="f">Employer (optional) <select id="employer"><option value="">— any / not sure —</option></select></label>
+      <label class="f">Base salary ($) <input id="base" type="number" placeholder="150000" /></label>
+      <label class="f">Annual bonus ($, optional) <input id="bonus" type="number" placeholder="12000" /></label>
+    </div>
+    <details>
+      <summary>Refine by contract (optional — GovCon pay varies most by contract)</summary>
+      <div class="grid">
+        <label class="f">Prime / Sub
+          <select id="prime_sub"><option value="">—</option><option value="prime">Prime</option><option value="sub">Sub</option></select></label>
+        <label class="f">Customer
+          <select id="customer"><option value="">—</option><option value="dod">DoD</option><option value="ic">Intel Community</option><option value="civilian">Civilian agency</option></select></label>
+        <label class="f full">Labor category / level
+          <input id="lcat" placeholder="e.g. Engineer III, Senior" /></label>
+      </div>
+    </details>
+    <button class="go" id="go">See how I compare →</button>
+  </div>
+
+  <div id="result"></div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const usd = (n) => n==null ? '—' : '$' + Math.round(n).toLocaleString();
+const titleize = (s) => String(s).replace(/_/g,' ').replace(/\b\w/g,(c)=>c.toUpperCase());
+const CLEAR_LABEL = { none:'None / Public Trust', secret:'Secret', ts:'Top Secret', ts_sci:'TS/SCI', ts_sci_poly:'TS/SCI + Poly' };
+
+async function boot() {
+  const meta = await (await fetch('/api/comp/meta')).json();
+  $('#clearance').innerHTML = meta.clearance_tiers.map((c)=>`<option value="${c}">${esc(CLEAR_LABEL[c]||c)}</option>`).join('');
+  $('#clearance').value = 'ts_sci';
+  $('#metro').innerHTML = meta.metros.map((m)=>`<option value="${m}">${esc(titleize(m))}</option>`).join('');
+  $('#metro').value = 'dc_metro';
+  $('#roles').innerHTML = ['Software Engineer','Systems Engineer','SIGINT Analyst','All-Source Intelligence Analyst','Cybersecurity Engineer','DevOps Engineer','Data Scientist','Program Manager','Systems Administrator','Network Engineer'].map((r)=>`<option value="${esc(r)}">`).join('');
+  const emps = await (await fetch('/api/employers')).json();
+  $('#employer').insertAdjacentHTML('beforeend', emps.map((e)=>`<option value="${esc(e.slug)}">${esc(e.display_name)}</option>`).join(''));
+}
+
+$('#go').addEventListener('click', async () => {
+  const body = {
+    role: $('#role').value, clearance: $('#clearance').value, metro: $('#metro').value,
+    yoe: $('#yoe').value, base: $('#base').value, bonus: $('#bonus').value,
+    employer: $('#employer').value, prime_sub: $('#prime_sub').value,
+    customer: $('#customer').value, lcat: $('#lcat').value,
+  };
+  if (!body.clearance || !body.yoe || !body.base) { $('#result').innerHTML = `<div class="card thin">Enter at least clearance, years of experience, and base salary.</div>`; return; }
+  $('#go').textContent = 'Checking…';
+  const r = await (await fetch('/api/comp/check', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body) })).json();
+  $('#go').textContent = 'See how I compare →';
+  render(r, Number(body.base), Number(body.bonus||0));
+});
+
+function bar(dist, you, label) {
+  const min = dist.p25 * 0.8, max = dist.p90 * 1.08, span = Math.max(max - min, 1);
+  const pos = (v) => Math.max(0, Math.min(100, ((v - min) / span) * 100));
+  const ticks = [['p25',dist.p25],['p50',dist.p50],['p75',dist.p75],['p90',dist.p90]]
+    .map(([k,v]) => `<div class="tick" style="left:${pos(v)}%"><b>${k} ${usd(v)}</b></div>`).join('');
+  const marker = you!=null ? `<div class="you" style="left:${pos(you)}%"><b>you ${usd(you)}</b></div>` : '';
+  return `<div class="barwrap"><div class="barlabel"><span>${esc(label)}</span></div><div class="bar">${ticks}${marker}</div></div>`;
+}
+
+function render(r, base, bonus) {
+  if (!r.ok) { $('#result').innerHTML = `<div class="card thin">${esc(r.error||'Something went wrong.')}</div>`; return; }
+  if (r.status === 'insufficient') {
+    $('#result').innerHTML = `<div class="card thin"><div class="big">🌱</div>
+      <p>Not enough data yet for <strong>${esc(r.cell)}</strong> — only ${r.have} so far (we need ${r.k} to show a benchmark, so no one is identifiable).</p>
+      <p>Your entry was added anonymously. Come back as the cell fills in — or share ContractIQ with a colleague on your contract.</p></div>`;
+    return;
+  }
+  const v = r.verdict || {}; const cls = v.band==='below'||v.band==='slightly_below' ? 'v-below' : (v.band==='at' ? 'v-at' : 'v-above');
+  let benefits = '';
+  if (r.benefits) {
+    const b = r.benefits;
+    const lines = b.lines.map((l)=>`<div class="row"><span>${esc(l.label)} <span class="badge b-${esc(l.confidence)}">${esc(l.confidence)}</span></span><span class="tabnum">${usd(l.value)}</span></div>`).join('');
+    benefits = `<div class="addon"><div class="row"><strong>+ Benefits${b.employer?` (${esc(b.employer)})`:' (sector benchmark)'}</strong><strong class="tabnum">${usd(b.benefits_total)}/yr</strong></div>${lines}
+      <div class="row" style="margin-top:8px;border-top:1px solid var(--line);padding-top:8px"><strong>Total-rewards value</strong><strong class="tabnum">${usd(base + bonus + (b.benefits_total||0))}/yr</strong></div></div>`;
+  }
+  $('#result').innerHTML = `<div class="card">
+    <div class="verdict ${cls}">${esc(v.text || '')}</div>
+    ${bar(r.distribution, base, 'Market base pay')}
+    <div class="meta tabnum">You're at the <strong>${r.base_percentile}th percentile</strong> for base pay${r.total_cash_percentile!=null?` · ${r.total_cash_percentile}th for total cash`:''}.</div>
+    <div class="meta">Based on <strong>${r.n}</strong> anonymous datapoints${r.approximate?' (approximate — small sample)':''}${r.coarsened?` · widened to <em>${esc(r.level)}</em> to protect anonymity`:''}.</div>
+    ${benefits}
+    <div class="meta">Pay in GovCon varies most by <strong>contract</strong> — add prime/sub, customer, and labor category above to refine as more people contribute.</div>
+  </div>`;
+}
+boot();
+</script>
+</body>
+</html>

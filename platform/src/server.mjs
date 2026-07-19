@@ -12,10 +12,15 @@ import { dirname, resolve } from 'node:path';
 import { openDb } from './lib/db.mjs';
 import { resolveEmployer } from './valuation/cli-util.mjs';
 import { prefill, submit } from './intake/service.mjs';
+import { benchmark } from './comp/benchmark.mjs';
+import { submitComp } from './comp/intake-comp.mjs';
+import { COMP_META, primeSub, customerSector, lcatLevel } from './comp/normalize-comp.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const HTML = resolve(__dirname, '..', 'public-intake', 'intake.html');
+const CHECK_HTML = resolve(__dirname, '..', 'public-intake', 'check.html');
+const INTAKE_HTML = resolve(__dirname, '..', 'public-intake', 'intake.html');
 const PORT = Number(process.env.PORT) || 8787;
+const numOrNull = (v) => { const n = Number(String(v ?? '').replace(/[^0-9.]/g, '')); return Number.isFinite(n) && v !== '' && v != null ? n : null; };
 
 const db = openDb();
 const json = (res, code, obj) => { res.writeHead(code, { 'content-type': 'application/json' }); res.end(JSON.stringify(obj)); };
@@ -32,9 +37,37 @@ function readBody(req) {
 const server = createServer(async (req, res) => {
   const url = new URL(req.url, 'http://127.0.0.1');
   try {
-    if (req.method === 'GET' && url.pathname === '/') {
+    if (req.method === 'GET' && (url.pathname === '/' || url.pathname === '/check')) {
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-      return res.end(readFileSync(HTML, 'utf8'));
+      return res.end(readFileSync(CHECK_HTML, 'utf8'));
+    }
+    if (req.method === 'GET' && url.pathname === '/intake') {
+      res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+      return res.end(readFileSync(INTAKE_HTML, 'utf8'));
+    }
+    if (req.method === 'GET' && url.pathname === '/api/comp/meta') {
+      return json(res, 200, COMP_META);
+    }
+    // give-to-get: recording your comp (the "give") returns the benchmark (the "get")
+    if (req.method === 'POST' && url.pathname === '/api/comp/check') {
+      const b = await readBody(req);
+      const emp = b.employer ? resolveEmployer(db, b.employer) : null;
+      const rec = submitComp(db, {
+        role_raw: b.role, clearance: b.clearance, metro: b.metro, yoe: b.yoe,
+        base: b.base, bonus: b.bonus, employer_id: emp?.id ?? null,
+        prime_sub: b.prime_sub, customer_sector: b.customer, lcat: b.lcat,
+        verification_tier: 'unverified',
+      });
+      if (!rec.ok) return json(res, 400, { error: rec.error });
+      const result = benchmark(db, {
+        ...rec.cell,
+        base: numOrNull(b.base), bonus: numOrNull(b.bonus), employer_id: emp?.id ?? null,
+        prime_sub: b.prime_sub ? primeSub(b.prime_sub) : null,
+        customer_sector: b.customer ? customerSector(b.customer) : null,
+        lcat: b.lcat ? lcatLevel(b.lcat) : null,
+        family_status: b.family_status,
+      });
+      return json(res, 200, { ok: true, employer: emp?.display_name ?? null, ...result });
     }
     if (req.method === 'GET' && url.pathname === '/api/employers') {
       const rows = db.prepare('SELECT slug, display_name FROM employer ORDER BY display_name').all();
@@ -59,6 +92,7 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(PORT, '127.0.0.1', () => {
-  console.log(`ContractIQ intake server: http://127.0.0.1:${PORT}`);
+  console.log(`ContractIQ dev server:  http://127.0.0.1:${PORT}/         ("How do I compare?" comp hero)`);
+  console.log(`                        http://127.0.0.1:${PORT}/intake   (benefits intake)`);
   console.log('SECURITY: submissions carry no user_id, no IP, coarse (YYYY-MM) period only.');
 });

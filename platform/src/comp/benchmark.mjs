@@ -1,4 +1,4 @@
-// Comp benchmark engine — the "Am I underpaid?" core.
+// Comp benchmark engine — the "How do I compare?" core.
 //
 // Given a query cell (role_family × clearance_tier × metro × yoe_band, plus
 // optional GovCon refinements), return the market pay distribution and the

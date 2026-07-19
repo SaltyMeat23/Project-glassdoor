@@ -1,4 +1,4 @@
-// "Am I underpaid?" — CLI to exercise the comp benchmark before any UI.
+// "How do I compare?" — CLI to exercise the comp benchmark before any UI.
 // Usage:
 //   node src/comp-check.mjs --role "Software Engineer" --clearance "TS/SCI" \
 //        --metro "Reston, VA" --yoe 7 --base 150000 [--bonus 12000] \
