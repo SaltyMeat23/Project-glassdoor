@@ -37,104 +37,90 @@ export default function Page() {
     setLoading(false);
   };
 
-  const L = (t: string) => <span className="block text-[11px] font-mono tracking-[0.14em] text-muted mb-1.5">{t}</span>;
-  const inputCls = "w-full bg-inset text-text border border-line rounded-md px-3 py-2 text-sm outline-none focus:border-gold/60 transition-colors";
+  const L = (t: string) => <span className="block text-[12px] text-muted mb-1.5">{t}</span>;
+  const inputCls = "w-full bg-inset text-text border border-line rounded-md px-3 py-2 text-sm outline-none focus:border-accent/70 transition-colors";
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 pb-24">
-      {/* hero header */}
       <header className="pt-12 pb-8">
-        <div className="flex items-center gap-2 font-display font-extrabold tracking-tight text-[22px]">
-          Contract<span className="text-gold">IQ</span>
-        </div>
-        <p className="mt-6 font-mono text-[11px] tracking-[0.2em] text-gold/80">TOTAL-COMP INTELLIGENCE&nbsp;//&nbsp;CLEARED WORKFORCE</p>
-        <h1 className="mt-2 font-display font-extrabold tracking-tight text-4xl sm:text-5xl leading-[1.02]">How do I compare?</h1>
-        <p className="mt-3 max-w-xl text-muted">
-          Cleared pay is hidden until you&apos;re already on contract. Enter your profile to <span className="text-text">declassify</span> where
-          your total comp sits against the market — anonymously, before you sign.
+        <h1 className="font-display font-extrabold tracking-tight text-4xl sm:text-[44px] leading-[1.03]">How do I compare?</h1>
+        <p className="mt-3 max-w-xl text-muted text-[15px]">
+          Cleared pay is hard to see until you&apos;re already on contract. Enter your profile to see where your
+          total comp sits against the market — anonymously, before you sign.
         </p>
       </header>
 
       <div className="grid md:grid-cols-2 gap-4 items-start">
-        {/* ---- profile / dossier form ---- */}
-        <section className="rounded-xl bg-panel ring-1 ring-line p-5">
-          <div className="flex items-center justify-between mb-4">
-            <span className="font-mono text-[11px] tracking-[0.18em] text-muted">YOUR PROFILE</span>
-            <span className="font-mono text-[10px] tracking-[0.14em] text-faint">FORM&nbsp;IQ-1</span>
-          </div>
+        {/* ---- profile form ---- */}
+        <section className="rounded-xl bg-panel border border-line p-5">
+          <h2 className="text-sm font-semibold mb-4">Your profile</h2>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="col-span-2">{L("ROLE / TITLE")}
+            <div className="col-span-2">{L("Role / title")}
               <input list="roles" className={inputCls} placeholder="e.g. SIGINT Analyst, Software Engineer"
                 value={f.role} onChange={(e) => set("role", e.target.value)} />
               <datalist id="roles">
                 {["Software Engineer", "Systems Engineer", "SIGINT Analyst", "All-Source Intelligence Analyst", "Cybersecurity Engineer", "DevOps Engineer", "Data Scientist", "Program Manager", "Systems Administrator", "Network Engineer"].map((r) => <option key={r} value={r} />)}
               </datalist>
             </div>
-            <div>{L("CLEARANCE")}
+            <div>{L("Clearance")}
               <select className={inputCls} value={f.clearance} onChange={(e) => set("clearance", e.target.value)}>
                 {(meta?.clearance_tiers ?? ["ts_sci"]).map((c) => <option key={c} value={c}>{CLEAR_LABEL[c] ?? c}</option>)}
               </select>
             </div>
-            <div>{L("METRO")}
+            <div>{L("Metro")}
               <select className={inputCls} value={f.metro} onChange={(e) => set("metro", e.target.value)}>
                 {(meta?.metros ?? ["dc_metro"]).map((m) => <option key={m} value={m}>{titleize(m)}</option>)}
               </select>
             </div>
-            <div>{L("YEARS OF EXPERIENCE")}
+            <div>{L("Years of experience")}
               <input type="number" min={0} max={45} className={inputCls} placeholder="7" value={f.yoe} onChange={(e) => set("yoe", e.target.value)} />
             </div>
-            <div>{L("EMPLOYER (OPTIONAL)")}
+            <div>{L("Employer (optional)")}
               <select className={inputCls} value={f.employer} onChange={(e) => set("employer", e.target.value)}>
                 <option value="">— any / not sure —</option>
                 {emps.map((e) => <option key={e.slug} value={e.slug}>{e.display_name}</option>)}
               </select>
             </div>
-            <div>{L("BASE SALARY ($)")}
+            <div>{L("Base salary ($)")}
               <input type="number" className={`${inputCls} tnum`} placeholder="150000" value={f.base} onChange={(e) => set("base", e.target.value)} />
             </div>
-            <div>{L("BONUS ($, OPTIONAL)")}
+            <div>{L("Bonus ($, optional)")}
               <input type="number" className={`${inputCls} tnum`} placeholder="12000" value={f.bonus} onChange={(e) => set("bonus", e.target.value)} />
             </div>
           </div>
 
-          {/* contract refinements */}
-          <button type="button" onClick={() => setRefine((v) => !v)} className="mt-4 font-mono text-[11px] tracking-[0.12em] text-muted hover:text-gold transition-colors">
-            {refine ? "– " : "+ "}REFINE BY CONTRACT&nbsp;<span className="text-faint">(pay varies most by contract)</span>
+          <button type="button" onClick={() => setRefine((v) => !v)} className="mt-4 text-[13px] text-muted hover:text-accent transition-colors">
+            {refine ? "– " : "+ "}Refine by contract <span className="text-faint">(pay varies most by contract)</span>
           </button>
           {refine && (
             <div className="grid grid-cols-2 gap-3 mt-3">
-              <div>{L("PRIME / SUB")}
+              <div>{L("Prime / Sub")}
                 <select className={inputCls} value={f.prime_sub} onChange={(e) => set("prime_sub", e.target.value)}>
                   <option value="">—</option><option value="prime">Prime</option><option value="sub">Sub</option>
                 </select></div>
-              <div>{L("CUSTOMER")}
+              <div>{L("Customer")}
                 <select className={inputCls} value={f.customer} onChange={(e) => set("customer", e.target.value)}>
                   <option value="">—</option><option value="dod">DoD</option><option value="ic">Intel Community</option><option value="civilian">Civilian</option>
                 </select></div>
-              <div className="col-span-2">{L("LABOR CATEGORY / LEVEL")}
+              <div className="col-span-2">{L("Labor category / level")}
                 <input className={inputCls} placeholder="e.g. Engineer III, Senior" value={f.lcat} onChange={(e) => set("lcat", e.target.value)} /></div>
             </div>
           )}
 
           <button type="button" onClick={submit} disabled={loading}
-            className="mt-5 w-full rounded-md bg-gold text-gold-ink font-display font-bold py-3 hover:brightness-105 active:brightness-95 disabled:opacity-60 transition">
-            {loading ? "Declassifying…" : "Declassify the market →"}
+            className="mt-5 w-full rounded-md bg-accent text-accent-ink font-semibold py-3 hover:brightness-110 active:brightness-95 disabled:opacity-60 transition">
+            {loading ? "Comparing…" : "See how I compare"}
           </button>
           {err && <p className="mt-2 text-[13px] text-below">{err}</p>}
-          <p className="mt-3 text-[11px] text-faint leading-relaxed">
+          <p className="mt-3 text-[12px] text-faint leading-relaxed">
             Your entry joins the anonymous pool that powers everyone&apos;s benchmark — no account, no name, coarse month only.
           </p>
         </section>
 
-        {/* ---- market readout ---- */}
-        <section className="rounded-xl bg-panel ring-1 ring-line p-5 min-h-[360px]">
-          <div className="flex items-center justify-between mb-4">
-            <span className="font-mono text-[11px] tracking-[0.18em] text-muted">MARKET READOUT</span>
-            <span className={`font-mono text-[10px] tracking-[0.16em] px-2 py-0.5 rounded-sm ${res?.status === "ok" ? "text-above ring-1 ring-above/40" : "text-gold ring-1 ring-gold/40"}`}>
-              {res?.status === "ok" ? "DECLASSIFIED" : "CLASSIFIED"}
-            </span>
-          </div>
+        {/* ---- market position ---- */}
+        <section className="rounded-xl bg-panel border border-line p-5 min-h-[340px]">
+          <h2 className="text-sm font-semibold mb-4">Market position</h2>
           <Readout res={res} you={Number(f.base) || null} bonus={Number(f.bonus) || 0} />
         </section>
       </div>
@@ -143,27 +129,22 @@ export default function Page() {
 }
 
 function Readout({ res, you, bonus }: { res: Benchmark | null; you: number | null; bonus: number }) {
-  // pre-submit: redaction bars
   if (!res) {
     return (
-      <div>
-        <div className="space-y-3">
-          <div className="redact h-14 rounded-md" />
-          <div className="flex gap-3">{[38, 22, 30, 18].map((w, i) => <div key={i} className="redact h-4" style={{ width: `${w}%` }} />)}</div>
-        </div>
-        <p className="mt-6 text-sm text-muted">Enter your profile and declassify the market readout for your cell.</p>
-        <p className="mt-2 text-[11px] text-faint font-mono tracking-[0.12em]">▮▮▮▮ WITHHELD — k-ANONYMITY // NEED ≥5 PER CELL</p>
+      <div className="flex flex-col items-center justify-center text-center py-14">
+        <div className="w-10 h-10 rounded-full border border-line-2 flex items-center justify-center text-muted mb-4">%</div>
+        <p className="text-sm text-muted max-w-[280px]">Enter your profile to see where your pay and total comp sit against the cleared market.</p>
       </div>
     );
   }
   if (!res.ok && res.error) return <p className="text-sm text-below">{res.error}</p>;
   if (res.status === "insufficient") {
     return (
-      <div className="declassify">
-        <p className="font-display font-bold text-lg">Not enough data yet</p>
+      <div className="reveal">
+        <p className="font-semibold text-[15px]">Not enough data yet</p>
         <p className="mt-2 text-sm text-muted">Only <span className="tnum text-text">{res.have}</span> submissions for <span className="text-text">{res.cell}</span> — we need
           {" "}<span className="tnum text-text">{res.k}</span> before showing a figure, so no one is identifiable.</p>
-        <p className="mt-3 text-sm text-muted">Your entry was recorded anonymously. Come back as the cell fills — or send ContractIQ to a colleague on your contract.</p>
+        <p className="mt-3 text-sm text-muted">Your entry was recorded anonymously. Come back as the cell fills — or share ContractIQ with a colleague on your contract.</p>
       </div>
     );
   }
@@ -171,8 +152,8 @@ function Readout({ res, you, bonus }: { res: Benchmark | null; you: number | nul
   const v = res.verdict;
   const total = (you ?? 0) + bonus + (res.benefits?.benefits_total ?? 0);
   return (
-    <div className="declassify">
-      {v && <p className={`font-display font-bold text-xl leading-snug ${bandText(v.band)}`}>{v.text}</p>}
+    <div className="reveal">
+      {v && <p className={`text-xl font-semibold leading-snug ${bandText(v.band)}`}>{v.text}</p>}
 
       <div className="mt-6"><PercentileTrack dist={res.distribution!} you={you} band={v?.band} /></div>
 
@@ -180,7 +161,7 @@ function Readout({ res, you, bonus }: { res: Benchmark | null; you: number | nul
         You&apos;re at the <span className={`tnum font-semibold ${bandText(v?.band)}`}>{res.base_percentile != null ? ord(res.base_percentile) : "—"} percentile</span> for base pay
         {res.total_cash_percentile != null && <> · <span className="tnum text-text">{ord(res.total_cash_percentile)}</span> for total cash</>}.
       </p>
-      <p className="mt-1 text-[11px] text-faint">
+      <p className="mt-1 text-[12px] text-faint">
         Based on <span className="tnum">{res.n}</span> anonymous datapoints{res.approximate ? " (small sample — approximate)" : ""}
         {res.coarsened ? <> · widened to <span className="text-muted">{res.level}</span> to protect anonymity</> : null}.
       </p>
@@ -200,8 +181,8 @@ function Readout({ res, you, bonus }: { res: Benchmark | null; you: number | nul
             ))}
           </div>
           <div className="mt-3 flex justify-between border-t border-line pt-3">
-            <span className="font-display font-bold">Total-rewards value</span>
-            <span className="tnum font-display font-bold text-gold">{usd(total)}/yr</span>
+            <span className="font-semibold">Total-rewards value</span>
+            <span className="tnum font-semibold text-accent">{usd(total)}/yr</span>
           </div>
         </div>
       )}

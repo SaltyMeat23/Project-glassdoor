@@ -17,13 +17,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        {/* Classification banner — repurposed to carry the real privacy guarantee. */}
-        <div className="classbar text-[10.5px] tracking-[0.22em] text-muted/90">
-          <div className="mx-auto max-w-5xl px-5 py-1.5 flex items-center justify-between font-mono">
-            <span className="text-gold/80">ANONYMOUS&nbsp;//&nbsp;K-ANONYMIZED</span>
-            <span className="hidden sm:inline">NO ACCOUNT&nbsp;·&nbsp;NO NAME&nbsp;·&nbsp;NO EMAIL</span>
+        <header className="border-b border-line">
+          <div className="mx-auto max-w-5xl px-5 h-14 flex items-center justify-between">
+            <span className="font-display font-extrabold tracking-tight text-[17px]">Contract<span className="text-accent">IQ</span></span>
+            <span className="text-[12px] text-muted">Private &amp; anonymous — no account, no name.</span>
           </div>
-        </div>
+        </header>
         {children}
       </body>
     </html>

@@ -1,24 +1,23 @@
 @import "tailwindcss";
 
-/* ContractIQ — "Declassified" design system.
-   Deep-ink base, classification-gold signature accent, mono readouts. */
+/* ContractIQ — clean, data-forward design system.
+   Sober dark base, one restrained blue accent, mono for figures. */
 @theme {
-  --color-ink: #0b111a;      /* base background */
-  --color-panel: #131c29;    /* cards / readouts */
-  --color-inset: #0e1620;    /* darker insets, redaction bars */
-  --color-line: #24303f;     /* hairlines / borders */
-  --color-line-2: #35455a;   /* stronger borders */
-  --color-text: #eaf1f8;     /* primary text */
-  --color-muted: #7e8da0;    /* secondary text */
-  --color-faint: #4a5a6e;    /* tertiary / ticks */
+  --color-ink: #0c1116;      /* base background */
+  --color-panel: #151b23;    /* cards */
+  --color-inset: #0f151c;    /* insets / wells */
+  --color-line: #232c37;     /* hairlines */
+  --color-line-2: #33404e;   /* stronger borders */
+  --color-text: #e8edf3;     /* primary text */
+  --color-muted: #8a97a6;    /* secondary text */
+  --color-faint: #55636f;    /* tertiary / ticks */
 
-  --color-gold: #e4a94f;     /* signature accent — classification stamp/seal */
-  --color-gold-ink: #1a1305; /* text on gold */
-  --color-gold-dim: #6d5a30;
+  --color-accent: #5b9dff;   /* single interactive/brand accent */
+  --color-accent-ink: #05121f;
 
-  --color-below: #e5705f;    /* below market */
+  --color-below: #ef7367;    /* below market */
   --color-at: #6fa8ff;       /* at market */
-  --color-above: #57c08a;    /* above market */
+  --color-above: #4fc38a;    /* above market */
 
   --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -27,47 +26,20 @@
 
 html { background: var(--color-ink); color-scheme: dark; }
 body {
-  background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(228, 169, 79, 0.06), transparent 60%),
-    var(--color-ink);
+  background: var(--color-ink);
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
 }
 
-/* mono figures read as an instrument: aligned columns */
+/* tabular figures for all data readouts */
 .tnum { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 
-/* the classification banner — thin hazard-stripe rule */
-.classbar {
-  background:
-    repeating-linear-gradient(-45deg, transparent 0 9px, rgba(228, 169, 79, 0.10) 9px 10px),
-    var(--color-inset);
-  border-bottom: 1px solid var(--color-line);
-}
+/* quiet reveal for results — professional, not theatrical */
+.reveal { animation: reveal 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-/* redaction bar (give-to-get: market figures hidden until you contribute) */
-.redact {
-  position: relative; color: transparent; border-radius: 2px;
-  background: var(--color-inset);
-  box-shadow: inset 0 0 0 1px var(--color-line);
-  overflow: hidden;
-}
-.redact::after {
-  content: ""; position: absolute; inset: 0;
-  background: repeating-linear-gradient(90deg, #0a0f16 0 6px, #141b25 6px 12px);
-}
-.declassify { animation: declassify 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-@keyframes declassify {
-  0% { clip-path: inset(0 100% 0 0); opacity: 0; }
-  100% { clip-path: inset(0 0 0 0); opacity: 1; }
-}
-.marker-slide { animation: markerSlide 720ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-@keyframes markerSlide { 0% { transform: translateX(-8px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+*:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 3px; }
 
-*:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 2px; border-radius: 3px; }
-
-@media (prefers-reduced-motion: reduce) {
-  .declassify, .marker-slide { animation: none; }
-}
+@media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }

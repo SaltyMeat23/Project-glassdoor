@@ -27,8 +27,8 @@ export function PercentileTrack({ dist, you, band, animate = true }:
         {/* quartile edges */}
         <div className="absolute inset-y-0 w-px bg-line-2/70" style={{ left: `${pos(dist.p25)}%` }} />
         <div className="absolute inset-y-0 w-px bg-line-2/70" style={{ left: `${pos(dist.p75)}%` }} />
-        {/* median (market midpoint) — gold */}
-        <div className="absolute inset-y-0 w-px" style={{ left: `${pos(dist.p50)}%`, background: "var(--color-gold)", opacity: 0.75 }} />
+        {/* median (market midpoint) */}
+        <div className="absolute inset-y-0 w-px" style={{ left: `${pos(dist.p50)}%`, background: "var(--color-accent)", opacity: 0.8 }} />
         {/* your position */}
         {you != null && (
           <div className={`absolute inset-y-0 ${animate ? "marker-slide" : ""}`} style={{ left: `${pos(you)}%` }}>
@@ -52,7 +52,7 @@ export function PercentileTrack({ dist, you, band, animate = true }:
       {/* percentile legend — inline so labels never collide */}
       <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[11px] tnum">
         <span className="text-faint"><span className="text-faint/60">p25</span> {usd(dist.p25)}</span>
-        <span className="text-muted"><span className="text-gold/80">median</span> {usd(dist.p50)}</span>
+        <span className="text-muted"><span className="text-accent/90">median</span> {usd(dist.p50)}</span>
         <span className="text-faint"><span className="text-faint/60">p75</span> {usd(dist.p75)}</span>
         <span className="text-faint"><span className="text-faint/60">p90</span> {usd(dist.p90)}</span>
       </div>
