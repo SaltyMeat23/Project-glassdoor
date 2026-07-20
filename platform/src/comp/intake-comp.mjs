@@ -32,6 +32,11 @@ export function submitComp(db, input) {
   if (!clearance_tier || !yoe_band || base == null) {
     return { ok: false, error: 'need clearance, years of experience, and base pay' };
   }
+  // Defense-in-depth: sanity-bound the numbers so a bad/abusive payload that
+  // bypasses the edge validation can't pollute the crowdsourced pool.
+  if (base < 20000 || base > 2000000 || (bonus != null && (bonus < 0 || bonus > 2000000))) {
+    return { ok: false, error: 'base/bonus out of the accepted range' };
+  }
 
   const confidence = TIER_CONFIDENCE[input.verification_tier] || 'inferred';
   const total_cash = base + (bonus || 0);
