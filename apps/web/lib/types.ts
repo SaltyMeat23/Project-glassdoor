@@ -1,10 +1,15 @@
 export type Dist = { p25: number; p50: number; p75: number; p90: number };
 export type BenchLine = { label: string; value: number; confidence: string; data_status: string };
-export type Benefits = { employer: string | null; benefits_total: number; lines: BenchLine[]; gaps: string[] };
+export type Benefits = {
+  employer: string | null;
+  benefits_total: number;
+  lines: BenchLine[];
+  gaps: string[];
+};
 
 export type Benchmark = {
   ok: boolean;
-  status?: "ok" | "insufficient";
+  status?: 'ok' | 'insufficient';
   error?: string;
   employer?: string | null;
   level?: string;
