@@ -98,6 +98,9 @@ export default async function CompanyProfilePage({
   if (!p) notFound();
 
   const byKey = Object.fromEntries(p.groups.map((g) => [g.key, g.terms]));
+  // Only ever render http(s) links — a javascript:/data: URL in the DB would
+  // otherwise execute on click (stored XSS). Guards every source of `website`.
+  const safeWebsite = p.website && /^https?:\/\//i.test(p.website) ? p.website : null;
 
   return (
     <main className="mx-auto w-full max-w-4xl px-5 pb-24">
@@ -120,9 +123,9 @@ export default async function CompanyProfilePage({
           <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-muted">
             {p.industry && <span>{titleize(p.industry)}</span>}
             {p.sector && <span className="text-faint">· {titleize(p.sector)}</span>}
-            {p.website && (
+            {safeWebsite && (
               <a
-                href={p.website}
+                href={safeWebsite}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="text-brand-2 hover:underline"
