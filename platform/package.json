@@ -19,10 +19,13 @@
     "comp-check": "node src/comp-check.mjs",
     "seed-comp": "node src/comp/seed-dev-comp.mjs",
     "serve": "node src/server.mjs",
+    "ping-neon": "node --env-file=../.env src/lib/ping-neon.mjs",
+    "migrate-neon": "node --env-file=../.env src/migrate-postgres.mjs",
     "seed": "node src/download.mjs && node src/ingest.mjs && node src/report.mjs"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
-    "csv-parse": "^5.6.0"
+    "csv-parse": "^5.6.0",
+    "pg": "^8.22.0"
   }
 }
