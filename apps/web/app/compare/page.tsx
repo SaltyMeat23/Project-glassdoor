@@ -2,7 +2,8 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { usd, ord } from '@/components/PercentileTrack';
 import { ModeToggle } from '@/components/ModeToggle';
-import type { Meta, Employer } from '@/lib/types';
+import { EmployerPicker } from '@/components/EmployerPicker';
+import type { Meta } from '@/lib/types';
 
 const CLEAR_LABEL: Record<string, string> = {
   none: 'None / Public Trust',
@@ -35,7 +36,6 @@ const blankOffer = (label: string): OfferIn => ({ label, employer: '', base: '',
 
 export default function ComparePage() {
   const [meta, setMeta] = useState<Meta | null>(null);
-  const [emps, setEmps] = useState<Employer[]>([]);
   const [p, setP] = useState({ role: '', clearance: 'ts_sci', metro: 'dc_metro', yoe: '' });
   const [offers, setOffers] = useState<OfferIn[]>([
     blankOffer('Current role'),
@@ -49,10 +49,6 @@ export default function ComparePage() {
     fetch('/api/comp/meta')
       .then((r) => r.json())
       .then(setMeta)
-      .catch(() => {});
-    fetch('/api/employers')
-      .then((r) => r.json())
-      .then((d) => Array.isArray(d) && setEmps(d))
       .catch(() => {});
   }, []);
 
@@ -189,18 +185,12 @@ export default function ComparePage() {
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
                 {L('Employer')}
-                <select
-                  className={inputCls}
+                <EmployerPicker
                   value={o.employer}
-                  onChange={(e) => setOffer(i, 'employer', e.target.value)}
-                >
-                  <option value="">— select —</option>
-                  {emps.map((e) => (
-                    <option key={e.slug} value={e.slug}>
-                      {e.display_name}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(slug) => setOffer(i, 'employer', slug)}
+                  inputCls={inputCls}
+                  placeholder="Search employers…"
+                />
               </div>
               <div>
                 {L('Base salary ($)')}

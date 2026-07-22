@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { PercentileTrack, usd, ord } from '@/components/PercentileTrack';
 import { ModeToggle } from '@/components/ModeToggle';
-import type { Benchmark, Meta, Employer } from '@/lib/types';
+import { EmployerPicker } from '@/components/EmployerPicker';
+import type { Benchmark, Meta } from '@/lib/types';
 
 const CLEAR_LABEL: Record<string, string> = {
   none: 'None / Public Trust',
@@ -30,7 +31,6 @@ const emptyForm = {
 
 export default function Page() {
   const [meta, setMeta] = useState<Meta | null>(null);
-  const [emps, setEmps] = useState<Employer[]>([]);
   const [f, setF] = useState({ ...emptyForm });
   const [res, setRes] = useState<Benchmark | null>(null);
   const [loading, setLoading] = useState(false);
@@ -42,10 +42,10 @@ export default function Page() {
       .then((r) => r.json())
       .then(setMeta)
       .catch(() => {});
-    fetch('/api/employers')
-      .then((r) => r.json())
-      .then((d) => Array.isArray(d) && setEmps(d))
-      .catch(() => {});
+    // Preselect the employer when arriving from a company profile's "Contribute"
+    // CTA (/?employer=<slug>).
+    const slug = new URLSearchParams(window.location.search).get('employer');
+    if (slug) setF((s) => ({ ...s, employer: slug }));
   }, []);
 
   const set = (k: string, v: string) => setF((s) => ({ ...s, [k]: v }));
@@ -168,18 +168,12 @@ export default function Page() {
             </div>
             <div>
               {L('Employer (optional)')}
-              <select
-                className={inputCls}
+              <EmployerPicker
                 value={f.employer}
-                onChange={(e) => set('employer', e.target.value)}
-              >
-                <option value="">— any / not sure —</option>
-                {emps.map((e) => (
-                  <option key={e.slug} value={e.slug}>
-                    {e.display_name}
-                  </option>
-                ))}
-              </select>
+                onChange={(slug) => set('employer', slug)}
+                inputCls={inputCls}
+                placeholder="Search employers… (optional)"
+              />
             </div>
             <div>
               {L('Base salary ($)')}
