@@ -2,9 +2,21 @@
 // postings — structured fields + source link only, never the raw JD prose
 // (docs/JOBS.md §3). Reuses the comp normalizers so postings land in the same
 // role/clearance/metro vocabulary as the benchmark.
-import { clearanceTier, metroBucket, roleFamily } from '../comp/normalize-comp.mjs';
+import { metroBucket, roleFamily } from '../comp/normalize-comp.mjs';
 
 const GH = 'https://boards-api.greenhouse.io/v1/boards';
+
+// Extract a clearance tier from free text with WORD-BOUNDARIED tokens. (The comp
+// `clearanceTier()` does substring matching — fine for a clearance field, but on
+// job titles "\bsci\b" must not fire on "scientist"/"science", so we can't reuse it.)
+export function tierFromText(s) {
+  if (/\b(full[-\s]?scope|ci\s+poly|poly(?:graph)?|lifestyle\s+poly)\b/i.test(s)) return 'ts_sci_poly';
+  if (/\bTS\/SCI\b|\bTS[-\s]SCI\b|\bSCI\b/i.test(s)) return 'ts_sci';
+  if (/\btop\s*secret\b|\bTS\b/i.test(s)) return 'ts';
+  if (/\bsecret\b/i.test(s)) return 'secret';
+  if (/\bpublic\s+trust\b/i.test(s)) return 'none';
+  return null;
+}
 
 /** Greenhouse `content` is HTML-entity-escaped (not URI-encoded). Strip to text. */
 export function stripHtml(html) {
@@ -40,14 +52,14 @@ const OBTAINABLE_RE = /\b(obtain|eligible|ability|able|willing)\b/i;
  *  requires a clearance but doesn't name a level), or null if not cleared. */
 export function clearanceSignal(title, text) {
   if (TITLE_CLEARANCE_RE.test(title)) {
-    return { tier: clearanceTier(title) || clearanceTier(text) || null };
+    return { tier: tierFromText(title) || tierFromText(text) || null };
   }
   for (const re of BODY_PATTERNS) {
     for (const m of text.matchAll(re)) {
       // Reject clearable-not-cleared: "obtain/eligible" just before or inside the match.
       const before = text.slice(Math.max(0, m.index - 30), m.index);
       if (OBTAINABLE_RE.test(before) || /\bobtain\b/i.test(m[0])) continue;
-      return { tier: clearanceTier(m[0]) || null };
+      return { tier: tierFromText(m[0]) || null };
     }
   }
   return null;

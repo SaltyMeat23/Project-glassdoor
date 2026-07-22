@@ -11,17 +11,28 @@
 import { q, close } from './lib/db-postgres.mjs';
 import { normalizeName } from './lib/normalize.mjs';
 import { fetchBoardMeta, fetchGreenhouseJobs, normalizeJob } from './lib/ats-greenhouse.mjs';
+import { fetchWorkdayCleared, normalizeWorkdayJob } from './lib/ats-workday.mjs';
 
 const PERIOD = new Date().toISOString().slice(0, 7); // coarse 'YYYY-MM'
+const WD_MAX_PAGES = 60; // ~1,200 cleared roles/board cap for the prototype
 
-// Verified cleared-defense Greenhouse boards (token → canonical name).
-const SEED = [
-  { token: 'andurilindustries', name: 'Anduril Industries' },
-  { token: 'vannevarlabs', name: 'Vannevar Labs' },
-  { token: 'hawkeye360', name: 'HawkEye 360' },
-  { token: 'epirus', name: 'Epirus' },
-  { token: 'chaosindustries', name: 'CHAOS Industries' },
-];
+// Verified cleared-defense boards (ats_type → [{ token, name }]).
+// Greenhouse token = board handle; Workday token = "host::tenant::site".
+const SEED = {
+  greenhouse: [
+    { token: 'andurilindustries', name: 'Anduril Industries' },
+    { token: 'vannevarlabs', name: 'Vannevar Labs' },
+    { token: 'hawkeye360', name: 'HawkEye 360' },
+    { token: 'epirus', name: 'Epirus' },
+    { token: 'chaosindustries', name: 'CHAOS Industries' },
+  ],
+  workday: [
+    { token: 'leidos.wd5.myworkdayjobs.com::leidos::External', name: 'Leidos' },
+    { token: 'ngc.wd1.myworkdayjobs.com::ngc::Northrop_Grumman_External_Site', name: 'Northrop Grumman' },
+    { token: 'caci.wd1.myworkdayjobs.com::caci::External', name: 'CACI International' },
+    { token: 'kbr.wd5.myworkdayjobs.com::kbr::KBR_Careers', name: 'KBR' },
+  ],
+};
 
 function slugify(name) {
   return (
@@ -52,36 +63,38 @@ async function resolveEmployer(name) {
   return row[0].id;
 }
 
+async function upsertSource(empId, atsType, token) {
+  await q(
+    `INSERT INTO ats_source (employer_id, ats_type, board_token, detected_at)
+     VALUES ($1, $2, $3, $4)
+     ON CONFLICT (employer_id, ats_type)
+     DO UPDATE SET board_token = EXCLUDED.board_token, detected_at = EXCLUDED.detected_at`,
+    [empId, atsType, token, PERIOD]
+  );
+}
+
 async function seed() {
-  for (const { token, name } of SEED) {
-    const meta = await fetchBoardMeta(token);
-    if (!meta) {
+  for (const { token, name } of SEED.greenhouse) {
+    if (!(await fetchBoardMeta(token))) {
       console.log(`  ✗ ${token}: no Greenhouse board`);
       continue;
     }
-    const empId = await resolveEmployer(name);
-    await q(
-      `INSERT INTO ats_source (employer_id, ats_type, board_token, detected_at)
-       VALUES ($1, 'greenhouse', $2, $3)
-       ON CONFLICT (employer_id, ats_type)
-       DO UPDATE SET board_token = EXCLUDED.board_token, detected_at = EXCLUDED.detected_at`,
-      [empId, token, PERIOD]
-    );
+    await upsertSource(await resolveEmployer(name), 'greenhouse', token);
     console.log(`  ✓ ${name} → greenhouse/${token}`);
+  }
+  for (const { token, name } of SEED.workday) {
+    await upsertSource(await resolveEmployer(name), 'workday', token);
+    console.log(`  ✓ ${name} → workday/${token.split('::')[0]}`);
   }
 }
 
-async function ingestBoard(employerId, token) {
-  const jobs = await fetchGreenhouseJobs(token);
-  if (!jobs) {
-    console.log(`  ✗ ${token}: fetch failed`);
-    return { cleared: 0, withPay: 0 };
-  }
+/** Upsert normalized postings for one employer+source, then close reqs that
+ *  disappeared from the board. Returns { cleared, withPay }. */
+async function upsertPostings(employerId, source, postings) {
   const seen = [];
   let withPay = 0;
-  for (const raw of jobs) {
-    const p = normalizeJob(raw);
-    if (!p) continue; // not cleared
+  for (const p of postings) {
+    if (!p) continue;
     seen.push(p.req_id);
     if (p.salary_min != null) withPay++;
     await q(
@@ -89,7 +102,7 @@ async function ingestBoard(employerId, token) {
          (employer_id, source, req_id, title, role_family, lcat_raw, clearance_tier,
           metro, location_raw, remote, salary_min, salary_max, source_url, posted_period,
           last_seen, is_open)
-       VALUES ($1,'greenhouse',$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,TRUE)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,TRUE)
        ON CONFLICT (employer_id, source, req_id) DO UPDATE SET
          title=EXCLUDED.title, role_family=EXCLUDED.role_family, lcat_raw=EXCLUDED.lcat_raw,
          clearance_tier=EXCLUDED.clearance_tier, metro=EXCLUDED.metro,
@@ -98,34 +111,56 @@ async function ingestBoard(employerId, token) {
          source_url=EXCLUDED.source_url, posted_period=EXCLUDED.posted_period,
          last_seen=EXCLUDED.last_seen, is_open=TRUE`,
       [
-        employerId, p.req_id, p.title, p.role_family, p.lcat_raw, p.clearance_tier,
+        employerId, source, p.req_id, p.title, p.role_family, p.lcat_raw, p.clearance_tier,
         p.metro, p.location_raw, p.remote, p.salary_min, p.salary_max, p.source_url,
         p.posted_period, PERIOD,
       ]
     );
   }
-  // Close postings no longer on the board (roles that disappeared).
   await q(
     `UPDATE job_posting SET is_open = FALSE
-     WHERE employer_id = $1 AND source = 'greenhouse' AND NOT (req_id = ANY($2::text[]))`,
-    [employerId, seen]
+     WHERE employer_id = $1 AND source = $2 AND NOT (req_id = ANY($3::text[]))`,
+    [employerId, source, seen]
   );
   return { cleared: seen.length, withPay };
 }
 
+async function ingestOne(src) {
+  if (src.ats_type === 'greenhouse') {
+    const jobs = await fetchGreenhouseJobs(src.board_token);
+    if (!jobs) return null;
+    return upsertPostings(src.employer_id, 'greenhouse', jobs.map(normalizeJob));
+  }
+  if (src.ats_type === 'workday') {
+    const res = await fetchWorkdayCleared(src.board_token, { maxPages: WD_MAX_PAGES });
+    if (!res) return null;
+    const norm = res.jobs.map((j) => normalizeWorkdayJob(j, res.wd));
+    const out = await upsertPostings(src.employer_id, 'workday', norm);
+    if (res.truncated) console.log(`     (capped at ${res.jobs.length} of ${res.total} board reqs)`);
+    return out;
+  }
+  return null;
+}
+
 async function ingest() {
   const sources = await q(
-    `SELECT s.employer_id, s.board_token, e.display_name
+    `SELECT s.employer_id, s.ats_type, s.board_token, e.display_name
        FROM ats_source s JOIN employer e ON e.id = s.employer_id
-      WHERE s.ats_type = 'greenhouse' ORDER BY e.display_name`
+      ORDER BY s.ats_type, e.display_name`
   );
   let totCleared = 0,
     totPay = 0;
   for (const s of sources) {
-    const { cleared, withPay } = await ingestBoard(s.employer_id, s.board_token);
-    totCleared += cleared;
-    totPay += withPay;
-    console.log(`  ✓ ${s.display_name}: ${cleared} cleared roles (${withPay} with pay band)`);
+    const r = await ingestOne(s);
+    if (!r) {
+      console.log(`  ✗ ${s.display_name} (${s.ats_type}): fetch failed`);
+      continue;
+    }
+    totCleared += r.cleared;
+    totPay += r.withPay;
+    console.log(
+      `  ✓ ${s.display_name} (${s.ats_type}): ${r.cleared} cleared roles (${r.withPay} with pay band)`
+    );
   }
   console.log(
     `\nIngested ${totCleared} cleared postings across ${sources.length} boards; ${totPay} carry a salary band.`
