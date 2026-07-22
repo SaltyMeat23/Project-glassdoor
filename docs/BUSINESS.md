@@ -7,7 +7,8 @@
 > makes the pool worth paying for.
 
 **Status:** Strategy / GTM. Companion to `STRATEGY.md`, `SECURITY.md`,
-`INTAKE.md`, `MARKETPLACE.md`. **Last updated:** 2026-07.
+`INTAKE.md`, `MARKETPLACE.md`, `JOBS.md`, `CONTRACT-INTELLIGENCE.md`.
+**Last updated:** 2026-07.
 
 ---
 
@@ -121,8 +122,13 @@ asset**: proprietary cleared comp + total-rewards data.
 | Line | Who pays | Basis |
 | --- | --- | --- |
 | **Recruiter seats** (primary) | employers | ~$12k/seat/yr, unlimited search + **consent-gated** outreach — priced at parity with CJ, sold on *active-pool response quality* |
-| **Employer benefits benchmarking** | employers' total-rewards teams | subscription on the **anonymous aggregate** (STRATEGY §6.2); warm-lead synergy with recruiting |
+| **Employer benefits + comp benchmarking** | employers' total-rewards & capture teams | subscription on the **anonymous aggregate** + contract-shape intelligence (§14); warm-lead synergy with recruiting |
+| **Consumer report unlock** (primary B2C) | candidates | one-time deep total-comp + benefits rack-and-stack + negotiation brief (§13) — a *power feature*, not a visibility paywall |
 | **Candidate premium** (optional) | candidates | power features only; **never** required to be listed |
+
+> Detailed pricing: **§13** (direct-to-consumer) and **§14** (B2B contract
+> intelligence). The consumer report and the B2B benchmark are the **same
+> dataset** sold to two audiences (`CONTRACT-INTELLIGENCE.md` §6).
 
 Unit-economics logic: **candidate CAC is low** (the free comp tool is an organic/
 SEO magnet, the way CJ's job listings pull traffic); **recruiter LTV is high and
@@ -237,6 +243,60 @@ Observed directly on clearancejobs.com:
 - Beachhead metro(s) + role families to launch.
 - ATS integration priority (parity table-stakes for recruiter adoption).
 - Whether recruiters get "active" as a hard filter or a ranking boost.
+
+## 13. Direct-to-consumer comp/benefits product & pricing
+
+The comp intelligence is both the free engagement hook (§6) **and** a paid
+product in its own right. Willingness-to-pay concentrates at **money-on-the-line
+moments** — evaluating an offer, prepping a counter, deciding whether to jump
+contracts — where a small fee sits against a $10–40k/yr decision.
+
+| Tier | Price | What it is |
+| --- | --- | --- |
+| **Free** (give-to-get) | $0 | Single market percentile + verdict. The hook and the data flywheel. **Never gates visibility** (§5). |
+| **Report unlock** ⭐ | **$29–39 one-time** | Full total-comp + benefits **rack-and-stack** + contract-shape context + **negotiation brief** for *your* situation (`CONTRACT-INTELLIGENCE.md` §7). The workhorse SKU. |
+| **Comp Watch** | **~$12–15/mo or $99/yr** | Ongoing tracking for your cell, alerts when the market moves, unlimited offer comparisons. For the actively-searching minority. |
+
+- **Ideal middle ground: lead with the one-time unlock.** Cleared professionals
+  change contracts every ~2–3 years, so a per-event $29 captures the acute
+  willingness-to-pay without demanding a subscription they'll churn out of. The
+  annual is the "you'll be back" upsell, not the front door. **Don't overprice
+  the sub** — a set-and-forget tracker churns hard.
+- **Why these numbers:** consumer/prosumer ceiling. $29 is impulse against a
+  five-figure decision; $99/yr is considered. Above that needs enterprise
+  justification — which is §14.
+- **Consistent with §5:** the report unlock buys *depth/power*, never
+  *visibility*. Contributing data unlocks the free percentile; paying unlocks the
+  deep analysis — flywheel and revenue in one loop.
+
+## 14. B2B contract-intelligence product & pricing
+
+The highest-ACV product. Buyers: **comp/total-rewards teams, capture/BD, and TA**
+at cleared employers. All sold on the **anonymous aggregate** — contract-*shape*,
+never named contracts or people (`CONTRACT-INTELLIGENCE.md` §1, §5).
+
+| Product | Price | Basis |
+| --- | --- | --- |
+| **Comp + benefits benchmarking** | **~$15–50k/yr** per company (six figures for large primes) | dashboard + data access to canonical-LCAT × clearance × metro comp and total-rewards benchmarks; scales with size / seats / depth |
+| **Capture / BD labor-rate intelligence** | premium tier or **per-proposal** | market + awarded (CALC) rates by canonical LCAT × customer sector × metro for bid pricing — tied directly to proposal economics, so the **highest willingness-to-pay** |
+| **Recruiter seats** | ~$12k/seat/yr (§7) | consent-gated outreach to the active pool |
+
+**Differentiation (why us, recap of §10 + `CONTRACT-INTELLIGENCE.md` §6):**
+
+- vs. **Radford / Mercer / WTW** comp surveys — generic-tech, annual,
+  HR-self-reported, no cleared premium. We're cleared-specific, real-time,
+  bottoms-up, **LCAT-granular**. Nobody has clean cleared-labor comp at that grain.
+- vs. **ClearanceJobs** — sourcing (resumes), no candidate-trusted comp truth.
+  Adjacent, not head-on; our wedge is comp/benefits *intelligence*.
+- vs. **Glassdoor / Levels** — consumer, noisy, not cleared, no dollarization.
+- **The moat is the flywheel:** crowdsourced comp + benefits + ingested postings +
+  public rate data → one compounding cleared dataset competitors can't buy. B2B
+  monetizes the exact dataset the consumer flywheel builds — *two products, one
+  wall* (`MARKETPLACE.md` §7).
+
+**Sequencing:** consumer + flywheel first (builds the moat, cheap CAC); jobs +
+CALC ingest thickens the dataset so k-anonymity clears and B2B can launch sooner
+(`JOBS.md`); B2B benchmarking is the monetization once density holds.
 
 ---
 

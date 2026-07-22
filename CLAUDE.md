@@ -98,7 +98,9 @@ Web app (`apps/web/.env.local`, see `.env.local.example`):
 | `SECURITY.md`   | the anonymity architecture (hard constraints) |
 | `INTAKE.md`     | anonymous confirm/correct submission design |
 | `MARKETPLACE.md`| recruiter/candidate marketplace ("two products, one wall") |
-| `BUSINESS.md`   | GTM / ClearanceJobs-competitor thesis |
+| `BUSINESS.md`   | GTM / ClearanceJobs-competitor thesis + pricing (B2C + B2B) |
+| `JOBS.md`       | job & contract data ingest (ATS adapters, CALC/USAspending) |
+| `CONTRACT-INTELLIGENCE.md` | contract-grade comp without breaking anonymity (the differentiator) |
 | `DEPLOY.md`     | Vercel + Neon deploy plan |
 
 ## Agent guidelines
