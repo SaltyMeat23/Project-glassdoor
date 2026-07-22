@@ -12,6 +12,10 @@ import { q, close } from './lib/db-postgres.mjs';
 import { normalizeName } from './lib/normalize.mjs';
 import { fetchBoardMeta, fetchGreenhouseJobs, normalizeJob } from './lib/ats-greenhouse.mjs';
 import { fetchWorkdayCleared, normalizeWorkdayJob } from './lib/ats-workday.mjs';
+import { fetchIcimsCleared, normalizeIcimsJob } from './lib/ats-icims.mjs';
+import { detectFromWebsite } from './lib/ats-detect.mjs';
+
+const IMPLEMENTED = ['greenhouse', 'workday', 'icims']; // ATS we can ingest today
 
 const PERIOD = new Date().toISOString().slice(0, 7); // coarse 'YYYY-MM'
 const WD_MAX_PAGES = 60; // ~1,200 cleared roles/board cap for the prototype
@@ -139,6 +143,11 @@ async function ingestOne(src) {
     if (res.truncated) console.log(`     (capped at ${res.jobs.length} of ${res.total} board reqs)`);
     return out;
   }
+  if (src.ats_type === 'icims') {
+    const jobs = await fetchIcimsCleared(src.board_token, { maxPages: 20 });
+    if (!jobs) return null;
+    return upsertPostings(src.employer_id, 'icims', jobs.map((j) => normalizeIcimsJob(j, src.board_token)));
+  }
   return null;
 }
 
@@ -146,7 +155,8 @@ async function ingest() {
   const sources = await q(
     `SELECT s.employer_id, s.ats_type, s.board_token, e.display_name
        FROM ats_source s JOIN employer e ON e.id = s.employer_id
-      ORDER BY s.ats_type, e.display_name`
+      WHERE s.ats_type = ANY($1) ORDER BY s.ats_type, e.display_name`,
+    [IMPLEMENTED]
   );
   let totCleared = 0,
     totPay = 0;
@@ -167,39 +177,53 @@ async function ingest() {
   );
 }
 
-// Optional: probe employers for a Greenhouse board by name-guess, with a
-// name-match guard so we never attach the wrong company's jobs.
-async function detect(limit) {
+async function runPool(items, worker, concurrency) {
+  let idx = 0;
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, async () => {
+      while (idx < items.length) await worker(items[idx++]);
+    })
+  );
+}
+
+// Scalable detection: fingerprint each employer's careers page for its ATS and
+// record it in ats_source (docs/JOBS.md — the long-tail path). Records ALL
+// detected ATS types; only IMPLEMENTED ones get ingested (others await adapters).
+async function detect(limit, concurrency = 8) {
   const emps = await q(
-    `SELECT id, display_name FROM employer e
-      WHERE about IS NOT NULL
+    `SELECT id, display_name, website FROM employer e
+      WHERE website IS NOT NULL
         AND NOT EXISTS (SELECT 1 FROM ats_source s WHERE s.employer_id = e.id)
-      ORDER BY display_name LIMIT $1`,
+      ORDER BY (EXISTS(SELECT 1 FROM plan_terms t WHERE t.employer_id = e.id)
+                OR EXISTS(SELECT 1 FROM comp_datapoint c WHERE c.employer_id = e.id)) DESC,
+               display_name ASC
+      LIMIT $1`,
     [limit]
   );
-  let found = 0;
-  for (const e of emps) {
-    const base = e.display_name.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const first = e.display_name.split(/\s+/)[0].toLowerCase().replace(/[^a-z0-9]/g, '');
-    const candidates = [...new Set([base, first])].filter((t) => t.length >= 4);
-    for (const token of candidates) {
-      const meta = await fetchBoardMeta(token);
-      if (!meta?.name) continue;
-      // Name-match guard: the board's name must overlap the employer's.
-      const bn = normalizeName(meta.name);
-      const en = normalizeName(e.display_name);
-      if (!(bn.includes(en.split(' ')[0]) || en.includes(bn.split(' ')[0]))) continue;
-      await q(
-        `INSERT INTO ats_source (employer_id, ats_type, board_token, detected_at)
-         VALUES ($1, 'greenhouse', $2, $3) ON CONFLICT (employer_id, ats_type) DO NOTHING`,
-        [e.id, token, PERIOD]
-      );
-      console.log(`  ✓ detected ${e.display_name} → greenhouse/${token}`);
-      found++;
-      break;
-    }
-  }
-  console.log(`\nDetected ${found} new Greenhouse boards across ${emps.length} probed employers.`);
+  const byType = {};
+  let done = 0;
+  await runPool(
+    emps,
+    async (e) => {
+      const hit = await detectFromWebsite(e.website).catch(() => null);
+      done++;
+      if (hit) {
+        await q(
+          `INSERT INTO ats_source (employer_id, ats_type, board_token, detected_at)
+           VALUES ($1, $2, $3, $4) ON CONFLICT (employer_id, ats_type) DO NOTHING`,
+          [e.id, hit.ats_type, hit.board_token, PERIOD]
+        );
+        byType[hit.ats_type] = (byType[hit.ats_type] || 0) + 1;
+        console.log(`  ✓ ${e.display_name} → ${hit.ats_type}/${hit.board_token.split('::')[0]}`);
+      }
+      if (done % 25 === 0) console.log(`  … ${done}/${emps.length}`);
+    },
+    concurrency
+  );
+  const total = Object.values(byType).reduce((a, b) => a + b, 0);
+  console.log(`\nDetected ${total} ATS across ${emps.length} probed employers:`, byType);
+  const impl = IMPLEMENTED.filter((t) => byType[t]).map((t) => `${byType[t]} ${t}`).join(', ');
+  console.log(`Ingestable now (${IMPLEMENTED.join('/')}): ${impl || 'none'}. Run \`ingest\` to pull them.`);
 }
 
 async function main() {
