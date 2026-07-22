@@ -151,6 +151,30 @@ async function ingestOne(src) {
   return null;
 }
 
+// Wire banded postings into the comp benchmark (docs/CONTRACT-INTELLIGENCE.md
+// §2.1). A posting is an EMPLOYER-published range, not one person's actual pay,
+// so: tag source='posting', use the band MIDPOINT as a market point, and set
+// yoe_band='any' (a posting spans experience levels — it joins the benchmark at
+// the "any experience" coarsening rung, never a specific-yoe cell). Rebuild is
+// idempotent: clear source='posting' rows, re-derive from open banded postings.
+async function compFromPostings() {
+  await q("DELETE FROM comp_datapoint WHERE source = 'posting'");
+  const rows = await q(
+    `INSERT INTO comp_datapoint
+       (role_family, role_raw, clearance_tier, metro, yoe_band, employer_id,
+        base, total_cash, source, confidence, submitted_period)
+     SELECT role_family, title, clearance_tier, metro, 'any', employer_id,
+            (salary_min + salary_max) / 2.0, (salary_min + salary_max) / 2.0,
+            'posting', 'reported', $1
+       FROM job_posting
+      WHERE is_open AND salary_min IS NOT NULL
+        AND clearance_tier IS NOT NULL AND role_family IS NOT NULL
+     RETURNING id`,
+    [PERIOD]
+  );
+  console.log(`Derived ${rows.length} comp datapoints from banded postings (source='posting').`);
+}
+
 async function ingest() {
   const sources = await q(
     `SELECT s.employer_id, s.ats_type, s.board_token, e.display_name
@@ -234,6 +258,7 @@ async function main() {
     await detect(Number(i === -1 ? 300 : process.argv[i + 1]));
   }
   if (cmd === 'ingest' || cmd === 'all') await ingest();
+  if (cmd === 'ingest' || cmd === 'all' || cmd === 'comp') await compFromPostings();
   await close();
 }
 
