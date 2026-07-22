@@ -26,7 +26,17 @@ CREATE TABLE IF NOT EXISTS employer (
   ownership     TEXT,                          -- public | private | nonprofit
   ticker        TEXT,                          -- public co. ticker if any (LMT, NOC, ...)
   is_seed       INTEGER NOT NULL DEFAULT 0,    -- 1 = part of the curated launch set
-  notes         TEXT
+  notes         TEXT,
+  -- company profile (mirrors the Bubble Companies model; mostly filled over time)
+  website       TEXT,
+  industry      TEXT,
+  year_founded  INTEGER,
+  locality      TEXT,                          -- city
+  region        TEXT,                          -- state/region
+  linkedin_url  TEXT,
+  logo_url      TEXT,
+  about         TEXT,                          -- description ("who they are / what they do")
+  provenance    TEXT                           -- e.g. 'clearancejobs_2024' for directory imports
 );
 
 -- Alternate names / EINs used to attribute raw filings to an employer.

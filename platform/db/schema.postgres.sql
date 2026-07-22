@@ -14,7 +14,16 @@ CREATE TABLE IF NOT EXISTS employer (
   ownership     TEXT,
   ticker        TEXT,
   is_seed       INTEGER NOT NULL DEFAULT 0,
-  notes         TEXT
+  notes         TEXT,
+  website       TEXT,
+  industry      TEXT,
+  year_founded  INTEGER,
+  locality      TEXT,
+  region        TEXT,
+  linkedin_url  TEXT,
+  logo_url      TEXT,
+  about         TEXT,
+  provenance    TEXT
 );
 
 CREATE TABLE IF NOT EXISTS employer_alias (

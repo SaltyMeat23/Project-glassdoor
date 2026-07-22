@@ -21,6 +21,7 @@
     "serve": "node src/server.mjs",
     "ping-neon": "node --env-file=../.env src/lib/ping-neon.mjs",
     "migrate-neon": "node --env-file=../.env src/migrate-postgres.mjs",
+    "ingest-companies": "node --env-file=../.env src/ingest-companies.mjs",
     "seed": "node src/download.mjs && node src/ingest.mjs && node src/report.mjs"
   },
   "dependencies": {
