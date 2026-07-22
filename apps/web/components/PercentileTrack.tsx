@@ -37,65 +37,77 @@ export function PercentileTrack({
 
   return (
     <div>
-      {/* the track */}
-      <div className="relative h-14 rounded-md bg-inset ring-1 ring-line overflow-hidden">
-        {/* interquartile "typical range" band */}
-        <div
-          className="absolute inset-y-0 bg-white/[0.055]"
-          style={{ left: `${pos(dist.p25)}%`, right: `${100 - pos(dist.p75)}%` }}
-        />
-        {/* quartile edges */}
-        <div
-          className="absolute inset-y-0 w-px bg-line-2/70"
-          style={{ left: `${pos(dist.p25)}%` }}
-        />
-        <div
-          className="absolute inset-y-0 w-px bg-line-2/70"
-          style={{ left: `${pos(dist.p75)}%` }}
-        />
-        {/* median (market midpoint) */}
-        <div
-          className="absolute inset-y-0 w-px"
-          style={{ left: `${pos(dist.p50)}%`, background: 'var(--color-accent)', opacity: 0.8 }}
-        />
-        {/* your position */}
-        {you != null && (
-          <div
-            className={`absolute inset-y-0 ${animate ? 'marker-slide' : ''}`}
-            style={{ left: `${pos(you)}%` }}
-          >
-            <div
-              className="absolute inset-y-0 -translate-x-1/2"
-              style={{ width: 3, background: c, boxShadow: '0 0 0 2px var(--color-ink)' }}
-            />
-          </div>
-        )}
-      </div>
-
-      {/* your chip */}
+      {/* your chip (above the track) */}
       {you != null && (
-        <div className="relative h-0">
+        <div className="relative h-6">
           <div
-            className={`absolute -top-[70px] -translate-x-1/2 ${animate ? 'marker-slide' : ''}`}
+            className={`absolute -translate-x-1/2 ${animate ? 'reveal' : ''}`}
             style={{ left: `${youL}%` }}
           >
             <div
-              className="rounded px-2 py-0.5 text-[11px] font-semibold tnum whitespace-nowrap"
+              className="tnum whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-semibold"
               style={{ background: c, color: 'var(--color-ink)' }}
             >
               YOU {usd(you)}
             </div>
+            <div
+              className="absolute left-1/2 top-full h-1.5 w-px -translate-x-1/2"
+              style={{ background: c }}
+            />
           </div>
         </div>
       )}
 
-      {/* percentile legend — inline so labels never collide */}
-      <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[11px] tnum">
+      {/* the track */}
+      <div className="relative h-16 overflow-hidden rounded-xl bg-ink-2 ring-1 ring-line">
+        {/* interquartile "typical range" band, brand-tinted */}
+        <div
+          className="absolute inset-y-0"
+          style={{
+            left: `${pos(dist.p25)}%`,
+            right: `${100 - pos(dist.p75)}%`,
+            background: 'linear-gradient(180deg, rgba(61,139,255,0.14), rgba(53,208,214,0.10))',
+          }}
+        />
+        {/* quartile edges */}
+        <div
+          className="absolute inset-y-0 w-px bg-line-2/60"
+          style={{ left: `${pos(dist.p25)}%` }}
+        />
+        <div
+          className="absolute inset-y-0 w-px bg-line-2/60"
+          style={{ left: `${pos(dist.p75)}%` }}
+        />
+        {/* median (market midpoint) */}
+        <div
+          className="absolute inset-y-0 w-0.5"
+          style={{
+            left: `${pos(dist.p50)}%`,
+            background: 'linear-gradient(180deg,var(--color-brand),var(--color-brand-2))',
+            opacity: 0.85,
+          }}
+        />
+        {/* your position marker */}
+        {you != null && (
+          <div
+            className={`absolute inset-y-0 -translate-x-1/2 ${animate ? 'reveal' : ''}`}
+            style={{
+              left: `${pos(you)}%`,
+              width: 3,
+              background: c,
+              boxShadow: `0 0 12px ${c}, 0 0 0 2px var(--color-ink-2)`,
+            }}
+          />
+        )}
+      </div>
+
+      {/* percentile legend */}
+      <div className="tnum mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[11px]">
         <span className="text-faint">
           <span className="text-faint/60">p25</span> {usd(dist.p25)}
         </span>
         <span className="text-muted">
-          <span className="text-accent/90">median</span> {usd(dist.p50)}
+          <span className="brand-grad font-medium">median</span> {usd(dist.p50)}
         </span>
         <span className="text-faint">
           <span className="text-faint/60">p75</span> {usd(dist.p75)}

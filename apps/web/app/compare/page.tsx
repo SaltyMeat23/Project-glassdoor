@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState, type ReactNode } from 'react';
 import { usd, ord } from '@/components/PercentileTrack';
+import { ModeToggle } from '@/components/ModeToggle';
 import type { Meta, Employer } from '@/lib/types';
 
 const CLEAR_LABEL: Record<string, string> = {
@@ -78,27 +79,34 @@ export default function ComparePage() {
     setLoading(false);
   };
 
-  const L = (t: string) => <span className="block text-[12px] text-muted mb-1.5">{t}</span>;
+  const L = (t: string) => (
+    <span className="mb-1.5 block text-[12px] font-medium text-muted">{t}</span>
+  );
   const inputCls =
-    'w-full bg-inset text-text border border-line rounded-md px-3 py-2 text-sm outline-none focus:border-accent/70 transition-colors';
+    'w-full rounded-lg border border-line bg-inset px-3 py-2.5 text-sm text-text outline-none transition-colors focus:border-brand/70';
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-5 pb-24">
-      <header className="pt-8 pb-8">
-        <h1 className="font-display font-extrabold tracking-tight text-4xl sm:text-[44px] leading-[1.03]">
-          Compare two offers
-        </h1>
-        <p className="mt-3 max-w-xl text-muted text-[15px]">
-          Put your current role and a new offer side by side — base, bonus, and{' '}
-          <span className="text-text">valued benefits</span> — for a true apples-to-apples
-          total-comp comparison.
+    <main className="mx-auto w-full max-w-6xl px-5 pb-24">
+      <header className="pt-14 pb-9">
+        <p className="font-mono text-[11px] tracking-[0.22em] text-brand-2/90">
+          APPLES-TO-APPLES TOTAL COMP
         </p>
+        <h1 className="mt-3 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-[52px]">
+          Two offers, <span className="brand-grad">side by side.</span>
+        </h1>
+        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
+          Put your current role and a new offer together — base, bonus, and{' '}
+          <span className="text-text">valued benefits</span> — for a true total-comp comparison.
+        </p>
+        <div className="mt-7">
+          <ModeToggle />
+        </div>
       </header>
 
       {/* shared profile */}
-      <section className="rounded-xl bg-panel border border-line p-5 mb-4">
-        <h2 className="text-sm font-semibold mb-4">
-          Your profile <span className="text-faint font-normal">(same for both)</span>
+      <section className="mb-4 rounded-2xl border border-line bg-panel p-6">
+        <h2 className="mb-4 font-display text-base font-semibold">
+          Your profile <span className="font-normal text-faint">(same for both)</span>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div className="col-span-2 md:col-span-1">
@@ -169,11 +177,11 @@ export default function ComparePage() {
       </section>
 
       {/* two offers */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid gap-4 md:grid-cols-2">
         {offers.map((o, i) => (
-          <section key={i} className="rounded-xl bg-panel border border-line p-5">
+          <section key={i} className="rounded-2xl border border-line bg-panel p-6">
             <input
-              className="text-sm font-semibold bg-transparent outline-none focus:text-accent w-full mb-4"
+              className="mb-4 w-full bg-transparent font-display text-base font-semibold outline-none focus:text-brand-2"
               value={o.label}
               onChange={(e) => setOffer(i, 'label', e.target.value)}
               aria-label={`Offer ${i + 1} label`}
@@ -223,7 +231,7 @@ export default function ComparePage() {
         type="button"
         onClick={submit}
         disabled={loading}
-        className="mt-4 w-full md:w-auto md:px-8 rounded-md bg-accent text-accent-ink font-semibold py-3 hover:brightness-110 active:brightness-95 disabled:opacity-60 transition"
+        className="brand-fill mt-5 w-full rounded-lg py-3 font-display font-semibold text-brand-ink transition hover:brightness-110 active:brightness-95 disabled:opacity-60 md:w-auto md:px-10"
       >
         {loading ? 'Comparing…' : 'Compare offers'}
       </button>
@@ -265,9 +273,9 @@ function Result({ res }: { res: CompareRes }) {
   );
 
   return (
-    <section className="reveal mt-6 rounded-xl bg-panel border border-line p-5">
-      <p className="text-xl font-semibold">
-        <span className="text-accent">{lead.label}</span> wins on total comp — by{' '}
+    <section className="reveal mt-6 rounded-2xl border border-line bg-panel p-6">
+      <p className="font-display text-xl font-semibold">
+        <span className="brand-grad">{lead.label}</span> wins on total comp — by{' '}
         <span className="tnum">{usd(delta)}/yr</span>.
       </p>
       <p className="mt-1 text-[12px] text-faint">
@@ -286,7 +294,7 @@ function Result({ res }: { res: CompareRes }) {
       <div className="grid grid-cols-[1fr_auto_auto] gap-4 mt-5 items-end">
         <span />
         {offers.map((o, i) => (
-          <span key={i} className={`text-right w-32 ${winner === i ? 'text-accent' : 'text-text'}`}>
+          <span key={i} className={`text-right w-32 ${winner === i ? 'text-brand' : 'text-text'}`}>
             <span className="block text-sm font-semibold truncate">{o.label}</span>
             <span className="block text-[11px] text-faint truncate">{o.employer_name ?? '—'}</span>
           </span>
@@ -319,12 +327,12 @@ function Result({ res }: { res: CompareRes }) {
         <div className="grid grid-cols-[1fr_auto_auto] gap-4 py-3 border-t-2 border-line-2 items-baseline">
           <span className="text-sm font-semibold">Total comp</span>
           <span
-            className={`tnum text-right w-32 font-semibold ${winner === 0 ? 'text-accent' : ''}`}
+            className={`tnum text-right w-32 font-semibold ${winner === 0 ? 'text-brand' : ''}`}
           >
             {usd(a.total_comp)}
           </span>
           <span
-            className={`tnum text-right w-32 font-semibold ${winner === 1 ? 'text-accent' : ''}`}
+            className={`tnum text-right w-32 font-semibold ${winner === 1 ? 'text-brand' : ''}`}
           >
             {usd(b.total_comp)}
           </span>

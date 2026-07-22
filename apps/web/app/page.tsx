@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { PercentileTrack, usd, ord } from '@/components/PercentileTrack';
+import { ModeToggle } from '@/components/ModeToggle';
 import type { Benchmark, Meta, Employer } from '@/lib/types';
 
 const CLEAR_LABEL: Record<string, string> = {
@@ -68,28 +69,37 @@ export default function Page() {
     setLoading(false);
   };
 
-  const L = (t: string) => <span className="block text-[12px] text-muted mb-1.5">{t}</span>;
+  const L = (t: string) => (
+    <span className="mb-1.5 block text-[12px] font-medium text-muted">{t}</span>
+  );
   const inputCls =
-    'w-full bg-inset text-text border border-line rounded-md px-3 py-2 text-sm outline-none focus:border-accent/70 transition-colors';
+    'w-full rounded-lg border border-line bg-inset px-3 py-2.5 text-sm text-text outline-none transition-colors focus:border-brand/70';
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-5 pb-24">
-      <header className="pt-8 pb-8">
-        <h1 className="font-display font-extrabold tracking-tight text-4xl sm:text-[44px] leading-[1.03]">
-          How do I compare?
-        </h1>
-        <p className="mt-3 max-w-xl text-muted text-[15px]">
-          Cleared pay is hard to see until you&apos;re already on contract. Enter your profile to
-          see where your total comp sits against the market — anonymously, before you sign.
+    <main className="mx-auto w-full max-w-6xl px-5 pb-24">
+      {/* hero */}
+      <header className="pt-14 pb-9">
+        <p className="font-mono text-[11px] tracking-[0.22em] text-brand-2/90">
+          CLEARED TOTAL-COMP INTELLIGENCE
         </p>
+        <h1 className="mt-3 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-[52px]">
+          Know where you stand — <span className="brand-grad">before you sign.</span>
+        </h1>
+        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
+          See how your cleared pay and benefits compare to the market — anonymously, and built from
+          real cleared professionals. No account, no name.
+        </p>
+        <div className="mt-7">
+          <ModeToggle />
+        </div>
       </header>
 
-      <div className="grid md:grid-cols-2 gap-4 items-start">
-        {/* ---- profile form ---- */}
-        <section className="rounded-xl bg-panel border border-line p-5">
-          <h2 className="text-sm font-semibold mb-4">Your profile</h2>
+      <div className="grid items-start gap-4 md:grid-cols-2">
+        {/* profile form */}
+        <section className="rounded-2xl border border-line bg-panel p-6">
+          <h2 className="mb-5 font-display text-base font-semibold">Your profile</h2>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3.5">
             <div className="col-span-2">
               {L('Role / title')}
               <input
@@ -196,13 +206,13 @@ export default function Page() {
           <button
             type="button"
             onClick={() => setRefine((v) => !v)}
-            className="mt-4 text-[13px] text-muted hover:text-accent transition-colors"
+            className="mt-4 text-[13px] text-muted transition-colors hover:text-brand-2"
           >
             {refine ? '– ' : '+ '}Refine by contract{' '}
             <span className="text-faint">(pay varies most by contract)</span>
           </button>
           {refine && (
-            <div className="grid grid-cols-2 gap-3 mt-3">
+            <div className="mt-3 grid grid-cols-2 gap-3.5">
               <div>
                 {L('Prime / Sub')}
                 <select
@@ -244,20 +254,20 @@ export default function Page() {
             type="button"
             onClick={submit}
             disabled={loading}
-            className="mt-5 w-full rounded-md bg-accent text-accent-ink font-semibold py-3 hover:brightness-110 active:brightness-95 disabled:opacity-60 transition"
+            className="brand-fill mt-6 w-full rounded-lg py-3 font-display font-semibold text-brand-ink transition hover:brightness-110 active:brightness-95 disabled:opacity-60"
           >
             {loading ? 'Comparing…' : 'See how I compare'}
           </button>
           {err && <p className="mt-2 text-[13px] text-below">{err}</p>}
-          <p className="mt-3 text-[12px] text-faint leading-relaxed">
+          <p className="mt-3 text-[12px] leading-relaxed text-faint">
             Your entry joins the anonymous pool that powers everyone&apos;s benchmark — no account,
             no name, coarse month only.
           </p>
         </section>
 
-        {/* ---- market position ---- */}
-        <section className="rounded-xl bg-panel border border-line p-5 min-h-[340px]">
-          <h2 className="text-sm font-semibold mb-4">Market position</h2>
+        {/* market position */}
+        <section className="min-h-[380px] rounded-2xl border border-line bg-panel p-6">
+          <h2 className="mb-5 font-display text-base font-semibold">Market position</h2>
           <Readout res={res} you={Number(f.base) || null} bonus={Number(f.bonus) || 0} />
         </section>
       </div>
@@ -276,13 +286,16 @@ function Readout({
 }) {
   if (!res) {
     return (
-      <div className="flex flex-col items-center justify-center text-center py-14">
-        <div className="w-10 h-10 rounded-full border border-line-2 flex items-center justify-center text-muted mb-4">
-          %
+      <div className="relative flex min-h-[280px] flex-col items-center justify-center overflow-hidden text-center">
+        <div className="grid-motif pointer-events-none absolute inset-0 opacity-40" />
+        <div className="relative">
+          <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-line-2 font-mono text-brand-2">
+            %
+          </div>
+          <p className="max-w-[280px] text-sm text-muted">
+            Enter your profile to see where your pay and total comp sit against the cleared market.
+          </p>
         </div>
-        <p className="text-sm text-muted max-w-[280px]">
-          Enter your profile to see where your pay and total comp sit against the cleared market.
-        </p>
       </div>
     );
   }
@@ -290,7 +303,7 @@ function Readout({
   if (res.status === 'insufficient') {
     return (
       <div className="reveal">
-        <p className="font-semibold text-[15px]">Not enough data yet</p>
+        <p className="font-display text-[15px] font-semibold">Not enough data yet</p>
         <p className="mt-2 text-sm text-muted">
           Only <span className="tnum text-text">{res.have}</span> submissions for{' '}
           <span className="text-text">{res.cell}</span> — we need{' '}
@@ -309,13 +322,17 @@ function Readout({
   const total = (you ?? 0) + bonus + (res.benefits?.benefits_total ?? 0);
   return (
     <div className="reveal">
-      {v && <p className={`text-xl font-semibold leading-snug ${bandText(v.band)}`}>{v.text}</p>}
+      {v && (
+        <p className={`font-display text-xl font-semibold leading-snug ${bandText(v.band)}`}>
+          {v.text}
+        </p>
+      )}
 
-      <div className="mt-6">
+      <div className="mt-7">
         <PercentileTrack dist={res.distribution!} you={you} band={v?.band} />
       </div>
 
-      <p className="mt-6 text-sm text-muted">
+      <p className="mt-7 text-sm text-muted">
         You&apos;re at the{' '}
         <span className={`tnum font-semibold ${bandText(v?.band)}`}>
           {res.base_percentile != null ? ord(res.base_percentile) : '—'} percentile
@@ -343,7 +360,7 @@ function Readout({
       </p>
 
       {res.benefits && (
-        <div className="mt-5 border-t border-line pt-4">
+        <div className="mt-6 border-t border-line pt-5">
           <div className="flex justify-between text-sm">
             <span className="font-medium">
               + Benefits{' '}
@@ -351,7 +368,7 @@ function Readout({
             </span>
             <span className="tnum font-semibold">{usd(res.benefits.benefits_total)}/yr</span>
           </div>
-          <div className="mt-2 space-y-1">
+          <div className="mt-2.5 space-y-1.5">
             {res.benefits.lines.map((l, i) => (
               <div key={i} className="flex justify-between text-[13px] text-muted">
                 <span>
@@ -361,9 +378,9 @@ function Readout({
               </div>
             ))}
           </div>
-          <div className="mt-3 flex justify-between border-t border-line pt-3">
-            <span className="font-semibold">Total-rewards value</span>
-            <span className="tnum font-semibold text-accent">{usd(total)}/yr</span>
+          <div className="mt-4 flex items-baseline justify-between border-t border-line pt-4">
+            <span className="font-display font-semibold">Total-rewards value</span>
+            <span className="tnum brand-grad font-display text-lg font-bold">{usd(total)}/yr</span>
           </div>
         </div>
       )}

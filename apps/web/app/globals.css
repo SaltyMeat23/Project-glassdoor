@@ -1,25 +1,29 @@
 @import 'tailwindcss';
 
-/* ContractIQ — clean, data-forward design system.
-   Sober dark base, one restrained blue accent, mono for figures. */
+/* ContractIQ — intelligence-grade navy design system.
+   Deep navy base, electric-blue→cyan brand gradient, mono for all figures.
+   The signature is the market-percentile instrument, not stock art. */
 @theme {
-  --color-ink: #0c1116; /* base background */
-  --color-panel: #151b23; /* cards */
-  --color-inset: #0f151c; /* insets / wells */
-  --color-line: #232c37; /* hairlines */
-  --color-line-2: #33404e; /* stronger borders */
-  --color-text: #e8edf3; /* primary text */
-  --color-muted: #8a97a6; /* secondary text */
-  --color-faint: #55636f; /* tertiary / ticks */
+  --color-ink: #0a1322; /* base background (deep navy) */
+  --color-ink-2: #08101c; /* darker sink */
+  --color-panel: #101f34; /* raised cards */
+  --color-panel-2: #14273f; /* hover / nested */
+  --color-inset: #0c1a2c; /* wells, inputs */
+  --color-line: #1e3350; /* hairlines */
+  --color-line-2: #2c476e; /* stronger borders */
+  --color-text: #eef4fc; /* primary text */
+  --color-muted: #8ba3c0; /* secondary */
+  --color-faint: #55708f; /* tertiary / ticks */
 
-  --color-accent: #5b9dff; /* single interactive/brand accent */
-  --color-accent-ink: #05121f;
+  --color-brand: #3d8bff; /* electric blue (primary) */
+  --color-brand-2: #35d0d6; /* cyan (gradient partner) */
+  --color-brand-ink: #04101f; /* text on brand */
 
-  --color-below: #ef7367; /* below market */
-  --color-at: #6fa8ff; /* at market */
-  --color-above: #4fc38a; /* above market */
+  --color-below: #ff6b6b; /* below market */
+  --color-at: #5b9dff; /* at market */
+  --color-above: #34d399; /* above market */
 
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
@@ -29,28 +33,51 @@ html {
   color-scheme: dark;
 }
 body {
-  background: var(--color-ink);
+  /* subtle brand aurora, top-right — the only ambient flourish */
+  background:
+    radial-gradient(900px 520px at 92% -8%, rgba(53, 208, 214, 0.08), transparent 62%),
+    radial-gradient(1100px 640px at 8% -12%, rgba(61, 139, 255, 0.09), transparent 60%),
+    var(--color-ink);
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
 }
 
-/* tabular figures for all data readouts */
+/* brand gradient text + fills */
+.brand-grad {
+  background: linear-gradient(96deg, var(--color-brand), var(--color-brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.brand-fill {
+  background: linear-gradient(96deg, var(--color-brand), var(--color-brand-2));
+}
+
+/* tabular figures — instrument readout */
 .tnum {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
 }
 
-/* quiet reveal for results — professional, not theatrical */
+/* faint data-grid texture for empty states */
+.grid-motif {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at 50% 45%, black, transparent 72%);
+}
+
 .reveal {
-  animation: reveal 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: reveal 420ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
 }
 @keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -59,9 +86,9 @@ body {
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-brand);
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
