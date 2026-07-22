@@ -1,12 +1,33 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CompanyLogo } from '@/components/CompanyLogo';
-import { getCompanyProfile, type ProfileTerm } from '@/lib/engine/companies';
+import { getCompanyProfile, type ProfileTerm, type OpenRole } from '@/lib/engine/companies';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const titleize = (s: string) => s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
+// Only ever render http(s) links (stored source URLs are employer careers pages).
+const safeUrl = (u: string | null) => (u && /^https?:\/\//i.test(u) ? u : null);
+
+const CLEARANCE_LABEL: Record<string, string> = {
+  none: 'Public Trust',
+  secret: 'Secret',
+  ts: 'Top Secret',
+  ts_sci: 'TS/SCI',
+  ts_sci_poly: 'TS/SCI + Poly',
+};
+const clearanceLabel = (t: string | null) =>
+  t ? (CLEARANCE_LABEL[t] ?? titleize(t)) : 'Clearance req’d';
+
+function payBand(r: OpenRole): string | null {
+  if (r.salary_max == null) return null;
+  const k = (n: number) => `$${Math.round(n / 1000)}k`;
+  return r.salary_min != null
+    ? `${k(r.salary_min)}–${k(r.salary_max)}`
+    : `up to ${k(r.salary_max)}`;
+}
 
 const TERM_LABEL: Record<string, string> = {
   k401_match: '401(k) match',
@@ -156,6 +177,69 @@ export default async function CompanyProfilePage({
         <Section label="Insurance" terms={byKey.insurance ?? []} />
         <Section label="Leave" terms={byKey.leave ?? []} />
       </div>
+
+      {/* open roles — live cleared postings from the employer's careers site */}
+      {p.open_roles_total > 0 && (
+        <section className="mt-8">
+          <div className="mb-3 flex items-baseline justify-between">
+            <h2 className="font-display text-lg font-semibold">Open cleared roles</h2>
+            <span className="text-[12px] text-faint">
+              <span className="tnum text-muted">{p.open_roles_total.toLocaleString()}</span> open
+            </span>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-line">
+            {p.open_roles.map((r, i) => {
+              const href = safeUrl(r.source_url);
+              const band = payBand(r);
+              const inner = (
+                <>
+                  <div className="min-w-0">
+                    <div className="truncate text-sm text-text">{r.title}</div>
+                    <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-muted">
+                      <span className="rounded-full border border-brand-2/40 px-1.5 py-px text-[10px] text-brand-2">
+                        {clearanceLabel(r.clearance_tier)}
+                      </span>
+                      {r.location_raw && <span className="truncate">{r.location_raw}</span>}
+                      {r.remote && <span className="text-faint">· Remote</span>}
+                    </div>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    {band ? (
+                      <span className="tnum text-sm text-text">{band}</span>
+                    ) : (
+                      <span className="text-[12px] text-faint">—</span>
+                    )}
+                  </div>
+                </>
+              );
+              const cls =
+                'flex items-center justify-between gap-3 border-b border-line px-4 py-3 last:border-0';
+              return href ? (
+                <a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className={`${cls} transition-colors hover:bg-panel-2`}
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div key={i} className={cls}>
+                  {inner}
+                </div>
+              );
+            })}
+          </div>
+          <p className="mt-2 text-[11px] leading-relaxed text-faint">
+            Live cleared postings from the employer&apos;s careers site
+            {p.open_roles_total > p.open_roles.length
+              ? ` — showing ${p.open_roles.length} of ${p.open_roles_total.toLocaleString()}`
+              : ''}
+            . Pay bands shown where the posting lists one.
+          </p>
+        </section>
+      )}
 
       {/* contribute */}
       <div className="mt-6 rounded-2xl border border-line bg-panel-2 p-6 text-center">

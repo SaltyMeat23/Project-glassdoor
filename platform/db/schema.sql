@@ -204,3 +204,39 @@ CREATE TABLE IF NOT EXISTS comp_datapoint (
 );
 CREATE INDEX IF NOT EXISTS idx_comp_cell ON comp_datapoint(role_family, clearance_tier, metro, yoe_band);
 CREATE INDEX IF NOT EXISTS idx_comp_employer ON comp_datapoint(employer_id);
+
+-- ── Job & contract data (docs/JOBS.md) ───────────────────────────────────────
+-- EMPLOYER data, not candidate data (public requisitions + ATS mapping). No FK
+-- to any anonymous submission path. Structured fields + source link only.
+CREATE TABLE IF NOT EXISTS ats_source (
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  employer_id   INTEGER NOT NULL REFERENCES employer(id) ON DELETE CASCADE,
+  ats_type      TEXT NOT NULL,
+  board_token   TEXT NOT NULL,
+  detected_at   TEXT,
+  UNIQUE (employer_id, ats_type)
+);
+CREATE INDEX IF NOT EXISTS idx_ats_employer ON ats_source(employer_id);
+
+CREATE TABLE IF NOT EXISTS job_posting (
+  id              INTEGER PRIMARY KEY AUTOINCREMENT,
+  employer_id     INTEGER NOT NULL REFERENCES employer(id) ON DELETE CASCADE,
+  source          TEXT NOT NULL,
+  req_id          TEXT NOT NULL,
+  title           TEXT NOT NULL,
+  role_family     TEXT,
+  lcat_raw        TEXT,
+  clearance_tier  TEXT,
+  metro           TEXT,
+  location_raw    TEXT,
+  remote          INTEGER NOT NULL DEFAULT 0,
+  salary_min      REAL,
+  salary_max      REAL,
+  source_url      TEXT,
+  posted_period   TEXT,
+  last_seen       TEXT,
+  is_open         INTEGER NOT NULL DEFAULT 1,
+  UNIQUE (employer_id, source, req_id)
+);
+CREATE INDEX IF NOT EXISTS idx_job_employer ON job_posting(employer_id);
+CREATE INDEX IF NOT EXISTS idx_job_open ON job_posting(employer_id, is_open);

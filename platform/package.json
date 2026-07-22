@@ -23,6 +23,7 @@
     "migrate-neon": "node --env-file=../.env src/migrate-postgres.mjs",
     "ingest-companies": "node --env-file=../.env src/ingest-companies.mjs",
     "enrich-web": "node --env-file=../.env src/enrich-web.mjs",
+    "ingest-jobs": "node --env-file=../.env src/ingest-jobs.mjs",
     "seed": "node src/download.mjs && node src/ingest.mjs && node src/report.mjs"
   },
   "dependencies": {

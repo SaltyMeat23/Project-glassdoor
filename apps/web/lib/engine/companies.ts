@@ -82,6 +82,16 @@ export type ProfileTerm = {
   confidence: string;
   plan_year: number | null;
 };
+export type OpenRole = {
+  title: string;
+  clearance_tier: string | null;
+  metro: string | null;
+  location_raw: string | null;
+  remote: boolean;
+  salary_min: number | null;
+  salary_max: number | null;
+  source_url: string | null;
+};
 export type CompanyProfile = {
   slug: string;
   display_name: string;
@@ -92,6 +102,8 @@ export type CompanyProfile = {
   about: string | null;
   groups: { key: string; label: string; terms: ProfileTerm[] }[];
   pay_datapoints: number;
+  open_roles: OpenRole[];
+  open_roles_total: number;
 };
 
 export async function getCompanyProfile(slug: string): Promise<CompanyProfile | null> {
@@ -133,6 +145,23 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
     ])
   )[0].c;
 
+  // Open cleared roles (employer data — public postings, no PII). Pay-banded
+  // roles first, then by clearance depth, so the useful ones lead.
+  const openRoles = await q<OpenRole>(
+    `SELECT title, clearance_tier, metro, location_raw, remote, salary_min, salary_max, source_url
+       FROM job_posting
+      WHERE employer_id = $1 AND is_open = TRUE
+      ORDER BY (salary_max IS NOT NULL) DESC, salary_max DESC NULLS LAST, title ASC
+      LIMIT 40`,
+    [e.id]
+  );
+  const openTotal = (
+    await q<{ c: number }>(
+      `SELECT COUNT(*)::int AS c FROM job_posting WHERE employer_id = $1 AND is_open = TRUE`,
+      [e.id]
+    )
+  )[0].c;
+
   return {
     slug: e.slug,
     display_name: e.display_name,
@@ -143,5 +172,7 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
     about: e.about,
     groups,
     pay_datapoints: pay,
+    open_roles: openRoles,
+    open_roles_total: openTotal,
   };
 }

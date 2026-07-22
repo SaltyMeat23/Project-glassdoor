@@ -134,3 +134,40 @@ CREATE TABLE IF NOT EXISTS comp_datapoint (
 );
 CREATE INDEX IF NOT EXISTS idx_comp_cell ON comp_datapoint(role_family, clearance_tier, metro, yoe_band);
 CREATE INDEX IF NOT EXISTS idx_comp_employer ON comp_datapoint(employer_id);
+
+-- ── Job & contract data (docs/JOBS.md) ───────────────────────────────────────
+-- EMPLOYER data, not candidate data: public requisitions + which ATS an employer
+-- uses. No FK to any anonymous submission/comp-by-person path (SECURITY.md wall).
+-- We store structured fields + a source link only — never the raw JD prose.
+CREATE TABLE IF NOT EXISTS ats_source (
+  id            BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  employer_id   BIGINT NOT NULL REFERENCES employer(id) ON DELETE CASCADE,
+  ats_type      TEXT NOT NULL,            -- 'greenhouse' | 'lever' | 'workday' | ...
+  board_token   TEXT NOT NULL,            -- ATS board handle (e.g. greenhouse token)
+  detected_at   TEXT,                     -- COARSE 'YYYY-MM'
+  UNIQUE (employer_id, ats_type)
+);
+CREATE INDEX IF NOT EXISTS idx_ats_employer ON ats_source(employer_id);
+
+CREATE TABLE IF NOT EXISTS job_posting (
+  id              BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  employer_id     BIGINT NOT NULL REFERENCES employer(id) ON DELETE CASCADE,
+  source          TEXT NOT NULL,          -- ATS: 'greenhouse' | ...
+  req_id          TEXT NOT NULL,          -- ATS job/requisition id
+  title           TEXT NOT NULL,
+  role_family     TEXT,                   -- normalized (roleFamily)
+  lcat_raw        TEXT,                   -- department/team (rough LCAT proxy)
+  clearance_tier  TEXT,                   -- normalized tier
+  metro           TEXT,                   -- normalized metro
+  location_raw    TEXT,
+  remote          BOOLEAN NOT NULL DEFAULT FALSE,
+  salary_min      DOUBLE PRECISION,
+  salary_max      DOUBLE PRECISION,
+  source_url      TEXT,
+  posted_period   TEXT,                   -- COARSE 'YYYY-MM'
+  last_seen       TEXT,                   -- COARSE 'YYYY-MM'
+  is_open         BOOLEAN NOT NULL DEFAULT TRUE,
+  UNIQUE (employer_id, source, req_id)
+);
+CREATE INDEX IF NOT EXISTS idx_job_employer ON job_posting(employer_id);
+CREATE INDEX IF NOT EXISTS idx_job_open ON job_posting(employer_id, is_open);
