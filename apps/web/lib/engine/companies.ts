@@ -102,6 +102,19 @@ export type CompTierBand = {
   p50: number;
   p75: number;
 };
+// Benefit terms where a higher number is unambiguously better — the ones worth
+// a market-position badge. (Vesting/eligibility/premiums have mixed direction,
+// so we don't badge them.)
+const HIGHER_IS_BETTER = [
+  'k401_match',
+  'hsa_employer',
+  'pto',
+  'paid_holidays',
+  'parental_leave',
+  'tuition_reimbursement',
+  'espp_discount',
+];
+
 export type CompanyProfile = {
   slug: string;
   display_name: string;
@@ -112,6 +125,7 @@ export type CompanyProfile = {
   website: string | null;
   about: string | null;
   groups: { key: string; label: string; terms: ProfileTerm[] }[];
+  market: Record<string, { pct: number; n: number }>;
   pay_datapoints: number;
   comp_bands: CompTierBand[];
   comp_posting_count: number;
@@ -160,6 +174,28 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
       e.id,
     ])
   )[0].c;
+
+  // Market position per benefit: this employer's percentile among all employers
+  // that report the term (higher-is-better terms only; need >= 5 for a rank).
+  const mktRows = await q<{ term_key: string; below: number; total: number }>(
+    `WITH mkt AS (
+       SELECT employer_id, term_key, MAX(value_num) AS v
+         FROM plan_terms
+        WHERE value_num IS NOT NULL AND term_key = ANY($2)
+        GROUP BY employer_id, term_key
+     )
+     SELECT b.term_key,
+            COUNT(o.employer_id) FILTER (WHERE o.v < b.v)::int AS below,
+            COUNT(o.employer_id)::int AS total
+       FROM mkt b JOIN mkt o ON o.term_key = b.term_key
+      WHERE b.employer_id = $1
+      GROUP BY b.term_key, b.v
+     HAVING COUNT(o.employer_id) >= 5`,
+    [e.id, HIGHER_IS_BETTER]
+  );
+  const market: Record<string, { pct: number; n: number }> = {};
+  for (const r of mktRows)
+    market[r.term_key] = { pct: Math.round((100 * r.below) / r.total), n: r.total };
 
   // Compensation snapshot from this employer's banded postings — per clearance
   // tier, the observed range (lo–hi) and median of midpoints. Employer public
@@ -216,6 +252,7 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
     website: e.website,
     about: e.about,
     groups,
+    market,
     pay_datapoints: pay,
     comp_bands: compBands,
     comp_posting_count: compPostingCount,

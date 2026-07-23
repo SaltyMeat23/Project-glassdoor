@@ -79,13 +79,23 @@ const BADGE: Record<string, string> = {
   benchmark: 'text-faint border-line',
 };
 
+// Market position for a benefit — this employer's percentile vs all employers
+// that report the term (higher = better for the badged terms).
+function MarketBadge({ pct }: { pct: number }) {
+  if (pct >= 75) return <span className="text-[10px] font-medium text-above">▲ top 25%</span>;
+  if (pct < 25) return <span className="text-[10px] font-medium text-below">▼ below market</span>;
+  return <span className="text-[10px] text-faint">● at market</span>;
+}
+
 function Section({
   label,
   terms,
+  market,
   emptyCta,
 }: {
   label: string;
   terms: ProfileTerm[];
+  market: Record<string, { pct: number; n: number }>;
   emptyCta?: React.ReactNode;
 }) {
   return (
@@ -97,6 +107,7 @@ function Section({
         <div className="space-y-3">
           {terms.map((t) => {
             const head = headline(t);
+            const mkt = market[t.term_key];
             return (
               <div key={t.term_key} className="text-sm">
                 <div className="flex items-baseline justify-between gap-3">
@@ -105,6 +116,7 @@ function Section({
                   </span>
                   <span className="flex shrink-0 items-baseline gap-2">
                     {head && <span className="tnum font-semibold text-text">{head}</span>}
+                    {mkt && <MarketBadge pct={mkt.pct} />}
                     <span
                       className={`rounded-full border px-1.5 py-px text-[10px] ${BADGE[t.confidence] ?? 'text-faint border-line'}`}
                     >
@@ -217,9 +229,9 @@ export default async function CompanyProfilePage({
       {/* benefits */}
       <h2 className="mb-3 mt-8 font-display text-lg font-semibold">Benefits</h2>
       <div className="grid gap-4 sm:grid-cols-3">
-        <Section label="Retirement" terms={byKey.retirement ?? []} />
-        <Section label="Insurance" terms={byKey.insurance ?? []} />
-        <Section label="Leave" terms={byKey.leave ?? []} />
+        <Section label="Retirement" terms={byKey.retirement ?? []} market={p.market} />
+        <Section label="Insurance" terms={byKey.insurance ?? []} market={p.market} />
+        <Section label="Leave" terms={byKey.leave ?? []} market={p.market} />
       </div>
 
       {/* open roles — live cleared postings from the employer's careers site */}
