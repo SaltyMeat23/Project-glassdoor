@@ -10,8 +10,16 @@
 
 import { q, close } from './lib/db-postgres.mjs';
 import { normalizeName } from './lib/normalize.mjs';
-import { fetchBoardMeta, fetchGreenhouseJobs, normalizeJob } from './lib/ats-greenhouse.mjs';
-import { fetchWorkdayCleared, normalizeWorkdayJob } from './lib/ats-workday.mjs';
+import {
+  fetchBoardMeta,
+  fetchGreenhouseJobs,
+  normalizeJob,
+  stripHtml,
+  extractSalaryBand,
+  clearanceSignal,
+  tierFromText,
+} from './lib/ats-greenhouse.mjs';
+import { fetchWorkdayCleared, normalizeWorkdayJob, fetchWorkdayJD } from './lib/ats-workday.mjs';
 import { fetchIcimsCleared, normalizeIcimsJob } from './lib/ats-icims.mjs';
 import { detectFromWebsite } from './lib/ats-detect.mjs';
 
@@ -250,8 +258,57 @@ async function detect(limit, concurrency = 8) {
   console.log(`Ingestable now (${IMPLEMENTED.join('/')}): ${impl || 'none'}. Run \`ingest\` to pull them.`);
 }
 
+// Detail-fetch: pull each Workday posting's full JD and extract a precise
+// clearance tier (full-body clearanceSignal — the obtainable-guard finally has
+// the whole JD) + salary band. Regex only, NO Claude API. Prioritizes postings
+// missing a pay band. Re-runnable; --limit bounds the batch.
+async function detail(limit) {
+  const rows = await q(
+    `SELECT jp.id, jp.title, jp.clearance_tier, jp.source_url, s.board_token
+       FROM job_posting jp
+       JOIN ats_source s ON s.employer_id = jp.employer_id AND s.ats_type = 'workday'
+      WHERE jp.source = 'workday' AND jp.is_open AND jp.salary_min IS NULL
+      ORDER BY jp.id LIMIT $1`,
+    [limit]
+  );
+  let gainedPay = 0,
+    gainedTier = 0,
+    done = 0;
+  await runPool(
+    rows,
+    async (r) => {
+      const html = await fetchWorkdayJD(r.board_token, r.source_url).catch(() => null);
+      done++;
+      if (!html) return;
+      const jd = stripHtml(html);
+      const band = extractSalaryBand(jd);
+      const tier = clearanceSignal(r.title, jd)?.tier ?? tierFromText(jd) ?? r.clearance_tier;
+      await q(`UPDATE job_posting SET salary_min = $1, salary_max = $2, clearance_tier = $3 WHERE id = $4`, [
+        band?.min ?? null,
+        band?.max ?? null,
+        tier,
+        r.id,
+      ]);
+      if (band) gainedPay++;
+      if (tier && !r.clearance_tier) gainedTier++;
+      if (done % 50 === 0) console.log(`  … ${done}/${rows.length} (${gainedPay} bands, ${gainedTier} tiers)`);
+    },
+    8
+  );
+  console.log(
+    `\nDetail-fetched ${rows.length} Workday postings: +${gainedPay} pay bands, +${gainedTier} tiers.`
+  );
+}
+
 async function main() {
   const cmd = process.argv[2] || 'all';
+  if (cmd === 'detail') {
+    const i = process.argv.indexOf('--limit');
+    await detail(Number(i === -1 ? 500 : process.argv[i + 1]));
+    await compFromPostings();
+    await close();
+    return;
+  }
   if (cmd === 'seed' || cmd === 'all') await seed();
   if (cmd === 'detect') {
     const i = process.argv.indexOf('--limit');

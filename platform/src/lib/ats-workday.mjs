@@ -40,6 +40,31 @@ export async function fetchWorkdayCleared(token, { maxPages = 60 } = {}) {
   return { total, jobs, truncated: total > jobs.length, wd };
 }
 
+/** Fetch one Workday job's full JD HTML via the CXS detail endpoint (the list
+ *  has no body/salary). Reconstructs the CXS path from the stored source URL.
+ *  Returns the jobDescription HTML, or null. No Claude API — HTTP only. */
+export async function fetchWorkdayJD(token, sourceUrl) {
+  const { host, tenant, site } = parseWorkday(token);
+  let externalPath;
+  try {
+    const path = new URL(sourceUrl).pathname;
+    const prefix = `/${site}`;
+    externalPath = path.startsWith(prefix) ? path.slice(prefix.length) : path;
+  } catch {
+    return null;
+  }
+  try {
+    const r = await fetch(`https://${host}/wday/cxs/${tenant}/${site}${externalPath}`, {
+      headers: { accept: 'application/json' },
+    });
+    if (!r.ok) return null;
+    const d = await r.json();
+    return d.jobPostingInfo?.jobDescription || null;
+  } catch {
+    return null;
+  }
+}
+
 /** Normalize one Workday list item → our job_posting shape.
  *  The `searchText:"clearance"` filter already establishes it's a cleared role,
  *  so we keep it even when the title omits an explicit tier (tier → null). */
