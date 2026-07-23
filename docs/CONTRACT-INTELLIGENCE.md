@@ -61,13 +61,20 @@ A posting describes a **requisition**, not a person. Under pay-transparency laws
 Because no person is linked, a posting band carries **no person→salary re-id
 risk** — it is safe to ingest and aggregate. (`JOBS.md` is the pipeline.)
 
-### 2.2 Public contract-rate data — already contract-level, already public
+### 2.2 Public contract data — landscape (live); labor rates (CALC gone)
 
-**GSA CALC** publishes **awarded labor-category hourly rates** from Schedule
-contracts. **USAspending/FPDS** gives the contract landscape by attribute
-(customer, prime/sub, place of performance, period). This is contract-level
-pricing that is *public record* — the most B2B-valuable input, with zero privacy
-exposure.
+**USAspending/FPDS** (`api.usaspending.gov`, live) gives the contract landscape
+by attribute (customer, prime/sub, place of performance, period) — public record,
+zero privacy exposure — but it's **metadata, not pay**.
+
+> ⚠️ **GSA CALC is decommissioned (verified 2026-07-23)** — it once published
+> awarded labor-category hourly rates, but the API is gone (`calc.gsa.gov`
+> redirects to a static page). There is **no live public API for
+> contract-awarded labor rates**. Job postings (§2.1) took over as the primary
+> public-pay source. Note: CALC rates were *billable ceiling* rates (loaded with
+> wrap/fee ≈ 1.8–2× salary), so even if recovered from the archived dataset they
+> need a wrap-rate divisor and carry no clearance dimension — postings are the
+> cleaner comp signal.
 
 ### 2.3 Crowdsourced submissions — kept coarse, aggregated only
 

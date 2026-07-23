@@ -48,14 +48,22 @@ feeds and public government data only.**
 These are the safest, most B2B-lucrative sources — public, factual, and already
 contract-level, with **zero person linkage**:
 
-- **GSA CALC** (Contract-Awarded Labor Category tool, `calc.gsa.gov`) — publishes
-  **awarded hourly rates by labor category** from GSA Schedule contracts. This is
-  literally contract-level labor pricing, public and non-PII. Seeds both the comp
-  benchmark and the canonical-LCAT ontology (`CONTRACT-INTELLIGENCE.md` §3).
-- **USAspending.gov** — federal award data: who won which contract, ceiling
-  values, place of performance, NAICS/PSC codes, prime↔sub. Lets us map the
-  **contract landscape by attributes** (customer/agency, prime/sub, metro,
-  period) — the structural skeleton contract-shape intelligence hangs on.
+- **~~GSA CALC~~ — DECOMMISSIONED (verified 2026-07-23).** The Contract-Awarded
+  Labor Category tool once published awarded hourly rates by labor category, but
+  `calc.gsa.gov` now 301-redirects to a static page (`buy.gsa.gov/calc.html`) and
+  the `/api/rates/` endpoint is gone. **There is no live public API for
+  contract-awarded labor rates.** The underlying GSA Schedule rate data may be
+  recoverable from the archived open dataset (the tool was 18F/calc, open-source)
+  or GSA Advantage/eLibrary, but that's a research task, not an API call.
+  **Practical consequence: job postings became our primary public-pay source**
+  (they turned out rich — thousands of banded cleared roles), which fills the
+  role CALC was meant to. The canonical-LCAT ontology seeds from contract-vehicle
+  catalogs + postings instead (`CONTRACT-INTELLIGENCE.md` §3).
+- **USAspending.gov** (`api.usaspending.gov`, live) — federal award data: who won
+  which contract, ceiling values, place of performance, NAICS/PSC codes,
+  prime↔sub. **Metadata, not pay** — it maps the **contract landscape by
+  attributes** (customer/agency, prime/sub, metro, period), the structural
+  skeleton contract-shape intelligence hangs on, but carries no labor rates.
 - **SAM.gov / FPDS** — award and vehicle metadata for the same purpose.
 - **Contract-vehicle LCAT catalogs** (OASIS, SeaPort-NxG, agency IDIQs) —
   semi-standardized labor-category definitions that anchor the ontology.
