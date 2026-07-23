@@ -30,6 +30,7 @@ export type Profile = {
 export type Term = {
   value_num: number | null;
   value_text: string | null;
+  unit: string | null;
   confidence: string;
   plan_year: number | null;
   source_url: string | null;

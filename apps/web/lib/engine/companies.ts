@@ -79,6 +79,7 @@ export type ProfileTerm = {
   term_key: string;
   value_num: number | null;
   value_text: string | null;
+  unit: string | null;
   confidence: string;
   plan_year: number | null;
 };
@@ -143,6 +144,7 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
         term_key,
         value_num: t.value_num,
         value_text: t.value_text,
+        unit: t.unit,
         confidence: t.confidence,
         plan_year: t.plan_year,
       })),

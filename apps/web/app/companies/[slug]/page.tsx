@@ -55,16 +55,21 @@ const TERM_LABEL: Record<string, string> = {
 const UNIT: Record<string, (n: number) => string> = {
   pct: (n) => `${n}%`,
   usd_per_year: (n) => `$${Math.round(n).toLocaleString()}/yr`,
-  days: (n) => `${n} days`,
-  weeks: (n) => `${n} wks`,
-  years: (n) => `${n} yr`,
+  usd: (n) => `$${Math.round(n).toLocaleString()}`,
+  days: (n) => `${n} ${n === 1 ? 'day' : 'days'}`,
+  weeks: (n) => `${n} ${n === 1 ? 'wk' : 'wks'}`,
+  months: (n) => `${n} ${n === 1 ? 'mo' : 'mos'}`,
+  years: (n) => (n === 0 ? 'Immediate' : `${n} ${n === 1 ? 'yr' : 'yrs'}`),
+  x_salary: (n) => `${n}× salary`,
   bool: (n) => (n ? 'Yes' : 'No'),
 };
 
-function termValue(t: ProfileTerm): string {
-  if (t.value_text) return t.value_text;
-  if (t.value_num == null) return '—';
-  return Math.round(t.value_num).toLocaleString();
+// The at-a-glance value: the extracted number + its unit (e.g. "4.5%", "$500/yr",
+// "16 days"). Null when we only have prose — then the text itself is the value.
+function headline(t: ProfileTerm): string | null {
+  if (t.value_num == null || !t.unit) return null;
+  const fmt = UNIT[t.unit];
+  return fmt ? fmt(t.value_num) : `${t.value_num}`;
 }
 
 const BADGE: Record<string, string> = {
@@ -89,21 +94,31 @@ function Section({
       {terms.length === 0 ? (
         <p className="text-sm text-muted">No data yet.{emptyCta ? <> {emptyCta}</> : null}</p>
       ) : (
-        <div className="space-y-2">
-          {terms.map((t) => (
-            <div key={t.term_key} className="flex items-baseline justify-between gap-3 text-sm">
-              <span className="text-muted">{TERM_LABEL[t.term_key] ?? titleize(t.term_key)}</span>
-              <span className="flex items-baseline gap-2">
-                <span className="tnum text-text">{termValue(t)}</span>
-                <span
-                  className={`rounded-full border px-1.5 py-px text-[10px] ${BADGE[t.confidence] ?? 'text-faint border-line'}`}
-                >
-                  {t.confidence}
-                  {t.plan_year ? ` ${t.plan_year}` : ''}
-                </span>
-              </span>
-            </div>
-          ))}
+        <div className="space-y-3">
+          {terms.map((t) => {
+            const head = headline(t);
+            return (
+              <div key={t.term_key} className="text-sm">
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="text-muted">
+                    {TERM_LABEL[t.term_key] ?? titleize(t.term_key)}
+                  </span>
+                  <span className="flex shrink-0 items-baseline gap-2">
+                    {head && <span className="tnum font-semibold text-text">{head}</span>}
+                    <span
+                      className={`rounded-full border px-1.5 py-px text-[10px] ${BADGE[t.confidence] ?? 'text-faint border-line'}`}
+                    >
+                      {t.confidence}
+                      {t.plan_year ? ` ${t.plan_year}` : ''}
+                    </span>
+                  </span>
+                </div>
+                {t.value_text && (
+                  <p className="mt-0.5 text-[12px] leading-snug text-faint">{t.value_text}</p>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </section>
