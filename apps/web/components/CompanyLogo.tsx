@@ -22,7 +22,37 @@ function hue(name: string): number {
   return 180 + (h % 80);
 }
 
-export function CompanyLogo({ name, size = 44 }: { name: string; size?: number }) {
+export function CompanyLogo({
+  name,
+  size = 44,
+  slug,
+  hasLogo,
+}: {
+  name: string;
+  size?: number;
+  slug?: string;
+  hasLogo?: boolean;
+}) {
+  // Real logo: served from our own origin (SECURITY §8.2 — bytes self-hosted in
+  // Neon), a small mark centered on a subtle chip. Monogram fallback otherwise.
+  if (hasLogo && slug) {
+    return (
+      <div
+        className="flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-white"
+        style={{ width: size, height: size }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`/api/companies/${encodeURIComponent(slug)}/logo`}
+          alt={`${name} logo`}
+          className="h-[70%] w-[70%] object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    );
+  }
+
   const h = hue(name);
   return (
     <div

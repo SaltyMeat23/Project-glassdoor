@@ -6,6 +6,7 @@ export type CompanyTileRow = {
   slug: string;
   display_name: string;
   industry: string | null;
+  has_logo: boolean;
   has_about: boolean;
   has_retirement: boolean;
   has_insurance: boolean;
@@ -26,6 +27,7 @@ export async function searchCompanies({
   const like = query.trim();
   const rows = await q<CompanyTileRow>(
     `SELECT e.slug, e.display_name, e.industry,
+       (e.logo_bytes IS NOT NULL) AS has_logo,
        (e.about IS NOT NULL) AS has_about,
        EXISTS(SELECT 1 FROM plan_terms t WHERE t.employer_id = e.id
               AND (t.term_key LIKE 'k401%' OR t.term_key LIKE 'pension%' OR t.term_key LIKE 'esop%')) AS has_retirement,
@@ -103,6 +105,7 @@ export type CompTierBand = {
 export type CompanyProfile = {
   slug: string;
   display_name: string;
+  has_logo: boolean;
   sector: string | null;
   ownership: string | null;
   industry: string | null;
@@ -121,13 +124,15 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
     id: number;
     slug: string;
     display_name: string;
+    has_logo: boolean;
     sector: string | null;
     ownership: string | null;
     industry: string | null;
     website: string | null;
     about: string | null;
   }>(
-    `SELECT id, slug, display_name, sector, ownership, industry, website, about
+    `SELECT id, slug, display_name, (logo_bytes IS NOT NULL) AS has_logo,
+            sector, ownership, industry, website, about
      FROM employer WHERE slug = $1 LIMIT 1`,
     [slug]
   );
@@ -204,6 +209,7 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
   return {
     slug: e.slug,
     display_name: e.display_name,
+    has_logo: e.has_logo,
     sector: e.sector,
     ownership: e.ownership,
     industry: e.industry,

@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS employer (
   region        TEXT,                          -- state/region
   linkedin_url  TEXT,
   logo_url      TEXT,
+  logo_bytes    BLOB,         -- self-hosted logo (fetched server-side; SECURITY §8.2)
+  logo_mime     TEXT,
   about         TEXT,                          -- description ("who they are / what they do")
   provenance    TEXT                           -- e.g. 'clearancejobs_2024' for directory imports
 );

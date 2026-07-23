@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS employer (
   region        TEXT,
   linkedin_url  TEXT,
   logo_url      TEXT,
+  logo_bytes    BYTEA,        -- self-hosted logo (fetched server-side; SECURITY §8.2)
+  logo_mime     TEXT,
   about         TEXT,
   provenance    TEXT
 );

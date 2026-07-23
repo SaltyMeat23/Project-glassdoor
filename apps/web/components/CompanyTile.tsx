@@ -12,7 +12,7 @@ export function CompanyTile({ c }: { c: CompanyTileRow }) {
       href={`/companies/${c.slug}`}
       className="group flex flex-col rounded-xl border border-line bg-panel p-4 transition-colors hover:border-line-2 hover:bg-panel-2"
     >
-      <CompanyLogo name={c.display_name} />
+      <CompanyLogo name={c.display_name} slug={c.slug} hasLogo={c.has_logo} />
       <div className="mt-3 min-w-0">
         <p className="truncate font-display text-[15px] font-semibold group-hover:text-white">
           {c.display_name}

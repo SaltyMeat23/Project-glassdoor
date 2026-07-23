@@ -152,7 +152,7 @@ export default async function CompanyProfilePage({
 
       {/* header */}
       <header className="mt-5 flex items-start gap-4">
-        <CompanyLogo name={p.display_name} size={64} />
+        <CompanyLogo name={p.display_name} size={64} slug={p.slug} hasLogo={p.has_logo} />
         <div className="min-w-0">
           <h1 className="font-display text-3xl font-bold leading-tight tracking-tight">
             {p.display_name}
