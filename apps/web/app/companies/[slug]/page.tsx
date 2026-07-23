@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CompanyLogo } from '@/components/CompanyLogo';
 import { getCompanyProfile, type ProfileTerm, type OpenRole } from '@/lib/engine/companies';
+import { CompBands } from '@/components/CompBands';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -162,17 +163,45 @@ export default async function CompanyProfilePage({
         <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted">{p.about}</p>
       )}
 
-      {/* benefit sections */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <Section
-          label="Pay"
-          terms={[]}
-          emptyCta={
-            <Link href={`/?employer=${p.slug}`} className="text-brand-2 hover:underline">
-              See how pay compares →
+      {/* compensation — the headline: pay by clearance, from this employer's postings */}
+      {p.comp_bands.length > 0 ? (
+        <section className="mt-8 rounded-2xl border border-line bg-panel p-5 sm:p-6">
+          <div className="mb-1 flex flex-wrap items-baseline justify-between gap-x-3">
+            <h2 className="font-display text-lg font-semibold">Compensation</h2>
+            <span className="text-[11px] text-faint">
+              from <span className="tnum text-muted">{p.comp_posting_count.toLocaleString()}</span>{' '}
+              posted pay ranges
+            </span>
+          </div>
+          <p className="mb-5 max-w-xl text-[13px] leading-relaxed text-muted">
+            Typical base pay by clearance level — the median (marker) and middle 50% (band) of this
+            employer&apos;s open postings that list a salary.
+          </p>
+          <CompBands bands={p.comp_bands} />
+          <div className="mt-5 border-t border-line pt-4">
+            <Link
+              href={`/?employer=${p.slug}`}
+              className="text-[13px] font-medium text-brand-2 hover:underline"
+            >
+              See how your pay compares at {p.display_name} →
             </Link>
-          }
-        />
+          </div>
+        </section>
+      ) : (
+        <section className="mt-8 rounded-2xl border border-line bg-panel p-5">
+          <h2 className="font-display text-lg font-semibold">Compensation</h2>
+          <p className="mt-1.5 text-sm text-muted">
+            No posted pay ranges yet.{' '}
+            <Link href={`/?employer=${p.slug}`} className="text-brand-2 hover:underline">
+              See how your pay compares →
+            </Link>
+          </p>
+        </section>
+      )}
+
+      {/* benefits */}
+      <h2 className="mb-3 mt-8 font-display text-lg font-semibold">Benefits</h2>
+      <div className="grid gap-4 sm:grid-cols-3">
         <Section label="Retirement" terms={byKey.retirement ?? []} />
         <Section label="Insurance" terms={byKey.insurance ?? []} />
         <Section label="Leave" terms={byKey.leave ?? []} />

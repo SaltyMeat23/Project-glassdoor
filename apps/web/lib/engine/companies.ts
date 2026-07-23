@@ -92,6 +92,13 @@ export type OpenRole = {
   salary_max: number | null;
   source_url: string | null;
 };
+export type CompTierBand = {
+  clearance_tier: string;
+  n: number;
+  p25: number;
+  p50: number;
+  p75: number;
+};
 export type CompanyProfile = {
   slug: string;
   display_name: string;
@@ -102,6 +109,8 @@ export type CompanyProfile = {
   about: string | null;
   groups: { key: string; label: string; terms: ProfileTerm[] }[];
   pay_datapoints: number;
+  comp_bands: CompTierBand[];
+  comp_posting_count: number;
   open_roles: OpenRole[];
   open_roles_total: number;
 };
@@ -145,6 +154,34 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
     ])
   )[0].c;
 
+  // Compensation snapshot from this employer's banded postings — per clearance
+  // tier, the observed range (lo–hi) and median of midpoints. Employer public
+  // data (postings), not person submissions. Require >= 3 postings per tier so a
+  // band means something.
+  const compBands = await q<CompTierBand>(
+    `SELECT clearance_tier,
+            COUNT(*)::int AS n,
+            percentile_cont(0.25) WITHIN GROUP (ORDER BY mid)::float8 AS p25,
+            percentile_cont(0.5)  WITHIN GROUP (ORDER BY mid)::float8 AS p50,
+            percentile_cont(0.75) WITHIN GROUP (ORDER BY mid)::float8 AS p75
+       FROM (
+         SELECT clearance_tier, (salary_min + salary_max) / 2.0 AS mid
+           FROM job_posting
+          WHERE employer_id = $1 AND is_open AND salary_min IS NOT NULL AND clearance_tier IS NOT NULL
+       ) t
+      GROUP BY clearance_tier
+     HAVING COUNT(*) >= 3
+      ORDER BY p50 DESC`,
+    [e.id]
+  );
+  const compPostingCount = (
+    await q<{ c: number }>(
+      `SELECT COUNT(*)::int AS c FROM job_posting
+        WHERE employer_id = $1 AND is_open AND salary_min IS NOT NULL`,
+      [e.id]
+    )
+  )[0].c;
+
   // Open cleared roles (employer data — public postings, no PII). Pay-banded
   // roles first, then by clearance depth, so the useful ones lead.
   const openRoles = await q<OpenRole>(
@@ -172,6 +209,8 @@ export async function getCompanyProfile(slug: string): Promise<CompanyProfile | 
     about: e.about,
     groups,
     pay_datapoints: pay,
+    comp_bands: compBands,
+    comp_posting_count: compPostingCount,
     open_roles: openRoles,
     open_roles_total: openTotal,
   };

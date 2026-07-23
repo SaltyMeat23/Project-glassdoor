@@ -40,7 +40,11 @@ const anthropic = new Anthropic();
 
 // ---- the research call -----------------------------------------------------
 const clean = (v) => {
-  const s = String(v ?? '').trim();
+  // Strip any markup the model may emit (e.g. <cite index="..."> citation tags).
+  const s = String(v ?? '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
   return s && s.length > 1 && s.toLowerCase() !== 'null' ? s : null;
 };
 
