@@ -220,6 +220,21 @@ Observed directly on clearancejobs.com:
   gated (sales-contact, not public list price — consistent with the ~$12k/seat
   figure coming from direct experience, not a public page).
 
+- **CJ Premium is visibility-only — it confirms our wedge (direct view, 2026-07-22).**
+  The full `clearancejobs.com/profile/premium-subscription` feature list is
+  **entirely about being found**, not about comp: *make your profile searchable ·
+  stay hidden from specific employers · see who viewed your profile · identity
+  badge (via Plaid) · appear in Premium recruiter filters (gold badge) · retain
+  access to closed jobs.* **$12.99/mo, 7-day free trial.** Notably **there is no
+  comp/benefits/total-rewards analysis in Premium at all.**
+  - *Implication:* CJ monetizes *being found*; we monetize *knowing your worth*.
+    These are different value props, so our consumer product (§13: free comp hook
+    + $29 rack-and-stack) is **not** a head-to-head clone of CJ Premium — it's the
+    intelligence layer CJ structurally lacks. Our durable moat holds: comp/benefits
+    truth is our **free core**, not a paywalled visibility toggle, and the
+    contract-shape intelligence (`CONTRACT-INTELLIGENCE.md`) is something a
+    recruiter-first incumbent has no dataset to build.
+
 ## 11. Risks & honest tensions
 
 - **Liquidity per cell.** A smaller active pool must still be deep enough per
