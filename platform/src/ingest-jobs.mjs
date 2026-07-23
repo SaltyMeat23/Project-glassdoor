@@ -20,7 +20,7 @@ import {
   tierFromText,
 } from './lib/ats-greenhouse.mjs';
 import { fetchWorkdayCleared, normalizeWorkdayJob, fetchWorkdayJD } from './lib/ats-workday.mjs';
-import { fetchIcimsCleared, normalizeIcimsJob } from './lib/ats-icims.mjs';
+import { fetchIcimsCleared, normalizeIcimsJob, fetchIcimsJD } from './lib/ats-icims.mjs';
 import { detectFromWebsite } from './lib/ats-detect.mjs';
 
 const IMPLEMENTED = ['greenhouse', 'workday', 'icims']; // ATS we can ingest today
@@ -262,14 +262,14 @@ async function detect(limit, concurrency = 8) {
 // clearance tier (full-body clearanceSignal — the obtainable-guard finally has
 // the whole JD) + salary band. Regex only, NO Claude API. Prioritizes postings
 // missing a pay band. Re-runnable; --limit bounds the batch.
-async function detail(limit) {
+async function detail(limit, sources = ['workday', 'icims']) {
   const rows = await q(
-    `SELECT jp.id, jp.title, jp.clearance_tier, jp.source_url, s.board_token
+    `SELECT jp.id, jp.title, jp.clearance_tier, jp.source, jp.source_url, s.board_token
        FROM job_posting jp
-       JOIN ats_source s ON s.employer_id = jp.employer_id AND s.ats_type = 'workday'
-      WHERE jp.source = 'workday' AND jp.is_open AND jp.salary_min IS NULL
-      ORDER BY jp.id LIMIT $1`,
-    [limit]
+       LEFT JOIN ats_source s ON s.employer_id = jp.employer_id AND s.ats_type = jp.source
+      WHERE jp.source = ANY($1) AND jp.is_open AND jp.salary_min IS NULL
+      ORDER BY jp.source, jp.id LIMIT $2`,
+    [sources, limit]
   );
   let gainedPay = 0,
     gainedTier = 0,
@@ -277,7 +277,10 @@ async function detail(limit) {
   await runPool(
     rows,
     async (r) => {
-      const html = await fetchWorkdayJD(r.board_token, r.source_url).catch(() => null);
+      const html =
+        r.source === 'workday'
+          ? await fetchWorkdayJD(r.board_token, r.source_url).catch(() => null)
+          : await fetchIcimsJD(r.source_url).catch(() => null);
       done++;
       if (!html) return;
       const jd = stripHtml(html);
@@ -296,7 +299,7 @@ async function detail(limit) {
     8
   );
   console.log(
-    `\nDetail-fetched ${rows.length} Workday postings: +${gainedPay} pay bands, +${gainedTier} tiers.`
+    `\nDetail-fetched ${rows.length} postings [${sources.join('+')}]: +${gainedPay} pay bands, +${gainedTier} tiers.`
   );
 }
 
@@ -304,7 +307,10 @@ async function main() {
   const cmd = process.argv[2] || 'all';
   if (cmd === 'detail') {
     const i = process.argv.indexOf('--limit');
-    await detail(Number(i === -1 ? 500 : process.argv[i + 1]));
+    const limit = Number(i === -1 ? 500 : process.argv[i + 1]);
+    const src = process.argv[3];
+    const sources = src === 'icims' || src === 'workday' ? [src] : ['workday', 'icims'];
+    await detail(limit, sources);
     await compFromPostings();
     await close();
     return;

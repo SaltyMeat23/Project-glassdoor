@@ -63,6 +63,19 @@ export async function fetchIcimsCleared(sub, { maxPages = 15 } = {}) {
   return out;
 }
 
+/** Fetch one iCIMS posting's full JD HTML (the `in_iframe=1` content view). The
+ *  list has no salary; the detail page carries pay bands (in pay-transparency
+ *  states) + full clearance context. No Claude API — HTTP only. */
+export async function fetchIcimsJD(sourceUrl) {
+  try {
+    const r = await fetch(`${sourceUrl}?in_iframe=1`, { headers: { 'user-agent': 'Mozilla/5.0' } });
+    if (!r.ok) return null;
+    return await r.text();
+  } catch {
+    return null;
+  }
+}
+
 /** Normalize one iCIMS row → our job_posting shape. searchKeyword=clearance
  *  establishes it's a cleared role; tier from title/desc where present. */
 export function normalizeIcimsJob(job, sub) {
