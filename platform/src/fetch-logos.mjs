@@ -18,6 +18,9 @@ const LIMIT = Number(flag('limit', 400));
 const CONCURRENCY = Number(flag('concurrency', 6));
 const MAX_BYTES = 120_000; // skip anything bigger than a small logo (avoids full og: images)
 const MIN_BYTES = 120; // skip empty / 1px trackers
+// Raster only — reject image/svg+xml (SVGs can carry <script>; served on our
+// origin that's stored XSS) and anything non-image.
+const ALLOWED_MIME = /^image\/(png|jpeg|gif|webp|x-icon|vnd\.microsoft\.icon)$/i;
 
 function domainOf(website) {
   try {
@@ -38,7 +41,7 @@ async function fetchLogo(domain) {
       const r = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(9000) });
       if (!r.ok) continue;
       const mime = (r.headers.get('content-type') || '').split(';')[0].trim();
-      if (!/^image\//i.test(mime)) continue;
+      if (!ALLOWED_MIME.test(mime)) continue; // raster only; never store SVG
       const bytes = Buffer.from(await r.arrayBuffer());
       if (bytes.length < MIN_BYTES || bytes.length > MAX_BYTES) continue;
       return { bytes, mime };

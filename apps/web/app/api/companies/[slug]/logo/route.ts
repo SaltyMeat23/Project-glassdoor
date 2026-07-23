@@ -5,6 +5,17 @@ import { q } from '@/lib/engine/db';
 
 export const runtime = 'nodejs';
 
+// Raster only — never serve image/svg+xml as active content on our own origin
+// (an SVG can carry <script> → stored XSS). Coerce anything else to png.
+const ALLOWED = new Set([
+  'image/png',
+  'image/jpeg',
+  'image/gif',
+  'image/webp',
+  'image/x-icon',
+  'image/vnd.microsoft.icon',
+]);
+
 function toBuffer(v: unknown): Buffer | null {
   if (v == null) return null;
   if (Buffer.isBuffer(v)) return v;
@@ -26,9 +37,13 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
     );
     const buf = toBuffer(rows[0]?.logo_bytes);
     if (!buf) return new Response(null, { status: 404 });
+    const mime = ALLOWED.has(rows[0].logo_mime ?? '') ? (rows[0].logo_mime as string) : 'image/png';
     return new Response(new Uint8Array(buf), {
       headers: {
-        'content-type': rows[0].logo_mime || 'image/png',
+        'content-type': mime,
+        'x-content-type-options': 'nosniff',
+        'content-security-policy': "default-src 'none'; sandbox",
+        'content-disposition': 'inline; filename="logo"',
         'cache-control': 'public, max-age=31536000, immutable',
       },
     });
