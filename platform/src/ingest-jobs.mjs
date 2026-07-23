@@ -21,9 +21,11 @@ import {
 } from './lib/ats-greenhouse.mjs';
 import { fetchWorkdayCleared, normalizeWorkdayJob, fetchWorkdayJD } from './lib/ats-workday.mjs';
 import { fetchIcimsCleared, normalizeIcimsJob, fetchIcimsJD } from './lib/ats-icims.mjs';
+import { fetchLeverCleared, normalizeLeverJob } from './lib/ats-lever.mjs';
+import { fetchAshbyCleared, normalizeAshbyJob } from './lib/ats-ashby.mjs';
 import { detectFromWebsite } from './lib/ats-detect.mjs';
 
-const IMPLEMENTED = ['greenhouse', 'workday', 'icims']; // ATS we can ingest today
+const IMPLEMENTED = ['greenhouse', 'workday', 'icims', 'lever', 'ashby']; // ATS we can ingest today
 
 const PERIOD = new Date().toISOString().slice(0, 7); // coarse 'YYYY-MM'
 const WD_MAX_PAGES = 60; // ~1,200 cleared roles/board cap for the prototype
@@ -44,6 +46,8 @@ const SEED = {
     { token: 'caci.wd1.myworkdayjobs.com::caci::External', name: 'CACI International' },
     { token: 'kbr.wd5.myworkdayjobs.com::kbr::KBR_Careers', name: 'KBR' },
   ],
+  lever: [{ token: 'palantir', name: 'Palantir Technologies' }],
+  ashby: [{ token: 'saronic', name: 'Saronic' }],
 };
 
 function slugify(name) {
@@ -94,9 +98,11 @@ async function seed() {
     await upsertSource(await resolveEmployer(name), 'greenhouse', token);
     console.log(`  ✓ ${name} → greenhouse/${token}`);
   }
-  for (const { token, name } of SEED.workday) {
-    await upsertSource(await resolveEmployer(name), 'workday', token);
-    console.log(`  ✓ ${name} → workday/${token.split('::')[0]}`);
+  for (const type of ['workday', 'lever', 'ashby']) {
+    for (const { token, name } of SEED[type] || []) {
+      await upsertSource(await resolveEmployer(name), type, token);
+      console.log(`  ✓ ${name} → ${type}/${token.split('::')[0]}`);
+    }
   }
 }
 
@@ -156,6 +162,16 @@ async function ingestOne(src) {
     if (!jobs) return null;
     return upsertPostings(src.employer_id, 'icims', jobs.map((j) => normalizeIcimsJob(j, src.board_token)));
   }
+  if (src.ats_type === 'lever') {
+    const jobs = await fetchLeverCleared(src.board_token);
+    if (!jobs) return null;
+    return upsertPostings(src.employer_id, 'lever', jobs.map(normalizeLeverJob));
+  }
+  if (src.ats_type === 'ashby') {
+    const jobs = await fetchAshbyCleared(src.board_token);
+    if (!jobs) return null;
+    return upsertPostings(src.employer_id, 'ashby', jobs.map(normalizeAshbyJob));
+  }
   return null;
 }
 
@@ -183,16 +199,16 @@ async function compFromPostings() {
   console.log(`Derived ${rows.length} comp datapoints from banded postings (source='posting').`);
 }
 
-async function ingest() {
-  const sources = await q(
+async function ingest(sources = IMPLEMENTED) {
+  const rows = await q(
     `SELECT s.employer_id, s.ats_type, s.board_token, e.display_name
        FROM ats_source s JOIN employer e ON e.id = s.employer_id
       WHERE s.ats_type = ANY($1) ORDER BY s.ats_type, e.display_name`,
-    [IMPLEMENTED]
+    [sources]
   );
   let totCleared = 0,
     totPay = 0;
-  for (const s of sources) {
+  for (const s of rows) {
     const r = await ingestOne(s);
     if (!r) {
       console.log(`  ✗ ${s.display_name} (${s.ats_type}): fetch failed`);
@@ -205,7 +221,7 @@ async function ingest() {
     );
   }
   console.log(
-    `\nIngested ${totCleared} cleared postings across ${sources.length} boards; ${totPay} carry a salary band.`
+    `\nIngested ${totCleared} cleared postings across ${rows.length} boards; ${totPay} carry a salary band.`
   );
 }
 
@@ -320,7 +336,10 @@ async function main() {
     const i = process.argv.indexOf('--limit');
     await detect(Number(i === -1 ? 300 : process.argv[i + 1]));
   }
-  if (cmd === 'ingest' || cmd === 'all') await ingest();
+  if (cmd === 'ingest' || cmd === 'all') {
+    const src = cmd === 'ingest' ? process.argv[3] : undefined;
+    await ingest(src && IMPLEMENTED.includes(src) ? [src] : IMPLEMENTED);
+  }
   if (cmd === 'ingest' || cmd === 'all' || cmd === 'comp') await compFromPostings();
   await close();
 }
